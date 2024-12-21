@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    height: 6em;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+#header .logo img {
+    height: 10em;
+}
+
+#header a {
+    color: black;
+    text-decoration: none;
+}
+
+#header nav {
+    gap: 30px;
+    font-size: 16px;
+    display: flex;
+}
+#header .login-id {
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 12px;
+    margin: 2em;
+    background-color: #0089ff;
+    height: 20px;
+
+}
+#header .login-id a {
+    color: white;
+}
+
+/* Main.css */
+body {
+    background-image: url(./img/background.png);
+    background-size: cover;
+    /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    /* Don't repeat the image */
+    background-position: center;
+    /* Center the image */
+    background-color: #f0f4f8;
+    /* Fallback background color */
+}
+
+/* Main component styling */
+#main {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+#sub-name h1 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.sub,
+.unit,
+.quest {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#gen {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#gen button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+    #main {
+        width: 90%;
+        /* Make it responsive for smaller screens */
+    }
+}
+
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+.login-container form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+}
+.login-container h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.rem-me {
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+.rem-me input[type="checkbox"] {
+    margin: 0; 
+    cursor: pointer; 
+    width: 16px; 
+    height: 16px;
+}
+.rem-me label {
+    font-size: 14px; 
+    line-height: 1; 
+    cursor: pointer; 
+}
+
+.forgot-password {
+    text-align: right;
+}
+.forgot-password a {
+    font-size: 14px;
+    text-decoration: none;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+button[type="submit"] {
+    background-color: #0089ff;
+    color: white;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.google-login {
+    background-color: #0089ff;
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container p {
+    font-size: 14px;
+    margin: 1em;
+    text-align: center;
+}
+
+.login-container a {
+    color: #0089ff;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Signup Css */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Form Styling */
+form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+/* Form Heading */
+.signup-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Input Field Styling */
+input[type="email"],
+input[type="password"] ,
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Checkbox Styling */
+.check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+label {
+    font-size: 14px;
+    cursor: pointer;
+}
+label a {
+    color: #0089ff;
+    text-decoration: none;
+}
+label a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    color: white;
+    padding: 12px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #006fd1;
+}
+
+button[type="button"] {
+    background-color: #0089ff;
+    margin-top: 5px;
+}
+button[type="button"]:hover {
+    background-color: #006fd1;
+}
+
+/* Error Input Styling */
+input.error {
+    /* border: 1px solid #d9534f; */
+    color: #d9534f;
+  }
+  
+  input.error::placeholder {
+    color: #d9534f; /* Matches error message color */
+  }
+  
+/* Text Below Buttons */
+.signup-container p {
+    margin: 15px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.signup-container p a {
+    color: #0089ff;
+    text-decoration: none;
+}
+
+.signup-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Focus State for Inputs */
+input:focus {
+    border-color: #0089ff;
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    form {
+        padding: 20px;
+    }
+    .name-fields {
+        flex-direction: column;
+        gap: 10px;
+    }
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Aboutus.css */
+
+.Aboutus {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White background with some transparency */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+hr {
+    border-bottom: 1px solid black;
+}
+
+.Aboutus h2 {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.Aboutus h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+/* Paragraph and text styling */
+.Aboutus p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* List styling */
+.Aboutus ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.Aboutus li {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .Aboutus {
+        padding: 15px;
+    }
+
+    .Aboutus h2 {
+        font-size: 24px;
+    }
+
+    .Aboutus h3 {
+        font-size: 20px;
+    }
+
+    .Aboutus p,
+    li {
+        font-size: 15px;
+    }
+}
+
+.help-container {
+    max-width: 850px;
+    margin: 1em auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White background with some transparency */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.help-container h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.help-container h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.help-container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.help-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.help-container li {
+    margin-bottom: 10px;
+}
+
+.help-container a {
+    text-decoration: none;
+}
+
+.help-container a:hover {
+    text-decoration: underline;
+}
