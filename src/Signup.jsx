@@ -1,151 +1,150 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 function Signup({ onSignup }) {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      isChecked: false,
-    },
-    validationSchema: Yup.object({
-      firstName: Yup.string()
-        .min(2, "First name must be at least 2 characters")
-        .max(15, "First name cannot exceed 15 characters")
-        .required("First name is required"),
-      lastName: Yup.string()
-        .min(2, "Last name must be at least 2 characters")
-        .max(20, "Last name cannot exceed 20 characters")
-        .required("Last name is required"),
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
-      password: Yup.string()
-        .min(8, "Password must be at least 8 characters")
-        .required("Password is required"),
-      isChecked: Yup.boolean().oneOf(
-        [true],
-        "You must agree to the Terms & Privacy Policy"
-      ),
-    }),
-    onSubmit: (values) => {
-      console.log("Form Data:", values);
-      onSignup(); 
-      navigate("/Header"); 
-    },
+  // Validation schema using Yup
+  const validationSchema = Yup.object({
+    firstName: Yup.string()
+      .min(2, "First name must be at least 2 characters")
+      .max(15, "First name cannot exceed 15 characters")
+      .required("First name is required"),
+    lastName: Yup.string()
+      .min(2, "Last name must be at least 2 characters")
+      .max(20, "Last name cannot exceed 20 characters")
+      .required("Last name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is required"),
+    isChecked: Yup.boolean().oneOf(
+      [true],
+      "You must agree to the Terms & Privacy Policy"
+    ),
   });
+
+  // Initial form values
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    isChecked: false,
+  };
+
+  const handleSubmit = (values) => {
+    console.log("Form Data:", values);
+    onSignup(); // Trigger the signup logic
+    navigate("/Header"); // Redirect after successful signup
+  };
 
   return (
     <div className="signup-container">
-      <form onSubmit={formik.handleSubmit}>
-        <h2>Create an Account</h2>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <h2>Create an Account</h2>
 
-        <div>
-          <input
-            type="text"
-            name="firstName"
-            placeholder={
-              formik.touched.firstName && formik.errors.firstName
-                ? formik.errors.firstName
-                : "First Name"
-            }
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={
-              formik.touched.firstName && formik.errors.firstName
-                ? "error"
-                : ""
-            }
-          />
-        </div>
+            {/* First Name */}
+            <div>
+              <Field
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                className="input"
+              />
+              <ErrorMessage
+                name="firstName"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-        <div>
-          <input
-            type="text"
-            name="lastName"
-            placeholder={
-              formik.touched.lastName && formik.errors.lastName
-                ? formik.errors.lastName
-                : "Last Name"
-            }
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={
-              formik.touched.lastName && formik.errors.lastName ? "error" : ""
-            }
-          />
-        </div>
+            {/* Last Name */}
+            <div>
+              <Field
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                className="input"
+              />
+              <ErrorMessage
+                name="lastName"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder={
-              formik.touched.email && formik.errors.email
-                ? formik.errors.email
-                : "Email"
-            }
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={
-              formik.touched.email && formik.errors.email ? "error" : ""
-            }
-          />
-        </div>
+            {/* Email */}
+            <div>
+              <Field
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="input"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder={
-              formik.touched.password && formik.errors.password
-                ? formik.errors.password
-                : "Password"
-            }
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={
-              formik.touched.password && formik.errors.password ? "error" : ""
-            }
-          />
-        </div>
+            {/* Password */}
+            <div>
+              <Field
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="input"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-        <div className="check">
-          <input
-            type="checkbox"
-            name="isChecked"
-            checked={formik.values.isChecked}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          <label>
-            I agree to the <a href="/terms">Terms</a> &{" "}
-            <a href="/privacy">Privacy Policy</a>
-          </label>
-          {formik.touched.isChecked && formik.errors.isChecked && (
-            <p className="error-message">{formik.errors.isChecked}</p>
-          )}
-        </div>
+            {/* Terms & Privacy Policy Checkbox */}
+            <div className="check">
+              <Field type="checkbox" name="isChecked" />
+              <label>
+                I agree to the <a href="/terms">Terms</a> &{" "}
+                <a href="/privacy">Privacy Policy</a>
+              </label>
+              <ErrorMessage
+                name="isChecked"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-        <button type="submit">Create an Account</button>
-        <button type="button" onClick={() => console.log("Signup with Google")}>
-          Signup with Google
-        </button>
+            {/* Submit Button */}
+            <button type="submit" disabled={isSubmitting}>
+              Create an Account
+            </button>
 
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </form>
+            {/* Google Signup Button */}
+            <button type="button" onClick={() => console.log("Signup with Google")}>
+              Signup with Google
+            </button>
+
+            {/* Login Link */}
+            <p>
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

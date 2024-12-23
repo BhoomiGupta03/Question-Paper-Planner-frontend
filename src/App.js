@@ -10,29 +10,85 @@ import Signup from './Signup';
 import Profile from './Profile';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Tracks user login state
 
+  // Handle user login
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
+  // Handle user signup (auto-login after signup)
   const handleSignup = () => {
-    setIsLoggedIn(true); // Automatically log in the user after signup
+    setIsLoggedIn(true);
+  };
+
+  // Handle user logout
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
 
   return (
     <Router>
       <div className="App">
-        {isLoggedIn && <Header />}
-        
+        {/* Show Header only if the user is logged in */}
+        {isLoggedIn && <Header onLogout={handleLogout} />}
+
         <Routes>
-          <Route path="/home" element={<Main />} />
-          <Route path="/about" element={<Aboutus />} /> {/* About Us route */}
-          <Route path="/help" element={<Help />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
-          <Route path="/" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
+          {/* Home route */}
+          <Route
+            path="/home"
+            element={isLoggedIn ? <Main /> : <Navigate to="/login" />}
+          />
+
+          {/* About Us route */}
+          <Route
+            path="/about"
+            element={<Aboutus />}
+          />
+
+          {/* Help route */}
+          <Route
+            path="/help"
+            element={<Help />}
+          />
+
+          {/* Login route */}
+          <Route
+            path="/login"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/home" />
+              ) : (
+                <Login onLogin={handleLogin} />
+              )
+            }
+          />
+
+          {/* Signup route */}
+          <Route
+            path="/signup"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/home" />
+              ) : (
+                <Signup onSignup={handleSignup} />
+              )
+            }
+          />
+
+          {/* Profile route */}
+          <Route
+            path="/profile"
+            element={
+              isLoggedIn ? <Profile /> : <Navigate to="/login" />
+            }
+          />
+
+          {/* Default route (Redirect based on login state) */}
+          <Route
+            path="/"
+            element={<Navigate to={isLoggedIn ? "/home" : "/login"} />}
+          />
         </Routes>
       </div>
     </Router>

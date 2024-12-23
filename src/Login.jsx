@@ -1,69 +1,87 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-//import logo from "./img/logo.png";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup"; // For validation
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  // Validation schema using Yup
+  const validationSchema = Yup.object({
+    email: Yup.string().email("Invalid email address").required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
 
+  // Initial form values
+  const initialValues = {
+    email: "",
+    password: "",
+    rememberMe: false,
+  };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  // Form submission handler
+  const handleSubmit = (values) => {
+    console.log("Form values:", values);
     onLogin(); // Trigger the login
   };
 
   return (
     <div className="login-container">
-      <form onSubmit={handleLogin}>
-        <h2>Welcome Back!</h2>
-        <p>Kindly Enter your details.</p>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <h2>Welcome Back!</h2>
+            <p>Kindly Enter your details.</p>
 
-        <div>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+            <div>
+              <Field
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+              />
+              <ErrorMessage name="email" component="div" className="error" />
+            </div>
 
-        <div>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+            <div>
+              <Field
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+              />
+              <ErrorMessage name="password" component="div" className="error" />
+            </div>
 
-        <div className="rem-me">
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
-          />
-          <label> Remember Me</label>
-        </div>
-        
-        <div className="forgot-password">
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </div>
+            <div className="rem-me-forgot">
+              <div className="rem-me">
+                <Field type="checkbox" id="rememberMe" name="rememberMe" />
+                <label htmlFor="rememberMe">Remember Me</label>
+              </div>
+              <Link to="/forgot-password" className="forgot-password">Forgot Password?</Link>
+            </div>
 
-        <button type="submit">Login</button>
 
-        <button type="button" className="google-login">
-          Sign in with Google
-        </button>
+            <button type="submit" disabled={isSubmitting}>
+              Login
+            </button>
 
-        <p>
-          Don’t have an account? <Link to="/signup">Sign Up</Link>
-        </p>
-      </form>
+            <button type="button" className="google-login">
+              Sign in with Google
+            </button>
+
+            <div className="account-exist">
+            <p>
+              Don’t have an account? <Link to="/signup">Sign Up</Link>
+            </p>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

@@ -113,14 +113,16 @@ input[type="text"] {
     }
 }
 
-/* Login.css */
+/* Login Css */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f4f4f9;
+    padding: 20px;
 }
+
 .login-container form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -128,13 +130,16 @@ input[type="text"] {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 350px;
+    box-sizing: border-box;
 }
+
 .login-container h2 {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
+
 .login-container input {
     width: 100%;
     padding: 10px;
@@ -143,62 +148,76 @@ input[type="text"] {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.login-container button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-}
 
-.rem-me {
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-}
-.rem-me input[type="checkbox"] {
-    margin: 0; 
-    cursor: pointer; 
-    width: 16px; 
-    height: 16px;
-}
-.rem-me label {
-    font-size: 14px; 
-    line-height: 1; 
-    cursor: pointer; 
-}
-
-.forgot-password {
-    text-align: right;
-}
-.forgot-password a {
+/* Combined Styling for Remember Me and Forgot Password */
+.rem-me-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
     font-size: 14px;
-    text-decoration: none;
 }
-.forgot-password a:hover {
+
+/* Styling for Remember Me */
+.rem-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rem-me input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    margin: 0; /* Remove extra margin */
+}
+
+.rem-me label {
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Styling for Forgot Password Link */
+.forgot-password {
+    color: #0089ff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
     text-decoration: underline;
 }
 
 button[type="submit"] {
     background-color: #0089ff;
     color: white;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    margin:12px 0 15px 0;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #006fd1;
 }
 
 .google-login {
     background-color: #0089ff;
-    color: white;
+    color: #fff;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .login-container p {
     font-size: 14px;
-    margin: 1em;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .login-container a {
@@ -208,6 +227,20 @@ button[type="submit"] {
 
 .login-container a:hover {
     text-decoration: underline;
+}
+.account-exist{
+    margin-top: 15px;
+}
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-container form {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
 /* Signup Css */
@@ -278,7 +311,7 @@ label a:hover {
 /* Buttons */
 button {
     color: white;
-    padding: 12px;
+    padding: 15px;
     margin-top: 5px;
     border: none;
     border-radius: 4px;
