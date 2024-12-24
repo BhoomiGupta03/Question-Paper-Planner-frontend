@@ -8,6 +8,7 @@ import Help from './Help';
 import Login from './Login';
 import Signup from './Signup';
 import Profile from './Profile';
+import ForgotPassword from './ForgotPassword'; // Import ForgotPassword component
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Tracks user login state
@@ -82,6 +83,12 @@ function App() {
             element={
               isLoggedIn ? <Profile /> : <Navigate to="/login" />
             }
+          />
+
+          {/* Forgot Password route */}
+          <Route
+            path="/forgot-password"
+            element={<ForgotPassword />}
           />
 
           {/* Default route (Redirect based on login state) */}

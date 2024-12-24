@@ -28,6 +28,7 @@
     font-size: 16px;
     display: flex;
 }
+
 #header .login-id {
     border-radius: 5px;
     font-size: 16px;
@@ -37,6 +38,7 @@
     height: 20px;
 
 }
+
 #header .login-id a {
     color: white;
 }
@@ -70,17 +72,20 @@ body {
     font-size: 25px;
     margin-bottom: 20px;
 }
+
 .sub,
 .unit,
 .quest {
     margin-bottom: 15px;
     font-size: 18px;
 }
+
 label {
     display: block;
     font-size: 16px;
     margin-bottom: 5px;
 }
+
 input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -94,6 +99,7 @@ input[type="text"] {
     justify-content: space-between;
     margin-top: 20px;
 }
+
 #gen button {
     padding: 10px 20px;
     font-size: 16px;
@@ -169,7 +175,8 @@ input[type="text"] {
     cursor: pointer;
     width: 16px;
     height: 16px;
-    margin: 0; /* Remove extra margin */
+    margin: 0;
+    /* Remove extra margin */
 }
 
 .rem-me label {
@@ -196,7 +203,7 @@ button[type="submit"] {
     padding: 15px;
     border: none;
     border-radius: 5px;
-    margin:12px 0 15px 0;
+    margin: 12px 0 15px 0;
     cursor: pointer;
 }
 
@@ -228,9 +235,11 @@ button[type="submit"]:hover {
 .login-container a:hover {
     text-decoration: underline;
 }
-.account-exist{
+
+.account-exist {
     margin-top: 15px;
 }
+
 /* Responsive Design */
 @media (max-width: 500px) {
     .login-container form {
@@ -241,6 +250,90 @@ button[type="submit"]:hover {
         font-size: 14px;
         padding: 10px;
     }
+}
+
+/* Forgot Password Styling */
+.forgot-password-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.forgot-password-container h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.forgot-password-container form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.forgot-password-container form h2 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.forgot-password-container input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.forgot-password-container input:focus {
+    border-color: #0089ff;
+    outline: none;
+}
+
+.forgot-password-container button {
+    color: white;
+    background-color: #0089ff;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.forgot-password-container button:hover {
+    background-color: #006fd1;
+}
+
+.forgot-password-container .message {
+    color: #28a745;
+    /* Success message color */
+    margin-bottom: 15px;
+}
+
+.forgot-password-container p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.forgot-password-container p a {
+    color: #0089ff;
+    text-decoration: none;
+}
+
+.forgot-password-container p a:hover {
+    text-decoration: underline;
 }
 
 /* Signup Css */
@@ -274,7 +367,7 @@ form {
 
 /* Input Field Styling */
 input[type="email"],
-input[type="password"] ,
+input[type="password"],
 input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -292,18 +385,22 @@ input[type="text"] {
     align-items: center;
     margin-bottom: 15px;
 }
+
 input[type="checkbox"] {
     margin-right: 8px;
     cursor: pointer;
 }
+
 label {
     font-size: 14px;
     cursor: pointer;
 }
+
 label a {
     color: #0089ff;
     text-decoration: none;
 }
+
 label a:hover {
     text-decoration: underline;
 }
@@ -320,6 +417,7 @@ button {
     width: 100%;
     transition: background-color 0.3s ease;
 }
+
 button:hover {
     background-color: #006fd1;
 }
@@ -328,6 +426,7 @@ button[type="button"] {
     background-color: #0089ff;
     margin-top: 5px;
 }
+
 button[type="button"]:hover {
     background-color: #006fd1;
 }
@@ -336,12 +435,13 @@ button[type="button"]:hover {
 input.error {
     /* border: 1px solid #d9534f; */
     color: #d9534f;
-  }
-  
-  input.error::placeholder {
-    color: #d9534f; /* Matches error message color */
-  }
-  
+}
+
+input.error::placeholder {
+    color: #d9534f;
+    /* Matches error message color */
+}
+
 /* Text Below Buttons */
 .signup-container p {
     margin: 15px 0;
@@ -369,10 +469,12 @@ input:focus {
     form {
         padding: 20px;
     }
+
     .name-fields {
         flex-direction: column;
         gap: 10px;
     }
+
     button {
         font-size: 14px;
         padding: 10px;
