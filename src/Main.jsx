@@ -1,135 +1,121 @@
 import React, { useState } from 'react';
 
-export default function Main() {
+export default function QuestionPaperPlanner() {
     const [subject, setSubject] = useState('');
     const [unitCount, setUnitCount] = useState(1);
     const [units, setUnits] = useState([]);
     const [totalQuestions, setTotalQuestions] = useState(0);
 
-    const handleUnitChange = (index, value) => {
+    const handleUnitChange = (index, key, value) => {
         const updatedUnits = [...units];
-        updatedUnits[index] = { ...updatedUnits[index], unit: value };
+        updatedUnits[index] = { ...updatedUnits[index], [key]: value };
         setUnits(updatedUnits);
+        calculateTotalQuestions(updatedUnits);
     };
 
-    const handleTopicChange = (index, value) => {
-        const updatedUnits = [...units];
-        updatedUnits[index] = { ...updatedUnits[index], topic: value };
-        setUnits(updatedUnits);
-    };
-
-    const handleQuestionCountChange = (index, value) => {
-        const updatedUnits = [...units];
-        updatedUnits[index] = { ...updatedUnits[index], questionCount: value };
-        setUnits(updatedUnits);
+    const calculateTotalQuestions = (units) => {
+        const total = units.reduce((sum, unit) => sum + (parseInt(unit.questionCount) || 0), 0);
+        setTotalQuestions(total);
     };
 
     const handleGenerateQuestions = () => {
-        // Logic for generating questions and shuffling them
+        // Logic to generate random questions from topics/questions entered
         console.log('Generating random questions...');
-        // You could later implement logic to prevent duplicate questions by shuffling and filtering.
     };
 
-    const handleDownloadPDF = () => {
-        // Logic for generating PDF
-        console.log('Generating PDF...');
+    const handleDownloadPDF = (type) => {
+        // Logic for downloading a PDF (as Question Bank or Question Paper)
+        console.log(`Downloading PDF as ${type}...`);
     };
 
     return (
-        <div id="main">
-            <section id="sub-name">
+        <div id="question-paper-planner">
+            <section id="main">
                 <h1>Create Your Question Paper</h1>
-                
-                <div className="sub">
-                    <label>Enter Subject:</label>
+
+                <div className='sub'>
+                    <label>Subject:</label>
                     <input
                         type="text"
-                        id="subject"
-                        name="subject"
-                        placeholder="Subject"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
+                        placeholder="Subject"
                         required
                     />
                 </div>
 
-                <div className="academic-year">
-                    <label>Academic Year:</label>
-                    <input
-                        type="text"
-                        placeholder="Academic Year"
-                        required
-                    />
+                <div className='unit'>
+                    <label>Select Number of Units (1-15):</label>
+                    <select
+                        value={unitCount}
+                        onChange={(e) => {
+                            setUnitCount(Number(e.target.value));
+                            setUnits(new Array(Number(e.target.value)).fill({}));
+                        }}
+                    >
+                        {[...Array(15)].map((_, i) => (
+                            <option key={i} value={i + 1}>
+                                {i + 1}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
-                <div className="semester">
-                    <label>Semester:</label>
-                    <input
-                        type="text"
-                        placeholder="Semester"
-                        required
-                    />
-                </div>
-
-                {/* Unit input */}
                 {[...Array(unitCount)].map((_, index) => (
-                    <div key={index} className="unit">
-                        <label>Enter Unit {index + 1}:</label>
-                        <input
-                            type="text"
-                            placeholder={`Unit ${index + 1}`}
-                            value={units[index]?.unit || ''}
-                            onChange={(e) => handleUnitChange(index, e.target.value)}
-                            required
+                    < div className='choose'>
+                    <div key={index}>
+                        <h3>Unit {index + 1}</h3>
+
+                        <label>Enter Topics:</label>
+                        <textarea
+                            placeholder={`Topics for Unit`}
+                            value={units[index]?.topics || ''}
+                            onChange={(e) => handleUnitChange(index, 'topics', e.target.value)}
                         />
-                        
-                        <label>Enter Topics for Unit {index + 1}:</label>
-                        <input
-                            type="text"
-                            placeholder={`Topic for Unit ${index + 1}`}
-                            value={units[index]?.topic || ''}
-                            onChange={(e) => handleTopicChange(index, e.target.value)}
-                            required
+
+                        <h3>OR</h3>
+
+                        <label>Enter Questions:</label>
+                        <textarea
+                            placeholder={`Questions for Unit`}
+                            value={units[index]?.questions || ''}
+                            onChange={(e) => handleUnitChange(index, 'questions', e.target.value)}
                         />
-                        
-                        <label>Number of Questions for Unit {index + 1}:</label>
+
+                        <label>Number of Questions to Generate from Unit {index + 1}:</label>
                         <select
-                            value={units[index]?.questionCount || 1}
-                            onChange={(e) => handleQuestionCountChange(index, e.target.value)}
+                            value={units[index]?.questionCount || 0}
+                            onChange={(e) => handleUnitChange(index, 'questionCount', e.target.value)}
                         >
-                            {[...Array(20)].map((_, i) => (
-                                <option key={i} value={i + 1}>{i + 1}</option>
+                            {[...Array(21)].map((_, i) => (
+                                <option key={i} value={i}>
+                                    {i}
+                                </option>
                             ))}
                         </select>
+                        </div>
                     </div>
                 ))}
-                
-                <div className="unit-controls">
-                    <button onClick={() => setUnitCount(Math.min(unitCount + 1, 10))}>
-                        Add Unit
-                    </button>
-                    <button onClick={() => setUnitCount(Math.max(unitCount - 1, 1))}>
-                        Remove Unit
-                    </button>
+
+                <div>
+                    <h3>Total Questions: {totalQuestions}</h3>
                 </div>
             </section>
-            
+
             <section id="gen">
-                <div className="gen-pdf">
-                    <button onClick={handleDownloadPDF}>
-                        Download PDF
-                    </button>
-                </div>
-                
-                <div className="gen-more-ques">
-                    <button onClick={handleGenerateQuestions}>
-                        Generate My Questions
-                    </button>
+                <div className='gen-btn'>
+                <button onClick={handleGenerateQuestions}>
+                    Generate
+                </button>
                 </div>
 
-                <div className="total-questions">
-                    <label>Total Questions: </label>
-                    <span>{units.reduce((total, unit) => total + (parseInt(unit.questionCount) || 0), 0)}</span>
+                <div className='btn'>
+                    <button onClick={() => handleDownloadPDF('Question Bank')}>
+                        Download as Question Bank
+                    </button>
+                    <button onClick={() => handleDownloadPDF('Question Paper')}>
+                        Use as Question Paper
+                    </button>
                 </div>
             </section>
         </div>

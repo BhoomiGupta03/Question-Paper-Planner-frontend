@@ -44,79 +44,93 @@
 }
 
 /* Main.css */
-body {
-    background-image: url(./img/background.png);
-    background-size: cover;
-    /* Cover the entire viewport */
-    background-repeat: no-repeat;
-    /* Don't repeat the image */
-    background-position: center;
-    /* Center the image */
-    background-color: #f0f4f8;
-    /* Fallback background color */
-}
-
-/* Main component styling */
-#main {
-    width: 60%;
-    margin: 0 auto;
+#question-paper-planner {
+    margin: 20px auto;
+    max-width: 725px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
-#sub-name h1 {
+#main h1 {
     text-align: center;
-    font-size: 25px;
     margin-bottom: 20px;
+    color: #333;
 }
 
-.sub,
-.unit,
-.quest {
+#main div {
     margin-bottom: 15px;
-    font-size: 18px;
 }
 
-label {
+#main label {
+    font-weight: bold;
     display: block;
-    font-size: 16px;
     margin-bottom: 5px;
+    color: #555;
 }
 
-input[type="text"] {
+.sub input[type="text"] {
+    background-color: white;
+}
+
+#main input[type="text"],
+textarea,
+select {
     width: 100%;
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
-#gen {
-    display: flex;
-    justify-content: space-between;
+#main textarea {
+    height: 80px;
+    resize: vertical;
+}
+.choose h3 {
+    text-align: center;
+    margin: auto;
+}
+
+.total-questions {
+    text-align: center;
     margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
 }
 
 #gen button {
-    padding: 10px 20px;
+    display: inline-block;
+    margin: 10px 5px;
     font-size: 16px;
-    color: white;
-    background-color: #007bff;
+    width: 200px;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #007BFF;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
+.gen{
+    display: flex;
+    justify-content: center;
+}
+.gen-btn button{
+    padding: 20px 20px;
+}
+#gen button:hover {
+    background-color: #0056b3;
+}
+.btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
 
-/* Additional styles for responsiveness */
-@media (max-width: 768px) {
-    #main {
-        width: 90%;
-        /* Make it responsive for smaller screens */
-    }
 }
 
 /* Login Css */
@@ -263,7 +277,7 @@ button[type="submit"]:hover {
     padding: 20px;
 }
 
-.forgot-password-container h1{
+.forgot-password-container h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 22px;
