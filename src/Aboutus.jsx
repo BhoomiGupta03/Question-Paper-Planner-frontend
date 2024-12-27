@@ -1,35 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+const AboutUs = () => {
+  // State to toggle visibility of each section
+  const [selectedFeature, setSelectedFeature] = useState(null);
 
-function Aboutus() {
-    return (
-        <div className='Aboutus'>
-            <h2>About Us</h2>
-            
-            <p>
-                Welcome to <strong>Question Paper Planner</strong> – your one-stop solution for easy, efficient, and customizable question paper creation. We understand the time and effort it takes for teachers to create high-quality, balanced assessments that meet curriculum standards and diverse student needs. That's why we've built a platform dedicated to simplifying and enhancing the question paper generation process.
-            </p>
-            <hr />
+  // Function to handle the click on a feature
+  const toggleFeature = (feature) => {
+    setSelectedFeature(selectedFeature === feature ? null : feature); // Toggle the visibility
+  };
 
+  return (
+    <div className="about-us-container">
+      <h1>About Us</h1>
+      <p>
+        <strong>Welcome to Question Paper Planner – Empowering Teachers, One Question Paper at a Time!</strong>
+      </p>
+      <p>
+        At Question Paper Planner, we understand the challenges teachers face when it comes to creating effective and well-structured question papers. Our goal is to make this process easier, faster, and more efficient, allowing teachers to focus on what truly matters – educating and inspiring students.
+      </p>
+      <p>
+        Our platform offers an innovative and user-friendly approach to generating question papers. Teachers can easily input their academic year, semester, and subject. From there, they can add topics or directly enter questions, and our system will automatically organize and randomize them, ensuring no repetitions and a balanced question paper. Teachers also have the flexibility to select how many questions they want from each unit, giving them full control over the content.
+      </p>
+      <h3>Why Choose Question Paper Planner?</h3>
+      <ul>
+        <li onClick={() => toggleFeature('simplicity')} className="feature-item">
+          <strong>Simplicity</strong>
+        </li>
+        {selectedFeature === 'simplicity' && (
+          <p className="feature-description">
+            A seamless and intuitive interface designed to make question paper creation quick and easy.
+          </p>
+        )}
 
-            <h3>Our Mission</h3>
-            <p>
-                At Question Paper Planner, our mission is to empower educators by providing them with a robust tool that transforms question creation into a seamless experience. With our intuitive platform, teachers can upload questions and generate a variety of customized question papers in just a few clicks.
-            </p>
+        <li onClick={() => toggleFeature('efficiency')} className="feature-item">
+          <strong>Efficiency</strong>
+        </li>
+        {selectedFeature === 'efficiency' && (
+          <p className="feature-description">
+            Save time by automating the randomization and organization of questions without worrying about repetitions.
+          </p>
+        )}
 
-            <h3>What We Offer</h3>
-            <ul>
-                <li>Efficient Question Management: Easily organize and manage your question bank by subject, difficulty level, and other criteria.</li>
-                <li>Customizable Paper Generation: Create tailored question papers that meet specific educational standards and testing requirements.</li>
-                <li>User-Friendly Interface: Our platform is designed to be simple and accessible, so teachers can focus on what they do best – educating.</li>
-            </ul>
+        <li onClick={() => toggleFeature('flexibility')} className="feature-item">
+          <strong>Flexibility</strong>
+        </li>
+        {selectedFeature === 'flexibility' && (
+          <p className="feature-description">
+            Customize your question papers by selecting the number of questions per unit and choosing topics or entering questions directly.
+          </p>
+        )}
 
-            <h3>Why Choose Us?</h3>
-            <p>
-                Built by a team passionate about education and technology, Question Paper Planner bridges the gap between traditional paper-setting methods and the needs of today’s fast-paced educational environments. We are committed to helping educators save time, streamline their workflow, and ultimately improve learning outcomes.
-            </p>
-        </div>
-    );
-}
+        <li onClick={() => toggleFeature('support')} className="feature-item">
+          <strong>Support for Teachers</strong>
+        </li>
+        {selectedFeature === 'support' && (
+          <p className="feature-description">
+            We are committed to helping teachers focus on what they do best – teaching – by streamlining administrative tasks.
+          </p>
+        )}
+      </ul>
+      <p>
+        Our mission is to provide a reliable and efficient tool for teachers to craft personalized and high-quality question papers. Whether you're a teacher in a primary school, secondary school, or college, Question Paper Planner is here to support your teaching journey.
+      </p>
+      <p>Thank you for choosing us – together, we’re shaping the future of education!</p>
+    </div>
+  );
+};
 
-export default Aboutus;
+export default AboutUs;
