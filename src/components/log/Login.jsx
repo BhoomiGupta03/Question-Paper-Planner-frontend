@@ -35,24 +35,26 @@ function Login({ onLogin }) {
         {({ isSubmitting }) => (
           <Form>
             <h2>Welcome Back!</h2>
-            <p>Kindly Enter your details.</p>
+            <p>Kindly enter your details.</p>
 
-            <div>
+            <div className="input-field">
               <Field
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Enter your email"
+                className="input"
               />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
 
-            <div>
+            <div className="input-field">
               <Field
                 type="password"
                 id="password"
                 name="password"
                 placeholder="Enter your password"
+                className="input"
               />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
@@ -65,8 +67,7 @@ function Login({ onLogin }) {
               <Link to="/forgot-password" className="forgot-password">Forgot Password?</Link>
             </div>
 
-
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="submit-btn">
               Login
             </button>
 
@@ -75,9 +76,9 @@ function Login({ onLogin }) {
             </button>
 
             <div className="account-exist">
-            <p>
-              Don’t have an account? <Link to="/signup">Sign Up</Link>
-            </p>
+              <p>
+                Don’t have an account? <Link to="/signup">Sign Up</Link>
+              </p>
             </div>
           </Form>
         )}

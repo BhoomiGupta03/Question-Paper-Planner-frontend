@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,39 +8,53 @@ function Signup({ onSignup }) {
 
   // Validation schema using Yup
   const validationSchema = Yup.object({
-    firstName: Yup.string()
-      .min(2, "First name must be at least 2 characters")
-      .max(15, "First name cannot exceed 15 characters")
-      .required("First name is required"),
-    lastName: Yup.string()
-      .min(2, "Last name must be at least 2 characters")
-      .max(20, "Last name cannot exceed 20 characters")
-      .required("Last name is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
+    name: Yup.string()
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name cannot exceed 50 characters")
+      .required("Name is required"),
+    email: Yup.string().email("Invalid email address").required("Email is required"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
-    isChecked: Yup.boolean().oneOf(
-      [true],
-      "You must agree to the Terms & Privacy Policy"
-    ),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm password is required"),
+    isChecked: Yup.boolean().oneOf([true], "You must agree to the Terms & Privacy Policy"),
   });
 
   // Initial form values
   const initialValues = {
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     isChecked: false,
   };
 
+  // Google Sign-Up handler
+  const handleGoogleSignUp = useCallback(() => {
+    console.log("Google Sign-Up initiated");
+    // Trigger the sign-up logic for Google sign-up
+    onSignup(); // You may replace this with an actual logic for Google authentication.
+    navigate("/login"); // Redirect to login page after successful Google sign-up
+  }, [onSignup, navigate]);
+
+  // Form submission handler
   const handleSubmit = (values) => {
-    console.log("Form Data:", values);
-    onSignup(); // Trigger the signup logic
-    navigate("/Header"); // Redirect after successful signup
+    // Assuming the sign-up logic (e.g., saving user data to localStorage)
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Call the onSignup function if needed
+    onSignup(); // Trigger any action related to sign-up
+
+    // Redirect to login page after successful sign-up
+    navigate("/login");
   };
 
   return (
@@ -54,64 +68,28 @@ function Signup({ onSignup }) {
           <Form>
             <h2>Create an Account</h2>
 
-            {/* First Name */}
+            {/* Name Field */}
             <div>
-              <Field
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                className="input"
-              />
-              <ErrorMessage
-                name="firstName"
-                component="div"
-                className="error-message"
-              />
+              <Field type="text" name="name" placeholder="Name" />
+              <ErrorMessage name="name" component="div" className="error" />
             </div>
 
-            {/* Last Name */}
+            {/* Email Field */}
             <div>
-              <Field
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                className="input"
-              />
-              <ErrorMessage
-                name="lastName"
-                component="div"
-                className="error-message"
-              />
+              <Field type="email" name="email" placeholder="Email" />
+              <ErrorMessage name="email" component="div" className="error" />
             </div>
 
-            {/* Email */}
+            {/* Password Field */}
             <div>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="input"
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="error-message"
-              />
+              <Field type="password" name="password" placeholder="Password" />
+              <ErrorMessage name="password" component="div" className="error" />
             </div>
 
-            {/* Password */}
+            {/* Confirm Password Field */}
             <div>
-              <Field
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="input"
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="error-message"
-              />
+              <Field type="password" name="confirmPassword" placeholder="Confirm Password" />
+              <ErrorMessage name="confirmPassword" component="div" className="error" />
             </div>
 
             {/* Terms & Privacy Policy Checkbox */}
@@ -121,11 +99,7 @@ function Signup({ onSignup }) {
                 I agree to the <a href="/terms">Terms</a> &{" "}
                 <a href="/privacy">Privacy Policy</a>
               </label>
-              <ErrorMessage
-                name="isChecked"
-                component="div"
-                className="error-message"
-              />
+              <ErrorMessage name="isChecked" component="div" className="error" />
             </div>
 
             {/* Submit Button */}
@@ -133,12 +107,14 @@ function Signup({ onSignup }) {
               Create an Account
             </button>
 
-            {/* Google Signup Button */}
-            <button type="button" onClick={() => console.log("Signup with Google")}>
-              Signup with Google
-            </button>
+            {/* Google Sign-Up Button */}
+            <div id="google-signup-btn">
+              <button type="button" onClick={handleGoogleSignUp}>
+                Sign Up with Google
+              </button>
+            </div>
 
-            {/* Login Link */}
+            {/* Already have an account link */}
             <p>
               Already have an account? <Link to="/login">Login</Link>
             </p>

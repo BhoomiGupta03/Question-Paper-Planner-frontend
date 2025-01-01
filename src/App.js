@@ -2,13 +2,13 @@ import './css/App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Header from './components/Header';
-import Main from './components/Main';
-import Aboutus from './components/Aboutus';
-import Help from './components/Help';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Profile from './components/Profile';
-import ForgotPassword from './components/ForgotPassword'; 
+import Main from './components/Home/Main';
+import Aboutus from './components/Pages/Aboutus';
+import Help from './components/Pages/Help';
+import Login from './components/log/Login';
+import Signup from './components/log/Signup';
+import Profile from './components/Profile/Profile';
+import ForgotPassword from './components/log/ForgotPassword'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Tracks user login state
