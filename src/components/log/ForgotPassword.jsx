@@ -45,20 +45,30 @@ function ForgotPassword() {
     } else if (newPassword.length < 8) {
       setMessage("Password must be at least 8 characters long.");
     } else {
+      // Update password in localStorage (simulating user data storage)
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const userIndex = users.findIndex((user) => user.email === email);
+      
+      if (userIndex !== -1) {
+        // Update the user's password
+        users[userIndex].password = newPassword;
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+
       setMessage("Your password has been successfully reset.");
       setTimeout(() => {
-        navigate("/login"); // Redirect to login page
+        navigate("/login"); // Redirect to login page after success
       }, 2000); // Delay for the success message
     }
   };
 
   return (
     <div className="forgot-password-container">
-        <h1>Forgot Password</h1>
+      <h1>Forgot Password</h1>
 
       {step === 1 && (
         <form onSubmit={handleEmailSubmit}>
-          <h2> Enter Your Email</h2>
+          <h2>Enter Your Email</h2>
           <div>
             <input
               type="email"
@@ -75,7 +85,7 @@ function ForgotPassword() {
 
       {step === 2 && (
         <form onSubmit={handleCodeSubmit}>
-          <h2> Enter Verification Code</h2>
+          <h2>Enter Verification Code</h2>
           <div>
             <input
               type="text"
@@ -92,7 +102,7 @@ function ForgotPassword() {
 
       {step === 3 && (
         <form onSubmit={handlePasswordReset}>
-          <h2> Reset Your Password</h2>
+          <h2>Reset Your Password</h2>
           <div>
             <input
               type="password"

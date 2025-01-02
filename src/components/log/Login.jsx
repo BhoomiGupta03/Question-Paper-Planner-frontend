@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup"; // For validation
+import * as Yup from "yup";
 
 function Login({ onLogin }) {
   // Validation schema using Yup
@@ -12,17 +12,24 @@ function Login({ onLogin }) {
       .required("Password is required"),
   });
 
-  // Initial form values
   const initialValues = {
     email: "",
     password: "",
     rememberMe: false,
   };
 
-  // Form submission handler
   const handleSubmit = (values) => {
-    console.log("Form values:", values);
-    onLogin(); // Trigger the login
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(
+      (user) => user.email === values.email && user.password === values.password
+    );
+
+    if (user) {
+      console.log("Login successful");
+      onLogin();
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (
@@ -64,12 +71,15 @@ function Login({ onLogin }) {
                 <Field type="checkbox" id="rememberMe" name="rememberMe" />
                 <label htmlFor="rememberMe">Remember Me</label>
               </div>
-              <Link to="/forgot-password" className="forgot-password">Forgot Password?</Link>
+              <Link to="/forgot-password" className="forgot-password">
+                Forgot Password?
+              </Link>
             </div>
 
             <button type="submit" disabled={isSubmitting} className="submit-btn">
               Login
             </button>
+            <p>OR</p>
 
             <button type="button" className="google-login">
               Sign in with Google

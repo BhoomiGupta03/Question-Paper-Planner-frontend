@@ -13,16 +13,13 @@
     justify-content: space-between;
     background-color: #fff;
 }
-
 #header .logo img {
     height: 10em;
 }
-
 #header a {
     color: black;
     text-decoration: none;
 }
-
 #header nav {
     gap: 30px;
     font-size: 16px;
@@ -38,14 +35,13 @@
     height: 20px;
 
 }
-
 #header .login-id a {
     color: white;
 }
 
 /* Main.css */
 body {
-    background-image: url(../img/background.png);
+    background-image: url(../img/background.webp);
     background-size: cover; /* Cover the entire viewport */
     background-repeat: no-repeat; /* Don't repeat the image */
     background-position: center; /* Center the image */
@@ -169,13 +165,17 @@ select {
     margin-bottom: 5px;
 }
 
-.login-container input {
+.login-container 
+input[type="email"],
+input[type="password"]{
     width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px;
     margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 /* Combined Styling for Remember Me and Forgot Password */
@@ -193,7 +193,6 @@ select {
     align-items: center;
     gap: 8px;
 }
-
 .rem-me input[type="checkbox"] {
     cursor: pointer;
     width: 16px;
@@ -201,7 +200,6 @@ select {
     margin: 0;
     /* Remove extra margin */
 }
-
 .rem-me label {
     font-size: 14px;
     line-height: 1;
@@ -214,47 +212,33 @@ select {
     text-decoration: none;
     font-size: 14px;
 }
-
 .forgot-password:hover {
     text-decoration: underline;
 }
 
-button[type="submit"] {
+.login-container button{
+    width: 100%;
     background-color: #0089ff;
     color: white;
     font-size: 16px;
     padding: 15px;
     border: none;
     border-radius: 5px;
-    margin: 12px 0 15px 0;
     cursor: pointer;
 }
-
 button[type="submit"]:hover {
     background-color: #006fd1;
-}
-
-.google-login {
-    background-color: #0089ff;
-    color: #fff;
-    margin-bottom: 10px;
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .login-container p {
     font-size: 14px;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 12px;
 }
-
 .login-container a {
     color: #0089ff;
     text-decoration: none;
 }
-
 .login-container a:hover {
     text-decoration: underline;
 }
@@ -290,7 +274,7 @@ button[type="submit"]:hover {
 .forgot-password-container h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 22px;
+    font-size: 24px;
 }
 .forgot-password-container form {
     background-color: rgba(255, 255, 255, 0.9);
@@ -302,10 +286,10 @@ button[type="submit"]:hover {
     text-align: center;
 }
 .forgot-password-container form h2 {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 20px;
 }
-/* .forgot-password-container input {
+.forgot-password-container input {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
@@ -357,8 +341,8 @@ button[type="submit"]:hover {
 }
 
 .forgot-password-container p {
-    margin-top: 5px;
-    font-size: 14px;
+    margin-top: 15px;
+    font-size: 18px;
 }
 
 .forgot-password-container p a {
@@ -407,7 +391,7 @@ button[type="submit"]:hover {
 }
 
 /* Form Styling */
-form {
+.signup-container form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 25px;
     border-radius: 10px;
@@ -426,7 +410,7 @@ form {
 }
 
 /* Input Field Styling */
-input[type="email"],
+.signup-container input[type="email"],
 input[type="password"],
 input[type="text"] {
     width: 100%;
@@ -440,33 +424,32 @@ input[type="text"] {
 }
 
 /* Checkbox Styling */
+.signup-container
 .check {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
-
+.signup-container
 input[type="checkbox"] {
     margin-right: 8px;
     cursor: pointer;
 }
-
-label {
+.signup-container label {
     font-size: 14px;
     cursor: pointer;
 }
-
-label a {
+.signup-container label a {
     color: #0089ff;
     text-decoration: none;
 }
-
-label a:hover {
+.signup-container label a:hover {
     text-decoration: underline;
 }
 
 /* Buttons */
-button {
+.signup-container button {
+    background-color: #0089ff;
     color: white;
     padding: 15px;
     margin-top: 5px;
@@ -477,17 +460,13 @@ button {
     width: 100%;
     transition: background-color 0.3s ease;
 }
-
-button:hover {
+.signup-container button:hover {
     background-color: #006fd1;
 }
-
-button[type="button"] {
-    background-color: #0089ff;
+.signup-container button[type="button"] {
     margin-top: 5px;
 }
-
-button[type="button"]:hover {
+.signup-container button[type="button"]:hover {
     background-color: #006fd1;
 }
 
@@ -496,7 +475,6 @@ input.error {
     /* border: 1px solid #d9534f; */
     color: #d9534f;
 }
-
 input.error::placeholder {
     color: #d9534f;
     /* Matches error message color */
@@ -504,16 +482,14 @@ input.error::placeholder {
 
 /* Text Below Buttons */
 .signup-container p {
-    margin: 15px 0;
+    margin: 5px 0;
     font-size: 14px;
     text-align: center;
 }
-
 .signup-container p a {
     color: #0089ff;
     text-decoration: none;
 }
-
 .signup-container p a:hover {
     text-decoration: underline;
 }

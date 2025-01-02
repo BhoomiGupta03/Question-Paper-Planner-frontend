@@ -1,18 +1,24 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-function Signup({ onSignup }) {
+function Signup() {
   const navigate = useNavigate();
 
   // Validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string()
+      .matches(
+        /^[a-zA-Z\s'-]+$/,
+        "Name can only contain letters, spaces, hyphens, and apostrophes"
+      )
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name cannot exceed 50 characters")
       .required("Name is required"),
-    email: Yup.string().email("Invalid email address").required("Email is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
@@ -22,7 +28,6 @@ function Signup({ onSignup }) {
     isChecked: Yup.boolean().oneOf([true], "You must agree to the Terms & Privacy Policy"),
   });
 
-  // Initial form values
   const initialValues = {
     name: "",
     email: "",
@@ -31,17 +36,7 @@ function Signup({ onSignup }) {
     isChecked: false,
   };
 
-  // Google Sign-Up handler
-  const handleGoogleSignUp = useCallback(() => {
-    console.log("Google Sign-Up initiated");
-    // Trigger the sign-up logic for Google sign-up
-    onSignup(); // You may replace this with an actual logic for Google authentication.
-    navigate("/login"); // Redirect to login page after successful Google sign-up
-  }, [onSignup, navigate]);
-
-  // Form submission handler
   const handleSubmit = (values) => {
-    // Assuming the sign-up logic (e.g., saving user data to localStorage)
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push({
       name: values.name,
@@ -49,11 +44,6 @@ function Signup({ onSignup }) {
       password: values.password,
     });
     localStorage.setItem("users", JSON.stringify(users));
-
-    // Call the onSignup function if needed
-    onSignup(); // Trigger any action related to sign-up
-
-    // Redirect to login page after successful sign-up
     navigate("/login");
   };
 
@@ -67,32 +57,30 @@ function Signup({ onSignup }) {
         {({ isSubmitting }) => (
           <Form>
             <h2>Create an Account</h2>
-
-            {/* Name Field */}
             <div>
               <Field type="text" name="name" placeholder="Name" />
               <ErrorMessage name="name" component="div" className="error" />
             </div>
-
-            {/* Email Field */}
             <div>
               <Field type="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
-
-            {/* Password Field */}
             <div>
               <Field type="password" name="password" placeholder="Password" />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
-
-            {/* Confirm Password Field */}
             <div>
-              <Field type="password" name="confirmPassword" placeholder="Confirm Password" />
-              <ErrorMessage name="confirmPassword" component="div" className="error" />
+              <Field
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className="error"
+              />
             </div>
-
-            {/* Terms & Privacy Policy Checkbox */}
             <div className="check">
               <Field type="checkbox" name="isChecked" />
               <label>
@@ -101,20 +89,18 @@ function Signup({ onSignup }) {
               </label>
               <ErrorMessage name="isChecked" component="div" className="error" />
             </div>
-
-            {/* Submit Button */}
             <button type="submit" disabled={isSubmitting}>
               Create an Account
             </button>
+            <p>OR</p>
 
             {/* Google Sign-Up Button */}
             <div id="google-signup-btn">
-              <button type="button" onClick={handleGoogleSignUp}>
+              <button type="button" >
                 Sign Up with Google
               </button>
             </div>
 
-            {/* Already have an account link */}
             <p>
               Already have an account? <Link to="/login">Login</Link>
             </p>
