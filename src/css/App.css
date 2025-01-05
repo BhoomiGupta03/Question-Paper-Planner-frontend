@@ -41,7 +41,7 @@
 
 /* Main.css */
 body {
-    background-image: url(../img/background.webp);
+    background-image: url('../img/background.webp');
     background-size: cover; /* Cover the entire viewport */
     background-repeat: no-repeat; /* Don't repeat the image */
     background-position: center; /* Center the image */
