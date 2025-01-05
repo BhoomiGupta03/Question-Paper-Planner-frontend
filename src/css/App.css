@@ -298,7 +298,7 @@ button[type="submit"]:hover {
     background-color: #fafafa;
     font-size: 14px;
     box-sizing: border-box;
-} */
+} 
 
 .forgot-password-container input:focus {
     border-color: #0089ff;
