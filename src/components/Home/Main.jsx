@@ -45,7 +45,7 @@ export default function QuestionPaperPlanner() {
                 </div>
 
                 <div className='unit'>
-                    <label>Select Number of Units (1-15):</label>
+                    <label>Select Number of Units (1-10):</label>
                     <select
                         value={unitCount}
                         onChange={(e) => {
@@ -53,7 +53,7 @@ export default function QuestionPaperPlanner() {
                             setUnits(new Array(Number(e.target.value)).fill({}));
                         }}
                     >
-                        {[...Array(15)].map((_, i) => (
+                        {[...Array(10)].map((_, i) => (
                             <option key={i} value={i + 1}>
                                 {i + 1}
                             </option>
