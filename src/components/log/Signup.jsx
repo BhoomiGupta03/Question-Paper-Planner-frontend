@@ -48,65 +48,73 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <h2>Create an Account</h2>
-            <div>
-              <Field type="text" name="name" placeholder="Name" />
-              <ErrorMessage name="name" component="div" className="error" />
-            </div>
-            <div>
-              <Field type="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-            <div>
-              <Field type="password" name="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-            <div>
-              <Field
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-              />
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className="error"
-              />
-            </div>
-            <div className="check">
-              <Field type="checkbox" name="isChecked" />
-              <label>
-                I agree to the <a href="/terms">Terms</a> &{" "}
-                <a href="/privacy">Privacy Policy</a>
-              </label>
-              <ErrorMessage name="isChecked" component="div" className="error" />
-            </div>
-            <button type="submit" disabled={isSubmitting}>
-              Create an Account
-            </button>
-            <p>OR</p>
-
-            {/* Google Sign-Up Button */}
-            <div id="google-signup-btn">
-              <button type="button" >
-                Sign Up with Google
+    <div className="log-sign">
+      <div className="left">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <h2>Create an Account</h2>
+              <div>
+                <Field type="text" name="name" placeholder="Name" />
+                <ErrorMessage name="name" component="div" className="error" />
+              </div>
+              <div>
+                <Field type="email" name="email" placeholder="Email" />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div>
+                <Field type="password" name="password" placeholder="Password" />
+                <ErrorMessage name="password" component="div" className="error" />
+              </div>
+              <div>
+                <Field
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div className="check">
+                <Field type="checkbox" name="isChecked" />
+                <label>
+                  I agree to the <a href="/terms">Terms</a> &{" "}
+                  <a href="/privacy">Privacy Policy</a>
+                </label>
+                <ErrorMessage name="isChecked" component="div" className="error" />
+              </div>
+              <div className="btn">
+              <button type="submit" disabled={isSubmitting}>
+                Create an Account
               </button>
-            </div>
+              <p>OR</p>
 
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </Form>
-        )}
-      </Formik>
+              {/* Google Sign-Up Button */}
+              <div id="google-signup-btn">
+                <button type="button" >
+                  Sign Up with Google
+                </button>
+              </div>
+              </div>
+              <div className="account-exist">
+                <p>
+                  Already have an account? <Link to="/login">Login</Link>
+                </p>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+
+      <div className="right">
+      </div>
     </div>
   );
 }

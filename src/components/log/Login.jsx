@@ -33,8 +33,8 @@ import * as Yup from "yup";
   };
 
   return (
-    <div className="login-container">
-    <div className="right">
+    <div className="log-sign">
+    <div className="left">
     <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -98,8 +98,7 @@ import * as Yup from "yup";
       </Formik>
     </div>
 
-    <div className="left">
-      <h1>left side</h1>
+    <div className="right">
     </div>
   </div>
 

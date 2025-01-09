@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
 }
 
 #header {
@@ -145,21 +146,21 @@ select {
 }
 
 /* Login Css */
-.login-container {
-    display: flex;
+.log-sign {
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-columns: 70% 30%;
 }
 
-.login-container .right {
-    width: 2100px;
-    height: 960px;
+.left {
+    width: 100%;
+    height: 100%;
     background: #3578FF;
 }
 
-.login-container .right form {
-    /* Child objects in a smart layout frame */
-    position: absolute;
-    left: 234px;
-    top: 227px;
+.left form {
+    margin: 230px 240px ;
     width: 393px;
     height: 506px;
     display: flex;
@@ -168,35 +169,21 @@ select {
     padding: 0px 24px;
 }
 
-.login-container .right form h2 {
-    position: static;
-    width: 257px;
-    height: 45px;
-
-    font-family: Geologica;
+.left form h2 {
+    width: 327px;
     font-size: 36px;
     font-weight: 600;
-    line-height: normal;
-    color: #FFFFFF;
-}
-
-.login-container .right form p {
-    position: static;
-    width: 323px;
-    height: 23px;
-    opacity: 1;
-
-    /* font-family: Lora; */
-    font-size: 18px;
-    font-weight: normal;
-    line-height: normal;
     text-align: center;
-    color: #FFFFFF;
 }
 
-.login-container .right .input-field input[type="email"],
-input[type="password"] {
-    /* Child objects in a smart layout frame */
+.left form p {
+    margin-top: 10px;
+    width: 325px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.left input{
     border: none;
     margin: 15px;
     width: 345px;
@@ -210,107 +197,91 @@ input[type="password"] {
     align-items: center;
     padding: 16px;
     gap: 16px;
-    align-self: stretch;
     background: linear-gradient(90deg, #FFFFFF 15%, rgba(255, 255, 255, 0) 123%);
 }
 
-.login-container .rem-me-forgot {
-/* Child objects in a smart layout frame */
-width: 345px;
-height: 18px;
-opacity: 1;
-	
-/* Smart layout */
-display: flex;
-flex-direction: row;
-gap: 21px;
+.log-sign .left .rem-me-forgot {
+    margin-top: 10px;
+    width: 345px;
+    height: 18px;
+    /* Smart layout */
+    display: flex;
 }
 
-.login-container .rem-me-forgot .rem-me {
-    /* Child objects in a smart layout frame */
-width: 162px;
-height: 18px;
-opacity: 1;
-	
-/* Smart layout */
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 8px;
-flex-grow: 1;
+.log-sign .left .rem-me-forgot .rem-me {
+    width: 162px;
+    height: 18px;
+    /* Smart layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
 }
 
-.login-container .rem-me input[type="checkbox"] {
-width: 16px;
-height: 16px;
-border-radius: 999px;
-background: #FFFFFF;
+.log-sign .left  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #FFFFFF;
 }
 
-.login-container .rem-me label {
-width: 95px;
-height: 18px;
-/* font-family: Lora; */
-font-size: 14px;
-color: #FFFFFF;
+.log-sign .left label {
+    /* width: 95px;
+    height: 18px; */
+    font-size: 14px;
+}
+.log-sign .check{
+    display: flex;
+    align-items: center;
+}
+.log-sign .left .rem-me-forgot .forgot-password {
+    width: 162px;
+    height: 18px;
+    font-size: 14px;
+    text-align: right;
 }
 
-.login-container .rem-me-forgot .forgot-password{
-width: 162px;
-height: 18px;
-/* font-family: Lora; */
-font-size: 14px;
-text-align: right;
-color: #FFFFFF;
+.left .btn {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* padding: 50px 0px 0px 0px; */
+    gap: 12px;
 }
 
-.login-container .btn{
-margin-top: 2em;
-width: 343px;
-height: 167px;
-opacity: 1;
-	
-/* Smart layout */
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 50px 0px 0px 0px;
-gap: 12px;
+.left button {
+    width: 343px;
+    height: 52px;
+    border-radius: 32px;
+    border: none;
+    /* Smart layout */
+    padding: 16px;
+    font-size: 16px;
+    background: #1E31CA;
 }
-.login-container button{
-    /* Child objects in a smart layout frame */
-color: #FFFFFF;
-width: 343px;
-height: 52px;
-border-radius: 32px;
-opacity: 1;
-	
-/* Smart layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 16px;
-gap: 16px;
-	
-background: #1E31CA;
+.left .account-exist a {
+    color: #1E31CA;
+    text-decoration: none;
 }
-.login-container .left{
-width: 1920px;
-height: 960px;
-opacity: 1;
-	
-/* Smart layout */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 100px;
-	
-/* Background/White */
-background: #FFFFFF;
-	
+.left a {
+    text-decoration: none;
 }
+.left a:hover {
+    text-decoration: underline;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+
+    /* Background/White */
+    background: #FFFFFF;
+
+}
+
 /* Forgot Password Styling */
 .forgot-password-container {
     display: flex;
@@ -433,152 +404,6 @@ background: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
     margin-top: 10px;
-}
-
-
-/* Signup Css */
-.signup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-    padding: 20px;
-}
-
-/* Form Styling */
-.signup-container form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-}
-
-/* Form Heading */
-.signup-container h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: black;
-}
-
-/* Input Field Styling */
-.signup-container input[type="email"],
-input[type="password"],
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fafafa;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Checkbox Styling */
-.signup-container .check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.signup-container input[type="checkbox"] {
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-.signup-container label {
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.signup-container label a {
-    color: #0089ff;
-    text-decoration: none;
-}
-
-.signup-container label a:hover {
-    text-decoration: underline;
-}
-
-/* Buttons */
-.signup-container button {
-    background-color: #0089ff;
-    color: white;
-    padding: 15px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-.signup-container button:hover {
-    background-color: #006fd1;
-}
-
-.signup-container button[type="button"] {
-    margin-top: 5px;
-}
-
-.signup-container button[type="button"]:hover {
-    background-color: #006fd1;
-}
-
-/* Error Input Styling */
-input.error {
-    /* border: 1px solid #d9534f; */
-    color: #d9534f;
-}
-
-input.error::placeholder {
-    color: #d9534f;
-    /* Matches error message color */
-}
-
-/* Text Below Buttons */
-.signup-container p {
-    margin: 5px 0;
-    font-size: 14px;
-    text-align: center;
-}
-
-.signup-container p a {
-    color: #0089ff;
-    text-decoration: none;
-}
-
-.signup-container p a:hover {
-    text-decoration: underline;
-}
-
-/* Focus State for Inputs */
-input:focus {
-    border-color: #0089ff;
-    outline: none;
-}
-
-/* Responsive Design */
-@media (max-width: 500px) {
-    form {
-        padding: 20px;
-    }
-
-    .name-fields {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    button {
-        font-size: 14px;
-        padding: 10px;
-    }
 }
 
 /* Aboutus.css */
