@@ -58,19 +58,19 @@ function Signup() {
           {({ isSubmitting }) => (
             <Form>
               <h2>Create an Account</h2>
-              <div>
+              <div className="input-field">
                 <Field type="text" name="name" placeholder="Name" />
                 <ErrorMessage name="name" component="div" className="error" />
               </div>
-              <div>
+              <div className="input-field">
                 <Field type="email" name="email" placeholder="Email" />
                 <ErrorMessage name="email" component="div" className="error" />
               </div>
-              <div>
+              <div className="input-field">
                 <Field type="password" name="password" placeholder="Password" />
                 <ErrorMessage name="password" component="div" className="error" />
               </div>
-              <div>
+              <div className="input-field">
                 <Field
                   type="password"
                   name="confirmPassword"
