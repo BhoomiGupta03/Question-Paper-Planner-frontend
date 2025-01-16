@@ -1,15 +1,20 @@
- import React from "react";
-import { Link } from "react-router-dom";
+// Login.js
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import AuthContext from "../../context/AuthContext";
+import log from "../../img/log-signup-img.webp";
 
- function Login({ onLogin }) {
-  // Validation schema using Yup
+
+function Login() {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Email is required"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+    password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+    rememberMe: Yup.boolean(),
   });
 
   const initialValues = {
@@ -19,14 +24,9 @@ import * as Yup from "yup";
   };
 
   const handleSubmit = (values) => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (user) => user.email === values.email && user.password === values.password
-    );
-
-    if (user) {
-      console.log("Login successful");
-      onLogin();
+    const success = login(values.email, values.password, values.rememberMe);
+    if (success) {
+      navigate("/");
     } else {
       alert("Invalid email or password");
     }
@@ -34,145 +34,56 @@ import * as Yup from "yup";
 
   return (
     <div className="log-sign">
-    <div className="left">
-    <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <h2>Welcome Back!</h2>
-            <p>Kindly enter your details.</p>
+      <div className="left">
 
-            <div className="input-field">
-              <Field
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                className="input"
-              />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+          {({ isSubmitting }) => (
+            <Form>
+              <h2>Welcome Back !</h2>
 
-            <div className="input-field">
-              <Field
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                className="input"
-              />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
+              <div className="input-field">
+                <Field type="email" name="email" placeholder="Email" />
+                <ErrorMessage name="email" component="div" className="error" /></div>
 
-            <div className="rem-me-forgot">
-              <div className="rem-me">
-                <Field type="checkbox" id="rememberMe" name="rememberMe" />
-                <label htmlFor="rememberMe">Remember Me</label>
+              <div className="input-field">
+                <Field type="password" name="password" placeholder="Password" />
+                <ErrorMessage name="password" component="div" className="error" /></div>
+
+              <div className="rem-me-forgot ">
+                <div className="rem-me">
+                  <Field type="checkbox" id="rememberMe" name="rememberMe" />
+                  <label htmlFor="rememberMe">Remember Me</label>
+                </div>
+                <Link to="/forgotpassword" className="forgot-password">
+                  Forgot Password?
+                </Link>
               </div>
-              <Link to="/forgot-password" className="forgot-password">
-                Forgot Password?
-              </Link>
-            </div>
 
-            <div className="btn">
-            <button type="submit" disabled={isSubmitting} className="submit-btn">
-              Login
-            </button>
-            <p>OR</p>
+              <div className="btn">
+                <button type="submit" disabled={isSubmitting}>
+                  Login
+                </button>
+                <p>OR</p>
 
-            <button type="button" className="google-login">
-              Sign in with Google
-            </button>
+                <button type="button" className="google-login">
+                  Sign in with Google
+                </button>
+              </div>
 
-            <div className="account-exist">
-              <p>
-                Don’t have an account? <Link to="/signup">Sign Up</Link>
-              </p>
-            </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+              <div className="account-exist">
+                Don’t have an account? <a href="/signup">Sign Up</a>
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <div className="img-block">
+          <img src={log} alt="log-signup" />
+        </div>
+
+      </div>
+
     </div>
+  );
+}
 
-    <div className="right">
-    </div>
-  </div>
-
-
-
-//     <div className="login-container">
-//       <div className="right">
-//       <Formik
-//         initialValues={initialValues}
-//         validationSchema={validationSchema}
-//         onSubmit={handleSubmit}
-//       >
-//         {({ isSubmitting }) => (
-//           <Form>
-//             <h2>Welcome Back!</h2>
-//             <p>Kindly enter your details.</p>
-
-//             <div className="input-field">
-//               <Field
-//                 type="email"
-//                 id="email"
-//                 name="email"
-//                 placeholder="Enter your email"
-//                 className="input"
-//               />
-//               <ErrorMessage name="email" component="div" className="error" />
-//             </div>
-
-//             <div className="input-field">
-//               <Field
-//                 type="password"
-//                 id="password"
-//                 name="password"
-//                 placeholder="Enter your password"
-//                 className="input"
-//               />
-//               <ErrorMessage name="password" component="div" className="error" />
-//             </div>
-
-//             <div className="rem-me-forgot">
-//               <div className="rem-me">
-//                 <Field type="checkbox" id="rememberMe" name="rememberMe" />
-//                 <label htmlFor="rememberMe">Remember Me</label>
-//               </div>
-//               <Link to="/forgot-password" className="forgot-password">
-//                 Forgot Password?
-//               </Link>
-//             </div>
-
-//             <button type="submit" disabled={isSubmitting} className="submit-btn">
-//               Login
-//             </button>
-//             <p>OR</p>
-
-//             <button type="button" className="google-login">
-//               Sign in with Google
-//             </button>
-
-//             <div className="account-exist">
-//               <p>
-//                 Don’t have an account? <Link to="/signup">Sign Up</Link>
-//               </p>
-//             </div>
-//           </Form>
-//         )}
-//       </Formik>
-//       </div>
-
-//       <div div className="left">
-//         <h2>left side</h2></div>
-
-      
-//     </div>
- );
- }
-
- export default Login;
+export default Login;

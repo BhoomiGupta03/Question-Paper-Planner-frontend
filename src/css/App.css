@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
-*  {
+* {
     border: none;
     font-family: Poppins, sans-serif;
     font-weight: 400;
@@ -142,7 +142,7 @@ select {
     background-color: #0056b3;
 }
 
-.btn {
+#gen .btn {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
@@ -163,42 +163,45 @@ select {
     background: #3578FF;
     display: grid;
     place-items: center;
-
+    position: relative;
 }
 
 .left form {
-    /* height: 505px; */
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
     max-width: 400px;
     box-sizing: border-box;
-
 }
 
 .left form h2 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #FFFFFF; /* Ensures text is readable on a blue background */
 }
 
 .left form p {
-    margin: 10px;
+    margin: 10px 0;
     width: 325px;
     font-size: 18px;
     text-align: center;
+    color: #FFFFFF;
 }
-.left .input-field{
-    height: 5em;
+
+.left .input-field {
     width: 100%;
+    margin-bottom: 1em; /* Added spacing between input fields for better UX */
 }
-.left input{
+
+.left input {
     border: none;
     color: black;
     width: 100%;
     border-radius: 4px;
-    padding: 16px;
+    padding: 18px;
     background: linear-gradient(90deg, #FFFFFF 15%, rgba(255, 255, 255, 0) 123%);
+    box-sizing: border-box; /* Ensures padding doesn’t exceed the element’s width */
 }
 
 .log-sign .left .rem-me-forgot {
@@ -215,39 +218,44 @@ select {
     gap: 5px;
 }
 
-.log-sign .left  input[type="checkbox"] {
+.log-sign .left input[type="checkbox"] {
     margin: 0;
     width: 16px;
     height: 16px;
     border-radius: 999px;
     background: #FFFFFF;
+    cursor: pointer; /* Indicates that this element is clickable */
 }
 
 .log-sign .left label {
-    /* width: 95px;
-    height: 18px; */
     font-size: 14px;
+    color: #FFFFFF; /* Matches the color scheme */
 }
-.log-sign .check{
+
+.log-sign .check {
     width: 100%;
-    margin-top: 1em;
     display: flex;
     align-items: center;
-gap: 5px;
+    gap: 5px;
 }
+
 .log-sign .left .rem-me-forgot .forgot-password {
     width: 162px;
     font-size: 14px;
     text-align: right;
+    color: #FFFFFF;
+}
+
+.img-block {
+    position: absolute;
+    right: -25em;
 }
 
 .left .btn {
-    margin-top: 2em;
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* padding: 50px 0px 0px 0px; */
-    gap: 10px;
+    gap: 5px;
 }
 
 .left button {
@@ -255,21 +263,35 @@ gap: 5px;
     height: 52px;
     border-radius: 32px;
     border: none;
-    /* Smart layout */
     padding: 16px;
     font-size: 16px;
     background: #1E31CA;
+    color: #FFFFFF; /* Button text color */
+    cursor: pointer; /* Indicates button is clickable */
 }
+
+.left button:hover {
+    background: #162DAB; /* Slightly darker shade for hover effect */
+}
+
+.left .account-exist {
+    margin-top: 1em;
+    color: #FFFFFF;
+}
+
 .left .account-exist a {
     color: #1E31CA;
-    text-decoration: none;
 }
+
 .left a {
     text-decoration: none;
 }
+
 .left a:hover {
     text-decoration: underline;
 }
+
+
 /* Responsive Design */
 @media (max-width: 500px) {
     .login-container form {

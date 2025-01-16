@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../Header';
 
 export default function QuestionPaperPlanner() {
     const [subject, setSubject] = useState('');
@@ -29,6 +30,9 @@ export default function QuestionPaperPlanner() {
     };
 
     return (
+        <>
+        <Header/>
+
         <div id="question-paper-planner">
             <section id="main">
                 <h1>Create Your Question Paper</h1>
@@ -119,5 +123,6 @@ export default function QuestionPaperPlanner() {
                 </div>
             </section>
         </div>
+        </>
     );
 }
