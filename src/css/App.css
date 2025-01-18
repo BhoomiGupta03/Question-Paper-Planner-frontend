@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 * {
+    border: none;
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    outline: none;
+    text-decoration: none;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    color: black;
 }
 
 #header {
@@ -13,13 +18,16 @@
     justify-content: space-between;
     background-color: #fff;
 }
+
 #header .logo img {
     height: 10em;
 }
+
 #header a {
     color: black;
     text-decoration: none;
 }
+
 #header nav {
     gap: 30px;
     font-size: 16px;
@@ -35,18 +43,12 @@
     height: 20px;
 
 }
+
 #header .login-id a {
     color: white;
 }
 
 /* Main.css */
-body {
-    background-image: url('../img/background.webp');
-    background-size: cover; /* Cover the entire viewport */
-    background-repeat: no-repeat; /* Don't repeat the image */
-    background-position: center; /* Center the image */
-    background-color: #f0f4f8; /* Fallback background color */
-}
 #question-paper-planner {
     margin: 20px auto;
     max-width: 800px;
@@ -54,7 +56,10 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency */}
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White background with some transparency */
+}
+
 #main h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -91,6 +96,7 @@ select {
     height: 80px;
     resize: vertical;
 }
+
 .choose h3 {
     text-align: center;
     margin: auto;
@@ -117,21 +123,26 @@ select {
     border-radius: 4px;
     cursor: pointer;
 }
-.gen{
+
+.gen {
     display: flex;
     justify-content: center;
 }
-.gen-btn{
+
+.gen-btn {
     display: flex;
     justify-content: center;
 }
-.gen-btn button{
+
+.gen-btn button {
     padding: 20px 20px;
 }
+
 #gen button:hover {
     background-color: #0056b3;
 }
-.btn {
+
+#gen .btn {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
@@ -139,113 +150,155 @@ select {
 }
 
 /* Login Css */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.log-sign {
+    display: grid;
+    width: 100%;
     height: 100vh;
-    background-color: #f4f4f9;
-    padding: 20px;
+    grid-template-columns: 70% 30%;
 }
 
-.login-container form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.left {
     width: 100%;
-    max-width: 350px;
-    box-sizing: border-box;
+    height: 100%;
+    background: #3578FF;
+    display: grid;
+    place-items: center;
+    position: relative;
 }
 
-.login-container h2 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.login-container 
-input[type="email"],
-input[type="password"]{
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fafafa;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Combined Styling for Remember Me and Forgot Password */
-.rem-me-forgot {
+.left form {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.left form h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    /* Ensures text is readable on a blue background */
+}
+
+.left form p {
+    margin: 10px 0;
+    width: 325px;
+    font-size: 18px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.left .input-field {
+    width: 100%;
+    margin-bottom: 1em;
+    /* Added spacing between input fields for better UX */
+}
+
+.left input {
+    border: none;
+    color: black;
+    width: 100%;
+    border-radius: 4px;
+    padding: 18px;
+    background: linear-gradient(90deg, #FFFFFF 15%, rgba(255, 255, 255, 0) 123%);
+    box-sizing: border-box;
+    /* Ensures padding doesn’t exceed the element’s width */
+}
+
+.log-sign .left .rem-me-forgot {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 15px 0;
-    font-size: 14px;
 }
 
-/* Styling for Remember Me */
-.rem-me {
+.log-sign .left .rem-me-forgot .rem-me {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
 }
-.rem-me input[type="checkbox"] {
-    cursor: pointer;
+
+.log-sign .left input[type="checkbox"] {
+    margin: 0;
     width: 16px;
     height: 16px;
-    margin: 0;
-    /* Remove extra margin */
-}
-.rem-me label {
-    font-size: 14px;
-    line-height: 1;
+    border-radius: 999px;
+    background: #FFFFFF;
     cursor: pointer;
+    /* Indicates that this element is clickable */
 }
 
-/* Styling for Forgot Password Link */
-.forgot-password {
-    color: #0089ff;
-    text-decoration: none;
+.log-sign .left label {
     font-size: 14px;
-}
-.forgot-password:hover {
-    text-decoration: underline;
+    color: #FFFFFF;
+    /* Matches the color scheme */
 }
 
-.login-container button{
+.log-sign .check {
     width: 100%;
-    background-color: #0089ff;
-    color: white;
-    font-size: 16px;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button[type="submit"]:hover {
-    background-color: #006fd1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.login-container p {
+.log-sign .left .rem-me-forgot .forgot-password {
+    width: 162px;
     font-size: 14px;
-    text-align: center;
-    margin: 12px;
+    text-align: right;
+    color: #FFFFFF;
 }
-.login-container a {
-    color: #0089ff;
+
+.log-sign .img-block {
+    position: absolute;
+    right: -25em;
+}
+
+.left .btn {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.left button {
+    width: 343px;
+    height: 52px;
+    border-radius: 32px;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    background: #1E31CA;
+    color: #FFFFFF;
+    /* Button text color */
+    cursor: pointer;
+    /* Indicates button is clickable */
+}
+
+.left button:hover {
+    background: #162DAB;
+    /* Slightly darker shade for hover effect */
+}
+
+.left .account-exist {
+    margin-top: 1em;
+    color: #FFFFFF;
+}
+
+.left .account-exist a {
+    color: #1E31CA;
+}
+
+.left a {
     text-decoration: none;
 }
-.login-container a:hover {
+
+.left a:hover {
     text-decoration: underline;
 }
 
-.account-exist {
-    margin-top: 15px;
-}
 
 /* Responsive Design */
 @media (max-width: 500px) {
@@ -259,6 +312,17 @@ button[type="submit"]:hover {
     }
 }
 
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+
+    /* Background/White */
+    background: #FFFFFF;
+
+}
 
 /* Forgot Password Styling */
 .forgot-password-container {
@@ -276,19 +340,22 @@ button[type="submit"]:hover {
     margin-bottom: 20px;
     font-size: 24px;
 }
+
 .forgot-password-container form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 350px; 
+    max-width: 350px;
     text-align: center;
 }
+
 .forgot-password-container form h2 {
     font-size: 20px;
     margin-bottom: 20px;
 }
+
 .forgot-password-container input {
     width: 100%;
     padding: 12px;
@@ -298,7 +365,7 @@ button[type="submit"]:hover {
     background-color: #fafafa;
     font-size: 14px;
     box-sizing: border-box;
-} 
+}
 
 .forgot-password-container input:focus {
     border-color: #0089ff;
@@ -315,7 +382,7 @@ button[type="submit"]:hover {
     font-size: 16px;
     width: 100%;
     transition: background-color 0.3s ease;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .forgot-password-container button:hover {
@@ -360,8 +427,10 @@ button[type="submit"]:hover {
     text-align: center;
     font-size: 18px;
 }
+
 .forgot-password-container .password-input {
-    background-color: #e8f0fe; /* Highlight for password reset fields */
+    background-color: #e8f0fe;
+    /* Highlight for password reset fields */
 }
 
 /* Disabled button styling */
@@ -379,212 +448,75 @@ button[type="submit"]:hover {
     margin-top: 10px;
 }
 
-
-/* Signup Css */
-.signup-container {
+/* Aboutus.css */
+.about-us-banner {
     display: flex;
+    flex-wrap: wrap; /* Makes it responsive */
+    width: 100%;
+    min-height: 100vh; /* Ensures full viewport height */
+    gap: 2em;
+
+     margin: 4em;
+}
+
+.about-us-banner .banner-container {
+    display: flex;
+    width: 447px;
+    height: 289px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    margin: 5em;
+}
+
+.about-us-banner .banner-container h1 {
+    color: #162DAB;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.about-us-banner .banner-container h3 {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+
+}
+
+.about-us-banner .banner-container p {
+    font-size: 16px;
+}
+
+.about-us-banner .banner-container .know-more {
+    border: 1em;
+    background-color: #162DAB;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-    padding: 20px;
-}
-
-/* Form Styling */
-.signup-container form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-}
-
-/* Form Heading */
-.signup-container h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: black;
-}
-
-/* Input Field Styling */
-.signup-container input[type="email"],
-input[type="password"],
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fafafa;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Checkbox Styling */
-.signup-container
-.check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-.signup-container
-input[type="checkbox"] {
-    margin-right: 8px;
-    cursor: pointer;
-}
-.signup-container label {
-    font-size: 14px;
-    cursor: pointer;
-}
-.signup-container label a {
-    color: #0089ff;
-    text-decoration: none;
-}
-.signup-container label a:hover {
-    text-decoration: underline;
-}
-
-/* Buttons */
-.signup-container button {
-    background-color: #0089ff;
-    color: white;
-    padding: 15px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-.signup-container button:hover {
-    background-color: #006fd1;
-}
-.signup-container button[type="button"] {
-    margin-top: 5px;
-}
-.signup-container button[type="button"]:hover {
-    background-color: #006fd1;
-}
-
-/* Error Input Styling */
-input.error {
-    /* border: 1px solid #d9534f; */
-    color: #d9534f;
-}
-input.error::placeholder {
-    color: #d9534f;
-    /* Matches error message color */
-}
-
-/* Text Below Buttons */
-.signup-container p {
-    margin: 5px 0;
-    font-size: 14px;
-    text-align: center;
-}
-.signup-container p a {
-    color: #0089ff;
-    text-decoration: none;
-}
-.signup-container p a:hover {
-    text-decoration: underline;
-}
-
-/* Focus State for Inputs */
-input:focus {
-    border-color: #0089ff;
-    outline: none;
-}
-
-/* Responsive Design */
-@media (max-width: 500px) {
-    form {
-        padding: 20px;
-    }
-
-    .name-fields {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    button {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
-
-/* Aboutus.css */
-
-.Aboutus {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* White background with some transparency */
+    padding: 14px 24px;
+    gap: 10px;
+    width: 150px;
+    /* height: 50px; */
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
-/* Heading styles */
-hr {
-    border-bottom: 1px solid black;
+.about-us-banner .banner-container .know-more a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: none;
+    /* Removes underline */
 }
 
-.Aboutus h2 {
-    font-size: 25px;
-    text-align: center;
-    margin-bottom: 20px;
+.about-us-banner .banner-container .know-more:hover {
+    background-color: #0e1f76;
+    /* Darker shade on hover */
 }
 
-.Aboutus h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-}
-
-/* Paragraph and text styling */
-.Aboutus p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-/* List styling */
-.Aboutus ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin-top: 10px;
-}
-
-.Aboutus li {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
-    .Aboutus {
-        padding: 15px;
-    }
-
-    .Aboutus h2 {
-        font-size: 24px;
-    }
-
-    .Aboutus h3 {
-        font-size: 20px;
-    }
-
-    .Aboutus p,
-    li {
-        font-size: 15px;
-    }
-}
 
 .help-container {
     max-width: 850px;

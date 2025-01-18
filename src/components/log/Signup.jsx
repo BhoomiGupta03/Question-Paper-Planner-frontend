@@ -1,12 +1,15 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import AuthContext from "../../context/AuthContext";
+import log from "../../img/log-signup-img.webp";
+
 
 function Signup() {
   const navigate = useNavigate();
+  const { signup } = useContext(AuthContext);
 
-  // Validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string()
       .matches(
@@ -16,12 +19,8 @@ function Signup() {
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name cannot exceed 50 characters")
       .required("Name is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+    email: Yup.string().email("Invalid email address").required("Email is required"),
+    password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm password is required"),
@@ -37,76 +36,67 @@ function Signup() {
   };
 
   const handleSubmit = (values) => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    });
-    localStorage.setItem("users", JSON.stringify(users));
+    signup(values.name, values.email, values.password);
     navigate("/login");
   };
 
   return (
-    <div className="signup-container">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <h2>Create an Account</h2>
-            <div>
-              <Field type="text" name="name" placeholder="Name" />
-              <ErrorMessage name="name" component="div" className="error" />
-            </div>
-            <div>
-              <Field type="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-            <div>
-              <Field type="password" name="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-            <div>
-              <Field
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-              />
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className="error"
-              />
-            </div>
-            <div className="check">
-              <Field type="checkbox" name="isChecked" />
-              <label>
-                I agree to the <a href="/terms">Terms</a> &{" "}
-                <a href="/privacy">Privacy Policy</a>
-              </label>
-              <ErrorMessage name="isChecked" component="div" className="error" />
-            </div>
-            <button type="submit" disabled={isSubmitting}>
-              Create an Account
-            </button>
-            <p>OR</p>
+    <div className="log-sign">
+      <div className="left">
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+          {({ isSubmitting }) => (
+            <Form>
+              <h2>Create an Account</h2>
+              <div className="input-field">
+                <Field type="text" name="name" placeholder="Name" />
+                <ErrorMessage name="name" component="div" className="error" /></div>
 
-            {/* Google Sign-Up Button */}
-            <div id="google-signup-btn">
-              <button type="button" >
-                Sign Up with Google
-              </button>
-            </div>
+              <div className="input-field">
+                <Field type="email" name="email" placeholder="Email" />
+                <ErrorMessage name="email" component="div" className="error" /></div>
 
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </Form>
-        )}
-      </Formik>
+              <div className="input-field">
+                <Field type="password" name="password" placeholder="Password" />
+                <ErrorMessage name="password" component="div" className="error" /></div>
+
+              <div className="input-field">
+                <Field type="password" name="confirmPassword" placeholder="Confirm Password" />
+                <ErrorMessage name="confirmPassword" component="div" className="error" />
+              </div>
+
+              <div className="check">
+                <Field type="checkbox" name="isChecked" />
+                <label htmlFor="isChecked">
+                  I agree to the <a href="/terms">Terms</a> & <a href="/privacy">Privacy Policy</a>
+                </label>
+                <ErrorMessage name="isChecked" component="div" className="error" />
+              </div>
+
+              <div className="btn">
+                <button type="submit" disabled={isSubmitting}>
+                  Create an Account
+                </button>
+                
+                <p>OR</p>
+
+                <button type="button" className="google-login">
+                  Sign in with Google
+                </button>
+              </div>
+
+              <div className="account-exist">
+                Already have an account? <a href="/login"> Login </a>
+              </div>
+
+            </Form>
+          )}
+        </Formik>
+
+         <div className="img-block">
+                  <img src={log} alt="log-signup" />
+                </div>
+
+      </div>
     </div>
   );
 }

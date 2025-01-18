@@ -12,7 +12,7 @@ export default function Header() {
         </div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
+          <Link to="/aboutus">About Us</Link>
           <Link to="/help">Help</Link>
         </nav>
         <div className="login-id">
