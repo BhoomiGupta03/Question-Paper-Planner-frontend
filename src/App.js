@@ -1,9 +1,8 @@
 import './css/App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Main from './components/Home/Main';
-import AboutUs from "./components/Aboutus/Aboutusbanner"; // Adjust the path if necessary
-import Aboutuscontent from "./components/Aboutus/Aboutuscontent"; // Adjust the path if necessary
+import Home from './components/Home/Home';
+import AboutUsContent from "./components/Aboutus/Aboutuscontent"; // Adjust the path if necessary
 import Help from './components/Pages/Help';
 import Login from './components/log/Login';
 import Signup from './components/log/Signup';
@@ -16,11 +15,10 @@ function App() {
       <div className="App">
         <Routes>
           {/* Home route */}
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Home />} />
 
           {/* About Us routes */}
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/aboutuscontent" element={<Aboutuscontent />} />
+          <Route path="/aboutus" element={<AboutUsContent />} />
 
           {/* Help route */}
           <Route path="/help" element={<Help />} />

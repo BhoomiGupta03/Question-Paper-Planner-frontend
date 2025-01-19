@@ -20,7 +20,7 @@
 }
 
 #header .logo img {
-    height: 10em;
+    height: 12em;
 }
 
 #header a {
@@ -47,6 +47,63 @@
 #header .login-id a {
     color: white;
 }
+
+/* Home-banner.css */
+.banner-container{
+    display: flex;
+    height: 500px;
+     /* margin: 4em; */
+     background-color: #A9C7FF;
+}
+.banner-content{
+    display: flex;
+    width: 447px;
+    height: 289px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    margin: 5em;
+}
+
+.banner-content h1{
+    font-weight: 600;
+    font-size: 50px;
+} 
+ 
+.banner-container .start-link {
+    border: 1em;
+    background-color: #162DAB;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 10px;
+    width: 150px;
+    /* height: 50px; */
+    border-radius: 8px;
+
+}
+
+.banner-container .start-link a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: none;
+    /* Removes underline */
+}
+
+.banner-container .start-link:hover {
+    background-color: #0e1f76;
+    /* Darker shade on hover */
+}
+
+.banner-container .img-block {
+    position: absolute;
+    right: 6%;
+    margin-top: 4.8em;
+}
+
 
 /* Main.css */
 #question-paper-planner {
@@ -253,9 +310,15 @@ select {
 
 .log-sign .img-block {
     position: absolute;
-    right: -25em;
+    right: -34%;
+    width: 45vw;
 }
 
+.log-sign .img-block img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .left .btn {
     margin-top: 1em;
     display: flex;
@@ -299,7 +362,6 @@ select {
     text-decoration: underline;
 }
 
-
 /* Responsive Design */
 @media (max-width: 500px) {
     .login-container form {
@@ -313,13 +375,6 @@ select {
 }
 
 .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-
-    /* Background/White */
     background: #FFFFFF;
 
 }
@@ -451,15 +506,11 @@ select {
 /* Aboutus.css */
 .about-us-banner {
     display: flex;
-    flex-wrap: wrap; /* Makes it responsive */
-    width: 100%;
-    min-height: 100vh; /* Ensures full viewport height */
     gap: 2em;
-
      margin: 4em;
 }
 
-.about-us-banner .banner-container {
+.about-us-banner .about-banner-container {
     display: flex;
     width: 447px;
     height: 289px;
@@ -469,7 +520,7 @@ select {
     margin: 5em;
 }
 
-.about-us-banner .banner-container h1 {
+.about-us-banner .about-banner-container h1 {
     color: #162DAB;
     font-size: 16px;
     font-weight: 600;
@@ -478,18 +529,18 @@ select {
     letter-spacing: 0.03em;
 }
 
-.about-us-banner .banner-container h3 {
+.about-us-banner .about-banner-container h3 {
     font-size: 48px;
     font-weight: bold;
     line-height: 120%;
 
 }
 
-.about-us-banner .banner-container p {
+.about-us-banner .about-banner-container p {
     font-size: 16px;
 }
 
-.about-us-banner .banner-container .know-more {
+.about-us-banner .about-banner-container .know-more {
     border: 1em;
     background-color: #162DAB;
     display: flex;
@@ -504,7 +555,7 @@ select {
 
 }
 
-.about-us-banner .banner-container .know-more a {
+.about-us-banner .about-banner-container .know-more a {
     font-size: 18px;
     font-weight: 500;
     color: #FFFFFF;
@@ -512,7 +563,7 @@ select {
     /* Removes underline */
 }
 
-.about-us-banner .banner-container .know-more:hover {
+.about-us-banner .about-banner-container .know-more:hover {
     background-color: #0e1f76;
     /* Darker shade on hover */
 }

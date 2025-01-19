@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthContext from "../../context/AuthContext";
-import log from "../../img/log-signup-img.webp";
+import logsignimg from "../../img/log-signup-img.webp";
 
 
 function Signup() {
@@ -93,10 +93,11 @@ function Signup() {
         </Formik>
 
          <div className="img-block">
-                  <img src={log} alt="log-signup" />
+                  <img src={logsignimg} alt="log-signup" />
                 </div>
 
       </div>
+      <div className="right"></div>
     </div>
   );
 }
