@@ -51,18 +51,18 @@
 /* Home-banner.css */
 .banner-container{
     display: flex;
-    height: 500px;
-     /* margin: 4em; */
+    height: 550px;
+      margin: 4em; 
      background-color: #A9C7FF;
+     border-radius: 50px;
 }
 .banner-content{
     display: flex;
-    width: 447px;
-    height: 289px;
+    width: 450px;
     justify-content: center;
     flex-direction: column;
     gap: 16px;
-    margin: 5em;
+    margin: 12em;
 }
 
 .banner-content h1{
@@ -101,7 +101,7 @@
 .banner-container .img-block {
     position: absolute;
     right: 6%;
-    margin-top: 4.8em;
+    margin-top: 8em;
 }
 
 
@@ -250,6 +250,7 @@ select {
 .left .input-field {
     width: 100%;
     margin-bottom: 1em;
+    height: 80px;
     /* Added spacing between input fields for better UX */
 }
 
@@ -362,6 +363,14 @@ select {
     text-decoration: underline;
 }
 
+.log-sign .error{
+    padding-top: 8px;
+}
+
+.right {
+    background: #FFFFFF;
+}
+
 /* Responsive Design */
 @media (max-width: 500px) {
     .login-container form {
@@ -374,11 +383,6 @@ select {
     }
 }
 
-.right {
-    background: #FFFFFF;
-
-}
-
 /* Forgot Password Styling */
 .forgot-password-container {
     display: flex;
@@ -386,7 +390,7 @@ select {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background:  #3578FF;
     padding: 20px;
 }
 
@@ -423,13 +427,13 @@ select {
 }
 
 .forgot-password-container input:focus {
-    border-color: #0089ff;
+    border-color: #1E31CA;
     outline: none;
 }
 
 .forgot-password-container button {
     color: white;
-    background-color: #0089ff;
+    background-color: #1E31CA;
     padding: 15px;
     border: none;
     border-radius: 4px;
@@ -441,7 +445,7 @@ select {
 }
 
 .forgot-password-container button:hover {
-    background-color: #006fd1;
+    background-color: #162DAB;
 }
 
 .forgot-password-container .message {
@@ -451,7 +455,6 @@ select {
 }
 
 .forgot-password-container .error-message {
-    color: #d9534f;
     /* Error message color */
     margin-bottom: 5px;
 }
@@ -468,7 +471,7 @@ select {
 }
 
 .forgot-password-container p a {
-    color: #0089ff;
+    color: #162DAB;
     text-decoration: none;
 }
 

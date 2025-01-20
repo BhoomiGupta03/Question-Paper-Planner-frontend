@@ -7,7 +7,7 @@ import Help from './components/Pages/Help';
 import Login from './components/log/Login';
 import Signup from './components/log/Signup';
 import Profile from './components/Profile/Profile';
-import ForgotPassword from './components/log/ForgotPassword'; 
+import ForgotPassword from './components/log/ForgotPassword';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           {/* Home route */}
           <Route path="/" element={<Home />} />
 
-          {/* About Us routes */}
+          {/* About Us route */}
           <Route path="/aboutus" element={<AboutUsContent />} />
 
           {/* Help route */}
@@ -29,11 +29,11 @@ function App() {
           {/* Signup route */}
           <Route path="/signup" element={<Signup />} />
 
+          {/* Forgot Password route */}
+          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+
           {/* Profile route */}
           <Route path="/profile" element={<Profile />} />
-
-          {/* Forgot Password route */}
-          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" />} />

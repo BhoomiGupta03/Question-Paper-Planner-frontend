@@ -54,7 +54,7 @@ function Login() {
                   <Field type="checkbox" id="rememberMe" name="rememberMe" />
                   <label htmlFor="rememberMe">Remember Me</label>
                 </div>
-                <Link to="/forgotpassword" className="forgot-password">
+                <Link to="/ForgotPassword" className="forgot-password">
                   Forgot Password?
                 </Link>
               </div>
