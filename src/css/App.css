@@ -12,6 +12,7 @@
 }
 
 #header {
+    padding-top: 25px;
     height: 6em;
     align-items: center;
     display: flex;
@@ -20,7 +21,7 @@
 }
 
 #header .logo img {
-    height: 12em;
+    height: 13em;
 }
 
 #header a {
@@ -266,7 +267,6 @@ select {
 }
 
 .log-sign .left .rem-me-forgot {
-    margin-top: 10px;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -372,14 +372,74 @@ select {
 }
 
 /* Responsive Design */
-@media (max-width: 500px) {
-    .login-container form {
-        padding: 15px;
+@media (max-width: 768px) {
+    .log-sign {
+        grid-template-columns: 1fr;
+        height: auto;
     }
 
-    button {
+    .log-sign .left,
+    .log-sign .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .left {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .left form {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .left form h2 {
+        font-size: 24px;
+    }
+
+    .left form p {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .left .btn {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .left button {
+        width: 100%;
         font-size: 14px;
+        padding: 12px;
+    }
+
+    .log-sign .img-block {
+        display: none; /* Hide image block for better usability on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .left form h2 {
+        font-size: 20px;
+    }
+
+    .left form p {
+        font-size: 14px;
+    }
+
+    .left input {
         padding: 10px;
+        font-size: 14px;
+    }
+
+    .left button {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .left .account-exist {
+        font-size: 14px;
     }
 }
 
@@ -571,7 +631,129 @@ select {
     /* Darker shade on hover */
 }
 
-
+/* about content */
+.about-us-container {
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+  }
+/*   
+  .about-us-container h1 {
+    font-size: 36px;
+    background-color:#162DAB ;
+    color: #FFFFFF;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+   */
+  .about-us-container p {
+    font-size: 18px;
+    margin: 15px 15px;
+  }
+  
+  .about-us-container strong {
+    color: #2980b9;
+  }
+  
+  /* Features Section */
+  .features-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .feature-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature-item:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-item strong {
+    font-size: 18px;
+    color: #34495e;
+  }
+  
+  .feature-description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Mission Statement */
+  .about-us-container h3 {
+    font-size: 24px;
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-us-container {
+      padding: 15px;
+    }
+  
+    .about-us-container h1 {
+      font-size: 28px;
+    }
+  
+    .about-us-container p {
+      font-size: 14px;
+    }
+  
+    .features-list {
+      margin: 15px 0;
+    }
+  
+    .feature-item {
+      padding: 10px;
+    }
+  
+    .feature-item strong {
+      font-size: 16px;
+    }
+  
+    .feature-description {
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-us-container h1 {
+      font-size: 24px;
+    }
+  
+    .about-us-container p {
+      font-size: 13px;
+    }
+  
+    .features-list {
+      margin: 10px 0;
+    }
+  
+    .feature-item {
+      padding: 8px;
+    }
+  
+    .feature-item strong {
+      font-size: 14px;
+    }
+  
+    .feature-description {
+      font-size: 12px;
+    }
+  }
+  
 .help-container {
     max-width: 850px;
     margin: 1em auto;
@@ -616,3 +798,236 @@ select {
 .help-container a:hover {
     text-decoration: underline;
 }
+
+/* Added Responsive Design for Various Elements */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #header nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .banner-container {
+        flex-direction: column;
+        height: auto;
+        margin: 2em;
+        padding: 2em;
+    }
+
+    .banner-content {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .banner-content h1 {
+        font-size: 36px;
+    }
+
+    .banner-container .img-block {
+        position: relative;
+        margin: 2em auto 0;
+        right: 0;
+    }
+
+    #question-paper-planner {
+        padding: 15px;
+        margin: 10px;
+        box-shadow: none;
+    }
+
+    .log-sign {
+        grid-template-columns: 1fr;
+    }
+
+    .left {
+        padding: 20px;
+    }
+
+    .left form {
+        max-width: 100%;
+    }
+
+    .about-us-banner {
+        flex-direction: column;
+        gap: 1em;
+        margin: 2em;
+    }
+
+    .about-us-banner .about-banner-container {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .help-container {
+        padding: 15px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #header .logo img {
+        height: 8em;
+    }
+
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .banner-container .start-link {
+        width: 120px;
+        padding: 10px 20px;
+    }
+
+    .banner-container .start-link a {
+        font-size: 16px;
+    }
+
+    #main input[type="text"],
+    textarea,
+    select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .choose h3 {
+        font-size: 16px;
+    }
+
+    .gen-btn button {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .forgot-password-container {
+        padding: 10px;
+    }
+
+    .forgot-password-container form {
+        padding: 15px;
+    }
+
+    .forgot-password-container button {
+        padding: 10px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 32px;
+    }
+
+    .help-container h2 {
+        font-size: 20px;
+    }
+
+    .help-container h3 {
+        font-size: 18px;
+    }
+}
+
+
+/* Main review section */
+.review {
+    text-align: center;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+  }
+  
+  /* Section heading */
+  .review h1 {
+    font-size: 2.5rem;
+    color: #333; /* Dark gray for contrast */
+    margin-bottom: 2rem;
+  }
+  
+  /* Main review section */
+.review {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height:400px;
+      margin: 4em; 
+     background-color: #A9C7FF;
+     border-radius: 50px;
+    }
+  
+  /* Section heading */
+  .review h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  /* Container for all review cards */
+  .review-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+  }
+  
+  /* Individual review card */
+  .review-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Hover effect for review cards */
+  .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Name styling */
+  .review-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Feedback text styling */
+  .review-card p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  /* Stars container */
+  .stars {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+  }
+  
+  /* Style for star icons */
+  .stars svg {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  /* Additional styles for responsiveness */
+  @media (max-width: 768px) {
+    .review-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .review-card {
+      max-width: 90%;
+    }
+  }
+  

@@ -11,9 +11,14 @@ const AboutUsContent = () => {
   };
 
   return (
-    <div className="about-us-container">
+    <div className="Aboutus-main">
+    <div className="about-us-header">
       <Header/>
-      <h1>About Us</h1>
+    </div>
+
+      <div className="about-us-container">
+
+      {/* <h1>About Us</h1> */}
       <p>
         <strong>Welcome to Question Paper Planner – Empowering Teachers, One Question Paper at a Time!</strong>
       </p>
@@ -49,6 +54,7 @@ const AboutUsContent = () => {
       <p>
         <strong>Thank you for choosing us – together, we’re shaping the future of education!</strong>
       </p>
+    </div>
     </div>
   );
 };

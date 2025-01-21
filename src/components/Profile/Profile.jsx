@@ -1,20 +1,11 @@
-// import React, { useState } from "react";
+import React from 'react'
 
-// const Profile = () => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [phoneNumber, setPhoneNumber] = useState("");
-//   const [about, setAbout] = useState("");
-//   const [isEditing, setIsEditing] = useState({
-//     name: false,
-//     email: false,
-//     phoneNumber: false,
-//     about: false,
-//   });
+function Profile() {
+  return (
+    <div>
+      <h1>Profile</h1>
+    </div>
+  )
+}
 
-//   const [profileImage, setProfileImage] = useState("");
-    
-  
-// };
-
-// export default Profile;
+export default Profile

@@ -1,6 +1,7 @@
 import React from 'react'
 import homebannerimg from "../../img/home-banner.png"
-import arrow from "../../img/arrow.png"
+import { IoIosArrowForward } from "react-icons/io";
+
 
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,9 @@ function banner() {
         <h1>Want to make question ??</h1>
         <div className="start-link">
                   <Link to="/Main" >
-                    Start <img src={arrow} alt="arrow" />
+                    Start 
+                    <IoIosArrowForward />
+
                   </Link>
                   </div>
                   </div>
