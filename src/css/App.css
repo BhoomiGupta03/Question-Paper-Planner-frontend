@@ -50,14 +50,15 @@
 }
 
 /* Home-banner.css */
-.banner-container{
+.banner-container {
     display: flex;
     height: 550px;
-      margin: 4em; 
-     background-color: #A9C7FF;
-     border-radius: 50px;
+    margin: 4em;
+    background-color: #A9C7FF;
+    border-radius: 50px;
 }
-.banner-content{
+
+.banner-content {
     display: flex;
     width: 450px;
     justify-content: center;
@@ -66,11 +67,11 @@
     margin: 12em;
 }
 
-.banner-content h1{
+.banner-content h1 {
     font-weight: 600;
     font-size: 50px;
-} 
- 
+}
+
 .banner-container .start-link {
     border: 1em;
     background-color: #162DAB;
@@ -79,13 +80,15 @@
     justify-content: center;
     align-items: center;
     padding: 14px 24px;
-    gap: 10px;
     width: 150px;
     /* height: 50px; */
     border-radius: 8px;
-
 }
 
+.banner-container .start-link svg {
+    Filter: invert(1) 
+ }
+  
 .banner-container .start-link a {
     font-size: 18px;
     font-weight: 500;
@@ -114,20 +117,22 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.8);
-    /* White background with some transparency */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better visibility */
 }
 
+/* Heading */
 #main h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
+/* Form Group */
 #main div {
     margin-bottom: 15px;
 }
 
+/* Labels */
 #main label {
     font-weight: bold;
     display: block;
@@ -135,10 +140,7 @@
     color: #555;
 }
 
-.sub input[type="text"] {
-    background-color: white;
-}
-
+/* Input Fields and Select */
 #main input[type="text"],
 textarea,
 select {
@@ -155,11 +157,19 @@ select {
     resize: vertical;
 }
 
-.choose h3 {
-    text-align: center;
-    margin: auto;
+/* Subject Input Styling */
+.sub input[type="text"] {
+    background-color: white;
 }
 
+/* Unit Section */
+.choose h3 {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Total Questions Display */
 .total-questions {
     text-align: center;
     margin-top: 20px;
@@ -168,7 +178,8 @@ select {
     font-weight: bold;
 }
 
-#gen button {
+/* Button Styling */
+button {
     display: inline-block;
     margin: 10px 5px;
     font-size: 16px;
@@ -180,8 +191,15 @@ select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Button Hover Effect */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Flex Layout for Buttons */
 .gen {
     display: flex;
     justify-content: center;
@@ -193,20 +211,64 @@ select {
 }
 
 .gen-btn button {
-    padding: 20px 20px;
+    padding: 12px 20px;
 }
 
-#gen button:hover {
-    background-color: #0056b3;
-}
-
+/* Flex Layout for PDF Buttons */
 #gen .btn {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-
 }
 
+/* Error Message Styling */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Adjust form layout on smaller screens */
+    #question-paper-planner {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* Adjust input fields */
+    #main input[type="text"],
+    #main textarea,
+    #main select {
+        padding: 8px;
+    }
+
+    /* Stack buttons vertically */
+    .gen-btn button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Stack PDF download buttons vertically */
+    #gen .btn {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Make error messages responsive */
+    .error {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+}
 /* Login Css */
 .log-sign {
     display: grid;
@@ -315,11 +377,12 @@ select {
     width: 45vw;
 }
 
-.log-sign .img-block img{
+.log-sign .img-block img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .left .btn {
     margin-top: 1em;
     display: flex;
@@ -363,7 +426,7 @@ select {
     text-decoration: underline;
 }
 
-.log-sign .error{
+.log-sign .error {
     padding-top: 8px;
 }
 
@@ -415,7 +478,8 @@ select {
     }
 
     .log-sign .img-block {
-        display: none; /* Hide image block for better usability on smaller screens */
+        display: none;
+        /* Hide image block for better usability on smaller screens */
     }
 }
 
@@ -450,7 +514,7 @@ select {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background:  #3578FF;
+    background: #3578FF;
     padding: 20px;
 }
 
@@ -570,7 +634,7 @@ select {
 .about-us-banner {
     display: flex;
     gap: 2em;
-     margin: 4em;
+    margin: 4em;
 }
 
 .about-us-banner .about-banner-container {
@@ -637,7 +701,8 @@ select {
     padding: 20px;
     margin: 0 auto;
     text-align: left;
-  }
+}
+
 /*   
   .about-us-container h1 {
     font-size: 36px;
@@ -647,23 +712,23 @@ select {
     text-align: center;
   }
    */
-  .about-us-container p {
+.about-us-container p {
     font-size: 18px;
     margin: 15px 15px;
-  }
-  
-  .about-us-container strong {
+}
+
+.about-us-container strong {
     color: #2980b9;
-  }
-  
-  /* Features Section */
-  .features-list {
+}
+
+/* Features Section */
+.features-list {
     list-style-type: none;
     padding: 0;
     margin: 20px 0;
-  }
-  
-  .feature-item {
+}
+
+.feature-item {
     padding: 15px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -671,135 +736,90 @@ select {
     background-color: #f9f9f9;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .feature-item:hover {
+}
+
+.feature-item:hover {
     background-color: #f1f1f1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature-item strong {
+}
+
+.feature-item strong {
     font-size: 18px;
     color: #34495e;
-  }
-  
-  .feature-description {
+}
+
+.feature-description {
     margin-top: 10px;
     font-size: 14px;
     color: #555;
-  }
-  
-  /* Mission Statement */
-  .about-us-container h3 {
+}
+
+/* Mission Statement */
+.about-us-container h3 {
     font-size: 24px;
     color: #34495e;
     margin-top: 30px;
     margin-bottom: 15px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     .about-us-container {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     .about-us-container h1 {
-      font-size: 28px;
+        font-size: 28px;
     }
-  
+
     .about-us-container p {
-      font-size: 14px;
+        font-size: 14px;
     }
-  
+
     .features-list {
-      margin: 15px 0;
+        margin: 15px 0;
     }
-  
+
     .feature-item {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .feature-item strong {
-      font-size: 16px;
+        font-size: 16px;
     }
-  
+
     .feature-description {
-      font-size: 13px;
+        font-size: 13px;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .about-us-container h1 {
-      font-size: 24px;
+        font-size: 24px;
     }
-  
+
     .about-us-container p {
-      font-size: 13px;
+        font-size: 13px;
     }
-  
+
     .features-list {
-      margin: 10px 0;
+        margin: 10px 0;
     }
-  
+
     .feature-item {
-      padding: 8px;
+        padding: 8px;
     }
-  
+
     .feature-item strong {
-      font-size: 14px;
+        font-size: 14px;
     }
-  
+
     .feature-description {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-  
-.help-container {
-    max-width: 850px;
-    margin: 1em auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* White background with some transparency */
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.help-container h2 {
-    font-size: 25px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.help-container h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.help-container p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.help-container ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin-bottom: 20px;
-}
-
-.help-container li {
-    margin-bottom: 10px;
-}
-
-.help-container a {
-    text-decoration: none;
-}
-
-.help-container a:hover {
-    text-decoration: underline;
-}
-
-/* Added Responsive Design for Various Elements */
+/* Added Responsive Design for all the elments */
 @media (max-width: 768px) {
     #header {
         flex-direction: column;
@@ -931,50 +951,36 @@ select {
     }
 }
 
-
 /* Main review section */
-.review {
-    text-align: center;
-    padding: 2rem;
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff; /* Light blue background */
-  }
-  
-  /* Section heading */
-  .review h1 {
-    font-size: 2.5rem;
-    color: #333; /* Dark gray for contrast */
-    margin-bottom: 2rem;
-  }
-  
-  /* Main review section */
-.review {
+.review-container {
     text-align: center;
     display: flex;
     flex-direction: column;
-    height:400px;
-      margin: 4em; 
-     background-color: #A9C7FF;
-     border-radius: 50px;
-    }
-  
-  /* Section heading */
-  .review h1 {
-    font-size: 2.5rem;
+    height: 350px;
+    padding: 2rem;
+    margin: 4em;
+    background-color: #A9C7FF;
+    border-radius: 50px;
+}
+
+/* Section heading */
+.review-container h1 {
+    font-weight: 600;
+    font-size: 50px;
     color: #333;
     margin-bottom: 2rem;
-  }
-  
-  /* Container for all review cards */
-  .review-container {
+}
+
+/* Container for all review cards */
+.review-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     justify-items: center;
-  }
-  
-  /* Individual review card */
-  .review-card {
+}
+
+/* Individual review card */
+.review-card {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -983,51 +989,105 @@ select {
     max-width: 300px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Hover effect for review cards */
-  .review-card:hover {
+}
+
+/* Hover effect for review cards */
+.review-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Name styling */
-  .review-card h3 {
+}
+
+/* Name styling */
+.review-card h3 {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 0.5rem;
-  }
-  
-  /* Feedback text styling */
-  .review-card p {
+}
+
+/* Feedback text styling */
+.review-card p {
     color: #555;
     font-size: 1rem;
     margin-bottom: 1rem;
     line-height: 1.4;
-  }
-  
-  /* Stars container */
-  .stars {
-    display: flex;
-    gap: 0.3rem;
-    align-items: center;
-  }
-  
-  /* Style for star icons */
-  .stars svg {
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-  }
-  
-  /* Additional styles for responsiveness */
-  @media (max-width: 768px) {
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
     .review-container {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  
+
     .review-card {
-      max-width: 90%;
+        max-width: 90%;
     }
-  }
-  
+}
+/* help css */
+.help-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White background with some transparency */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.help-content {
+    margin: 2em;
+}
+
+.help-container h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #1A1A1A;
+}
+
+.help-container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.help-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.help-container li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.help-container li:hover {
+    color: #162DAB;
+    /* Highlight list items on hover */
+}
+
+.help-container a {
+    text-decoration: none;
+    color: #162DAB;
+}
+
+.help-container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive layout for mobile screens */
+@media (max-width: 600px) {
+    .help-container {
+        padding: 15px;
+    }
+
+    .help-container h2 {
+        font-size: 20px;
+    }
+
+    .help-container h3 {
+        font-size: 18px;
+    }
+
+    .help-container p {
+        font-size: 14px;
+    }
+}

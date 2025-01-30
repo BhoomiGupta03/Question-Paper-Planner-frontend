@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Header from '../Header'
-
+import Header from '../Pages/Header';
 
 const AboutUsContent = () => {
   const [selectedFeature, setSelectedFeature] = useState(null);

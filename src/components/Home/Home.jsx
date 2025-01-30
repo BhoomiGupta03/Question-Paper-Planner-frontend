@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Header'
+import Header from '../Pages/Header';
 import HomeBanner from './HomeBanner'
 import Aboutusbanner from '../Aboutus/Aboutusbanner'
 import Review from '../Pages/Review'

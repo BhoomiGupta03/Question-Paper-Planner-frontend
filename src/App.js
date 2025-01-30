@@ -8,6 +8,7 @@ import Login from './components/log/Login';
 import Signup from './components/log/Signup';
 import Profile from './components/Profile/Profile';
 import ForgotPassword from './components/log/ForgotPassword';
+import Main from './components/Home/Main'; // Import the Main component
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
 
           {/* Profile route */}
           <Route path="/profile" element={<Profile />} />
+
+          {/* Main route */}
+          <Route path="/main" element={<Main />} /> {/* Link for "Start" */}
 
           {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" />} />

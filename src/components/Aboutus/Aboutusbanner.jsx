@@ -15,7 +15,7 @@ const AboutUsBanner = () => {
           Discover why our platform is the best choice for creating personalized and efficient question papers.
         </p>
         <div className="know-more">
-          <Link to="/aboutuscontent" className="know-more-link">
+          <Link to="/aboutus" className="know-more-link">
             Learn More
           </Link>
         </div>

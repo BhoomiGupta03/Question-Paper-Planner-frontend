@@ -2,7 +2,6 @@ import React from 'react'
 import homebannerimg from "../../img/home-banner.png"
 import { IoIosArrowForward } from "react-icons/io";
 
-
 import { Link } from "react-router-dom";
 
 
@@ -14,20 +13,19 @@ function banner() {
       <div className='banner-content'>
         <h1>Want to make question ??</h1>
         <div className="start-link">
-                  <Link to="/Main" >
-                    Start 
-                    <IoIosArrowForward />
+          <Link to="/main" >
+            Start
+            <IoIosArrowForward />
+          </Link>
+        </div>
+      </div>
 
-                  </Link>
-                  </div>
-                  </div>
+
+      <div className="img-block">
+        <img src={homebannerimg} alt="home-baner" />
+      </div>
 
 
-        <div className="img-block">
-                  <img src={homebannerimg} alt="home-baner" />
-                </div>
-        
-      
     </div>
   )
 }
