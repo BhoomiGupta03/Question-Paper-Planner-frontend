@@ -12,8 +12,8 @@
 }
 
 #header {
-    padding-top: 25px;
-    height: 6em;
+    padding: 15px 70px;
+    border-bottom: 1px solid #eee;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@
 }
 
 #header .logo img {
-    height: 13em;
+    height: 5em;
 }
 
 #header a {
@@ -39,7 +39,6 @@
     border-radius: 5px;
     font-size: 16px;
     padding: 12px;
-    margin: 2em;
     background-color: #0089ff;
     height: 20px;
 
