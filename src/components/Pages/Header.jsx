@@ -15,7 +15,7 @@ export default function Header() {
           <Link to="/aboutus">About Us</Link>
           <Link to="/help">Help</Link>
         </nav>
-        <div className="login-id">
+        <div className="profile-id">
         <Link to="/profile">Profile</Link>
 
         </div>
