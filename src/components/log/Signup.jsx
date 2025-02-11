@@ -34,11 +34,12 @@ function Signup() {
     confirmPassword: "",
     isChecked: false,
   };
-
   const handleSubmit = (values) => {
     signup(values.name, values.email, values.password);
+    localStorage.setItem('teacherName', values.name); // Store teacher's name in localStorage
     navigate("/login");
   };
+  
 
   return (
     <div className="log-sign">

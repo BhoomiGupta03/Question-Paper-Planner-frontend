@@ -6,6 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Load user from localStorage on initial render
   useEffect(() => {
     try {
       const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -35,6 +36,9 @@ export const AuthProvider = ({ children }) => {
         setUser(storedUser);
         setIsLoggedIn(true);
         return true;
+      } else {
+        alert("Invalid email or password.");
+        return false;
       }
     } catch (error) {
       console.error("Error during login", error);

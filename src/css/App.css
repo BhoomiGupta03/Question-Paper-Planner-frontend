@@ -85,9 +85,9 @@
 }
 
 .banner-container .start-link svg {
-    Filter: invert(1) 
- }
-  
+    Filter: invert(1)
+}
+
 .banner-container .start-link a {
     font-size: 18px;
     font-weight: 500;
@@ -116,7 +116,8 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better visibility */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Slightly more opaque for better visibility */
 }
 
 /* Heading */
@@ -229,6 +230,7 @@ button:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
     /* Adjust form layout on smaller screens */
     #question-paper-planner {
         padding: 15px;
@@ -268,6 +270,7 @@ button:hover {
         margin-top: 3px;
     }
 }
+
 /* Login Css */
 .log-sign {
     display: grid;
@@ -1022,6 +1025,7 @@ button:hover {
         max-width: 90%;
     }
 }
+
 /* help css */
 .help-container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -1089,4 +1093,138 @@ button:hover {
     .help-container p {
         font-size: 14px;
     }
+}
+
+/* Profile*/
+
+.profile-content {
+    width: 500px;
+    margin: 5em auto;
+    border: 2px ;
+    padding: 2rem;
+    transition: transform 0.2s;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-bio {
+    color: #666;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.edit-save-btn button {
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Buttons */
+.button-group button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-group button:hover {
+    background-color: #01579b;
+}
+
+.button-group button.delete-btn {
+    background-color: #d32f2f;
+}
+
+.button-group button.delete-btn:hover {
+    background-color: #b71c1c;
+}
+
+.section-title{
+    margin: 12px;
+}
+/* Question Paper List */
+.question-paper-list {
+    border-top: 1px solid #ddd;
+    padding-top: 1.5rem;
+}
+
+.question-paper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: background 0.3s;
+}
+
+.question-paper:hover {
+    background: #e3f2fd;
+}
+
+.question-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.question-subject {
+    color: #888;
+    font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Form Inputs for Editing Profile */
+.profile-edit-form input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.profile-edit-form textarea {
+    resize: none;
+    height: 120px;
+}
+
+.button-group button.save-btn {
+    background-color: #4caf50;
+}
+
+.button-group button.save-btn:hover {
+    background-color: #388e3c;
 }
