@@ -228,7 +228,7 @@ button:hover {
     margin-top: 5px;
 }
 
-/* Responsive Design */
+/* Responsive  main Design */
 @media (max-width: 768px) {
 
     /* Adjust form layout on smaller screens */
@@ -436,79 +436,6 @@ button:hover {
     background: #FFFFFF;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .log-sign {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .log-sign .left,
-    .log-sign .right {
-        width: 100%;
-        height: auto;
-    }
-
-    .left {
-        padding: 20px;
-        text-align: center;
-    }
-
-    .left form {
-        max-width: 100%;
-        padding: 0 20px;
-    }
-
-    .left form h2 {
-        font-size: 24px;
-    }
-
-    .left form p {
-        font-size: 16px;
-        width: 100%;
-    }
-
-    .left .btn {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .left button {
-        width: 100%;
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .log-sign .img-block {
-        display: none;
-        /* Hide image block for better usability on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .left form h2 {
-        font-size: 20px;
-    }
-
-    .left form p {
-        font-size: 14px;
-    }
-
-    .left input {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .left button {
-        font-size: 12px;
-        padding: 10px;
-    }
-
-    .left .account-exist {
-        font-size: 14px;
-    }
-}
-
 /* Forgot Password Styling */
 .forgot-password-container {
     display: flex;
@@ -705,15 +632,6 @@ button:hover {
     text-align: left;
 }
 
-/*   
-  .about-us-container h1 {
-    font-size: 36px;
-    background-color:#162DAB ;
-    color: #FFFFFF;
-    margin-bottom: 25px;
-    text-align: center;
-  }
-   */
 .about-us-container p {
     font-size: 18px;
     margin: 15px 15px;
@@ -764,194 +682,6 @@ button:hover {
     margin-bottom: 15px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .about-us-container {
-        padding: 15px;
-    }
-
-    .about-us-container h1 {
-        font-size: 28px;
-    }
-
-    .about-us-container p {
-        font-size: 14px;
-    }
-
-    .features-list {
-        margin: 15px 0;
-    }
-
-    .feature-item {
-        padding: 10px;
-    }
-
-    .feature-item strong {
-        font-size: 16px;
-    }
-
-    .feature-description {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-us-container h1 {
-        font-size: 24px;
-    }
-
-    .about-us-container p {
-        font-size: 13px;
-    }
-
-    .features-list {
-        margin: 10px 0;
-    }
-
-    .feature-item {
-        padding: 8px;
-    }
-
-    .feature-item strong {
-        font-size: 14px;
-    }
-
-    .feature-description {
-        font-size: 12px;
-    }
-}
-
-/* Added Responsive Design for all the elments */
-@media (max-width: 768px) {
-    #header {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    #header nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .banner-container {
-        flex-direction: column;
-        height: auto;
-        margin: 2em;
-        padding: 2em;
-    }
-
-    .banner-content {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-    }
-
-    .banner-content h1 {
-        font-size: 36px;
-    }
-
-    .banner-container .img-block {
-        position: relative;
-        margin: 2em auto 0;
-        right: 0;
-    }
-
-    #question-paper-planner {
-        padding: 15px;
-        margin: 10px;
-        box-shadow: none;
-    }
-
-    .log-sign {
-        grid-template-columns: 1fr;
-    }
-
-    .left {
-        padding: 20px;
-    }
-
-    .left form {
-        max-width: 100%;
-    }
-
-    .about-us-banner {
-        flex-direction: column;
-        gap: 1em;
-        margin: 2em;
-    }
-
-    .about-us-banner .about-banner-container {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-    }
-
-    .help-container {
-        padding: 15px;
-        margin: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    #header .logo img {
-        height: 8em;
-    }
-
-    .banner-content h1 {
-        font-size: 28px;
-    }
-
-    .banner-container .start-link {
-        width: 120px;
-        padding: 10px 20px;
-    }
-
-    .banner-container .start-link a {
-        font-size: 16px;
-    }
-
-    #main input[type="text"],
-    textarea,
-    select {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    .choose h3 {
-        font-size: 16px;
-    }
-
-    .gen-btn button {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .forgot-password-container {
-        padding: 10px;
-    }
-
-    .forgot-password-container form {
-        padding: 15px;
-    }
-
-    .forgot-password-container button {
-        padding: 10px;
-    }
-
-    .about-us-banner .about-banner-container h3 {
-        font-size: 32px;
-    }
-
-    .help-container h2 {
-        font-size: 20px;
-    }
-
-    .help-container h3 {
-        font-size: 18px;
-    }
-}
 
 /* Main review section */
 .review-container {
@@ -1015,7 +745,7 @@ button:hover {
     line-height: 1.4;
 }
 
-/* Additional styles for responsiveness */
+/* Additional styles for review responsiveness */
 @media (max-width: 768px) {
     .review-container {
         grid-template-columns: 1fr;
@@ -1076,31 +806,13 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Responsive layout for mobile screens */
-@media (max-width: 600px) {
-    .help-container {
-        padding: 15px;
-    }
-
-    .help-container h2 {
-        font-size: 20px;
-    }
-
-    .help-container h3 {
-        font-size: 18px;
-    }
-
-    .help-container p {
-        font-size: 14px;
-    }
-}
 
 /* Profile*/
 
 .profile-content {
     width: 500px;
     margin: 5em auto;
-    border: 2px ;
+    border: 2px;
     padding: 2rem;
     transition: transform 0.2s;
 }
@@ -1166,9 +878,10 @@ button:hover {
     background-color: #b71c1c;
 }
 
-.section-title{
+.section-title {
     margin: 12px;
 }
+
 /* Question Paper List */
 .question-paper-list {
     border-top: 1px solid #ddd;
@@ -1227,4 +940,222 @@ textarea {
 
 .button-group button.save-btn:hover {
     background-color: #388e3c;
+}
+
+@media (max-width: 1281px) {
+    .banner-container {
+        height: 450px;
+    }
+
+    .banner-container .banner-content {
+        width: 450px;
+        margin: 10em;
+    }
+
+    .banner-container .banner-content h1 {
+        font-size: 40px;
+    }
+
+    .banner-container .banner-content .start-link {
+        width: 100px;
+    }
+
+    .banner-container .img-block {
+        right: 7%;
+        margin-top: 11em;
+    }
+
+    .banner-container .img-block img {
+        width: 500px;
+    }
+
+    .about-us-banner img {
+        width: 500px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 200px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 40px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        width: 100px;
+    }
+
+    .review-container {
+        height: 300px;
+    }
+
+    .review-container h1 {
+        font-size: 40px;
+    }
+
+    .review-card h3 {
+        font-size: 16px;
+    }
+
+    .review-card p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .banner-container {
+        height: 400px;
+    }
+
+    .banner-container .banner-content {
+        width: 400px;
+        margin: 5em;
+    }
+
+    .banner-container .banner-content h1 {
+        font-size: 35px;
+    }
+
+    .banner-container .banner-content .start-link {
+        padding: 10px;
+    }
+
+    .banner-container .banner-content .start-link a {
+        font-size: 16px;
+    }
+
+    .banner-container .img-block {
+        margin-top: 151px;
+        right: 8%;
+    }
+
+    .banner-container .img-block img {
+        width: 450px;
+    }
+
+    .about-us-banner .img-block img {
+        width: 450px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 180px;
+        margin: 4em;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 35px;
+    }
+
+    .about-us-banner .about-banner-container p {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 12px;
+    }
+
+    .about-us-banner .about-banner-container .know-more a {
+        font-size: 16px;
+    }
+
+    .review-container {
+        height: 250px;
+    }
+
+    .review-container h1 {
+        font-size: 35px;
+    }
+
+    .review-content {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-container {
+        height: 300px;
+    }
+
+    .banner-container .banner-content {
+        margin: 3em;
+    }
+
+    .banner-container .banner-content h1 {
+        font-size: 22px;
+    }
+
+    .banner-container .banner-content .start-link {
+        padding: 8px;
+    }
+
+    .banner-container .banner-content .start-link a {
+        font-size: 14px;
+    }
+
+    .banner-container .img-block {
+        position: relative;
+        right: 3%;
+        margin-top: 118px;
+    }
+
+    .banner-container .img-block img {
+        width: 328px;
+    }
+
+    .about-us-banner .img-block img {
+        width: 328px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 150px;
+        margin: 45px;
+        gap: 8px;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 18px;
+    }
+
+    .about-us-banner .about-banner-container p {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 8px;
+    }
+
+    .about-us-banner .about-banner-container .know-more a {
+        font-size: 14px;
+    }
+
+    .review-container {
+        height: 200px;
+    }
+
+    .review-container h1 {
+        font-size: 22px;
+    }
+
+    .review-card {
+        padding: 8px;
+    }
+
+    .review-card h3 {
+        font-size: 14px;
+    }
+
+    .review-card p {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
 }
