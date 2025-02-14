@@ -4,7 +4,7 @@ const reviews = [
   { name: "Mrs. Manju Suresh", feedback: "This platform made my work so much easier!" },
   { name: "Mr. Chirag Deora", feedback: "The randomization of questions is amazing!" },
   { name: "Ms. Simran Solanki", feedback: "It saves a lot of time in question paper preparation." },
-  { name: "Ms. Kanchan", feedback: "A very efficient and user-friendly tool." },
+  { name: "Ms. Pooja Gupta", feedback: "A very efficient and user-friendly tool." },
 ];
 
 function Review() {

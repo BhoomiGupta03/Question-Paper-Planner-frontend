@@ -12,7 +12,9 @@
 }
 
 #header {
-    padding: 15px 70px;
+    margin: 0em 4em;
+    padding: 15px;
+    /* padding: 15px 70px; */
     border-bottom: 1px solid #eee;
     align-items: center;
     display: flex;
@@ -35,17 +37,26 @@
     display: flex;
 }
 
-#header .login-id {
-    border-radius: 5px;
+#header .user-options {
+    display: flex;
+    gap: 20px;
     font-size: 16px;
-    padding: 12px;
-    background-color: #0089ff;
-    height: 20px;
-
 }
 
-#header .login-id a {
+#header .user-options a {
     color: white;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #162DAB;
+}
+
+#header .user-options button {
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #162DAB;
+    font-size: 16px;
+
 }
 
 /* Home-banner.css */
@@ -179,7 +190,7 @@ select {
 }
 
 /* Button Styling */
-button {
+#gen button {
     display: inline-block;
     margin: 10px 5px;
     font-size: 16px;
@@ -568,7 +579,7 @@ button:hover {
 
 .about-us-banner .about-banner-container {
     display: flex;
-    width: 447px;
+    /* width: 447px; */
     height: 289px;
     justify-content: center;
     flex-direction: column;
@@ -1157,5 +1168,156 @@ textarea {
     .review-card p {
         font-size: 12px;
         margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 641px) {
+    #header {
+        margin: 0;
+    }
+
+    #header .logo img {
+        height: 60px;
+    }
+
+    #header nav {
+        gap: 12px;
+    }
+
+    #header nav a {
+        font-size: 12px;
+    }
+
+    .banner-container {
+        height: 260px;
+    }
+
+    .banner-container .banner-content {
+        margin: 2em;
+    }
+
+    .banner-container .img-block {
+        margin-top: 93px;
+        right: 5%;
+    }
+
+    .banner-container .img-block img {
+        width: 300px;
+    }
+
+    .about-us-banner .img-block .img {
+        width: 300px;
+    }
+
+    .about-us-banner .about-banner-container {
+        gap: 5px;
+        margin: 40px;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 12px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container p {
+        font-size: 10px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 5px;
+        width: 80px;
+    }
+
+    .about-us-banner .about-banner-container a {
+        font-size: 10px;
+    }
+
+    .review-container h1 {
+        margin-bottom: 1em;
+    }
+
+    .review-container .review-content .review-card {
+        padding: 8px;
+        width: 180px;
+    }
+
+    .review-container .review-content .review-card h3 {
+        font-size: 12px;
+    }
+
+    .review-container .review-content .review-card p {
+        font-size: 10px;
+    }
+
+    .profile-content .profile-header h2 {
+        font-size: 20px;
+    }
+
+    .profile-content .profile-header p {
+        font-size: 14px;
+    }
+
+    .profile-content .edit-save-btn button {
+        padding: 10px;
+        width: 110px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-container {
+        border-radius: 40px;
+        height: 220px;
+    }
+    .banner-container .banner-content{
+        margin: 1em;
+    }
+    .banner-container .banner-content h1{
+        font-size: 16px;
+    }
+    .banner-container .banner-content .start-link {
+        width: 75px;
+        padding: 5px;
+    }
+    .banner-container .banner-content .start-link a{
+        font-size: 12px;
+    }
+    .banner-container .img-block{
+        right: 6%;
+        margin-top: 120px;
+    }
+    .banner-container .img-block img{
+        width: 180px;
+    }
+
+    .about-us-banner .img-block img{
+        width: 250px;
+    }
+
+    .about-us-banner .about-banner-container {
+        margin-top: 51px;
+        height: 80px;
+    }
+    .about-us-banner .about-banner-container h3{
+        font-size: 12px;
+    }
+    .about-us-banner .about-banner-container p{
+        font-size: 8px;
+    }
+    .about-us-banner .about-banner-container .know-more a{
+        font-size: 10px;
+    }
+
+    .review-container h1{
+        font-size: 16px;
+    }
+    .review-container .review-content .review-card h3{
+        font-size: 10px;
+    }
+    .review-container .review-content .review-card p{
+        font-size: 8px;
     }
 }
