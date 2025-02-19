@@ -12,7 +12,7 @@
 }
 
 #header {
-    margin: 0em 4em;
+    /* margin: 0em 4em; */
     padding: 15px;
     /* padding: 15px 70px; */
     border-bottom: 1px solid #eee;
@@ -223,6 +223,9 @@ button:hover {
 
 .gen-btn button {
     padding: 12px 20px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #007BFF;
 }
 
 /* Flex Layout for PDF Buttons */
@@ -953,6 +956,98 @@ textarea {
     background-color: #388e3c;
 }
 
+/* Question Paper List */
+.question-paper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  
+  /* Modal Overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Modal Box */
+  .modal-content {
+    background:#3578FF; 
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 380px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  /* Modal Icon */
+  .modal-icon {
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+  }
+  
+  /* Modal Title */
+  .modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Modal Text */
+  .modal-text {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  
+  .cancel-btn {
+    background: #fff;
+    color: #162DAB;
+    padding: 12px 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .confirm-btn {
+    background: #fff;
+    color: #162DAB;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+  
+  
 @media (max-width: 1281px) {
     .banner-container {
         height: 450px;
