@@ -37,7 +37,6 @@ function ForgotPassword() {
       setStep(3); // Move to the password reset step
     }
   };
-
   const handlePasswordReset = (e) => {
     e.preventDefault();
     if (!newPassword) {
@@ -45,20 +44,19 @@ function ForgotPassword() {
     } else if (newPassword.length < 8) {
       setMessage("Password must be at least 8 characters long.");
     } else {
-      // Update password in localStorage (simulating user data storage)
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+      let users = JSON.parse(localStorage.getItem("users")) || [];
       const userIndex = users.findIndex((user) => user.email === email);
-      
+
       if (userIndex !== -1) {
-        // Update the user's password
+        // Update the password in localStorage
         users[userIndex].password = newPassword;
         localStorage.setItem("users", JSON.stringify(users));
       }
 
       setMessage("Your password has been successfully reset.");
       setTimeout(() => {
-        navigate("/login"); // Redirect to login page after success
-      }, 2000); // Delay for the success message
+        navigate("/login");
+      }, 2000);
     }
   };
 

@@ -24,14 +24,17 @@ function Login() {
   };
 
   const handleSubmit = (values) => {
-    const success = login(values.email, values.password, values.rememberMe);
-    if (success) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find((user) => user.email === values.email);
+  
+    if (user && user.password === values.password) {
+      login(values.email, values.password, values.rememberMe);
       navigate("/");
     } else {
       alert("Invalid email or password");
     }
   };
-
+  
   return (
     <div className="log-sign">
       <div className="left">

@@ -1000,7 +1000,7 @@ textarea {
   
   /* Modal Icon */
   .modal-icon {
-    font-size: 50px;
+    font-size: 70px;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 10px;
   }
@@ -1047,6 +1047,7 @@ textarea {
     transition: opacity 0.3s;
   }
   
+  /* Responsiveness of all */
   
 @media (max-width: 1281px) {
     .banner-container {
