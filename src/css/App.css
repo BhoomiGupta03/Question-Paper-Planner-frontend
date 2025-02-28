@@ -122,61 +122,6 @@
     margin-top: 8em;
 }
 
-
-@media (max-width: 768px) {
-    .banner-container {
-        display: flex;
-        justify-content: space-between;
-        height: auto;
-        margin: 2em;
-    }
-
-    .banner-content {
-        margin: 5em;
-        width: 200px;
-        display: flex;
-        gap: 16px;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .banner-content h1 {
-        font-size: 22px;
-    }
-
-    .banner-container .start-link {
-        width: 100px;
-        /* max-width: 200px; */
-        padding: 4px;
-    }
-
-    .banner-container .img-block {
-        position: relative;
-        right: 1em;
-    }
-
-    .banner-container .img-block img {
-        width: 328px;
-    }
-
-}
-
-/*  
-@media only screen and (max-width: 480px) {
-    .banner-content h1 {
-        font-size: 28px;
-    }
-
-    .banner-container .start-link {
-        width: 100%;
-        max-width: 180px;
-    }
-
-    .banner-container {
-        margin: 1em;
-    }
-} */
-
 /* Main.css */
 #question-paper-planner {
     margin: 20px auto;
@@ -695,40 +640,6 @@ button:hover {
     /* Darker shade on hover */
 }
 
-@media (max-width: 768px) {
-
-    .about-us-banner {
-        display: flex;
-        height: auto;
-        margin: 2em;
-    }
-
-    .about-us-banner .img-block img {
-        width: 328px;
-    }
-
-    .about-us-banner .about-banner-container {
-        width: 196px;
-        margin: 0;
-    }
-
-    .about-us-banner .about-banner-container h1 {
-        font-size: 14px;
-        text-align: left;
-    }
-
-    .about-us-banner .about-banner-container h3 {
-        font-size: 18px;
-    }
-
-    .about-us-banner .about-banner-container p {
-        font-size: 14px;
-    }
-
-    .about-banner-container .know-more {
-        padding: 4px;
-    }
-}
 
 /* about content */
 .about-us-container {
@@ -851,16 +762,6 @@ button:hover {
     line-height: 1.4;
 }
 
-/* Additional styles for review responsiveness */
-@media (max-width: 768px) {
-    .review-container {
-        grid-template-columns: 1fr;
-    }
-
-    .review-card {
-        max-width: 90%;
-    }
-}
 
 /* help css */
 .help-container {
@@ -947,7 +848,7 @@ button:hover {
     display: inline-block;
     font-size: 16px;
     padding: 15px;
-    width: 200px;
+    margin-top: 8px;
     text-align: center;
     color: #fff;
     background-color: #007BFF;
