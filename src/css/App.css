@@ -12,7 +12,7 @@
 }
 
 #header {
-    padding: 15px 70px;
+    padding: 15px;
     border-bottom: 1px solid #eee;
     align-items: center;
     display: flex;
@@ -35,18 +35,32 @@
     display: flex;
 }
 
-#header .profile-id {
-    border-radius: 5px;
+#header .user-options {
+    display: flex;
+    gap: 20px;
     font-size: 16px;
-    padding: 12px;
-    margin: 1em;
-    background-color: #162DAB;
-    height: 20px;
-
 }
 
-#header .profile-id a {
+#header .user-options a {
     color: white;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #162DAB;
+}
+
+#header .user-options svg {
+    filter: invert(1);
+    margin-right: 5px;
+  }
+  
+
+#header .user-options button {
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #162DAB;
+    font-size: 16px;
+
 }
 
 /* Home-banner.css */
@@ -69,7 +83,7 @@
 
 .banner-content h1 {
     font-weight: 600;
-    font-size: 40px;
+    font-size: 48px;
 }
 
 .banner-container .start-link {
@@ -166,7 +180,7 @@
 /* Main.css */
 #question-paper-planner {
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 850px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -234,15 +248,15 @@ select {
 }
 
 /* Button Styling */
-button {
+#gen button {
     display: inline-block;
     margin: 10px 5px;
     font-size: 16px;
-    width: 200px;
+    width: 100%;
+    padding: 12px 20px;
     text-align: center;
-    margin-top: 20px;
     color: #fff;
-    background-color: #007BFF;
+    background-color: #162DAB;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -265,15 +279,18 @@ button:hover {
     justify-content: center;
 }
 
-.gen-btn button {
+.nxt-btn button {
+    width: 100%;
     padding: 12px 20px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #162DAB;
 }
 
 /* Flex Layout for PDF Buttons */
 #gen .btn {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
 }
 
 /* Error Message Styling */
@@ -283,7 +300,7 @@ button:hover {
     margin-top: 5px;
 }
 
-/* Responsive Design */
+/* Responsive  main Design */
 @media (max-width: 768px) {
 
     /* Adjust form layout on smaller screens */
@@ -303,20 +320,19 @@ button:hover {
         padding: 8px;
     }
 
-    /* Stack buttons vertically */
-    .gen-btn button {
-        width: 100%;
-        margin: 5px 0;
-    }
-
     /* Stack PDF download buttons vertically */
-    #gen .btn {
-        flex-direction: column;
+    #gen button {
+    width: 100%;
+    padding: 12px 20px;
+    }
+    
+    .nxt-btn button{
+        width: 100%;
     }
 
-    button {
-        width: 100%;
-        margin: 5px 0;
+    #gen .btn {
+        display: flex;
+        padding: 0;
     }
 
     /* Make error messages responsive */
@@ -448,8 +464,8 @@ button:hover {
 }
 
 .left button {
-    width: 343px;
-    height: 52px;
+    /* width: 343px; */
+    /* height: 52px; */
     border-radius: 32px;
     border: none;
     padding: 16px;
@@ -489,79 +505,6 @@ button:hover {
 
 .right {
     background: #FFFFFF;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .log-sign {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .log-sign .left,
-    .log-sign .right {
-        width: 100%;
-        height: auto;
-    }
-
-    .left {
-        padding: 20px;
-        text-align: center;
-    }
-
-    .left form {
-        max-width: 100%;
-        padding: 0 20px;
-    }
-
-    .left form h2 {
-        font-size: 24px;
-    }
-
-    .left form p {
-        font-size: 16px;
-        width: 100%;
-    }
-
-    .left .btn {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .left button {
-        width: 100%;
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .log-sign .img-block {
-        display: none;
-        /* Hide image block for better usability on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .left form h2 {
-        font-size: 20px;
-    }
-
-    .left form p {
-        font-size: 14px;
-    }
-
-    .left input {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .left button {
-        font-size: 12px;
-        padding: 10px;
-    }
-
-    .left .account-exist {
-        font-size: 14px;
-    }
 }
 
 /* Forgot Password Styling */
@@ -696,7 +639,7 @@ button:hover {
 
 .about-us-banner .about-banner-container {
     display: flex;
-    width: 447px;
+    /* width: 447px; */
     height: 289px;
     justify-content: center;
     flex-direction: column;
@@ -795,15 +738,6 @@ button:hover {
     text-align: left;
 }
 
-/*   
-  .about-us-container h1 {
-    font-size: 36px;
-    background-color:#162DAB ;
-    color: #FFFFFF;
-    margin-bottom: 25px;
-    text-align: center;
-  }
-   */
 .about-us-container p {
     font-size: 18px;
     margin: 15px 15px;
@@ -854,159 +788,6 @@ button:hover {
     margin-bottom: 15px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .about-us-container {
-        padding: 15px;
-    }
-
-    .about-us-container h1 {
-        font-size: 28px;
-    }
-
-    .about-us-container p {
-        font-size: 14px;
-    }
-
-    .features-list {
-        margin: 15px 0;
-    }
-
-    .feature-item {
-        padding: 10px;
-    }
-
-    .feature-item strong {
-        font-size: 16px;
-    }
-
-    .feature-description {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-us-container h1 {
-        font-size: 24px;
-    }
-
-    .about-us-container p {
-        font-size: 13px;
-    }
-
-    .features-list {
-        margin: 10px 0;
-    }
-
-    .feature-item {
-        padding: 8px;
-    }
-
-    .feature-item strong {
-        font-size: 14px;
-    }
-
-    .feature-description {
-        font-size: 12px;
-    }
-}
-
-/* Added Responsive Design for all the elments */
-@media (max-width: 768px) {
-    #header {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    #header nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    #question-paper-planner {
-        padding: 15px;
-        margin: 10px;
-        box-shadow: none;
-    }
-
-    .log-sign {
-        grid-template-columns: 1fr;
-    }
-
-    .left {
-        padding: 20px;
-    }
-
-    .left form {
-        max-width: 100%;
-    }
-
-    .help-container {
-        padding: 15px;
-        margin: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    #header .logo img {
-        height: 8em;
-    }
-
-    .banner-content h1 {
-        font-size: 28px;
-    }
-
-    .banner-container .start-link {
-        width: 120px;
-        padding: 10px 20px;
-    }
-
-    .banner-container .start-link a {
-        font-size: 16px;
-    }
-
-    #main input[type="text"],
-    textarea,
-    select {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    .choose h3 {
-        font-size: 16px;
-    }
-
-    .gen-btn button {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .forgot-password-container {
-        padding: 10px;
-    }
-
-    .forgot-password-container form {
-        padding: 15px;
-    }
-
-    .forgot-password-container button {
-        padding: 10px;
-    }
-
-    .about-us-banner .about-banner-container h3 {
-        font-size: 32px;
-    }
-
-    .help-container h2 {
-        font-size: 20px;
-    }
-
-    .help-container h3 {
-        font-size: 18px;
-    }
-}
 
 /* Main review section */
 .review-container {
@@ -1070,26 +851,16 @@ button:hover {
     line-height: 1.4;
 }
 
-/* Additional styles for responsiveness */
+/* Additional styles for review responsiveness */
 @media (max-width: 768px) {
     .review-container {
-        height: auto;
-        margin: 2em;
+        grid-template-columns: 1fr;
     }
 
-    .review-container h1 {
-        font-size: 22px;
-    }
-
-    .review-card h3 {
-        font-size: 16px;
-    }
-
-    .review-card p {
-        font-size: 12px;
+    .review-card {
+        max-width: 90%;
     }
 }
-
 
 /* help css */
 .help-container {
@@ -1141,22 +912,662 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Responsive layout for mobile screens */
-@media (max-width: 600px) {
-    .help-container {
-        padding: 15px;
+
+/* Profile*/
+
+.profile-content {
+    width: 500px;
+    margin: 5em auto;
+    border: 2px;
+    padding: 2rem;
+    transition: transform 0.2s;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-bio {
+    color: #666;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.edit-save-btn button {
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Buttons */
+.button-group button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-group button:hover {
+    background-color: #01579b;
+}
+
+.button-group button.delete-btn {
+    background-color: #d32f2f;
+}
+
+.button-group button.delete-btn:hover {
+    background-color: #b71c1c;
+}
+
+.section-title {
+    margin: 12px;
+}
+
+/* Question Paper List */
+.question-paper-list {
+    border-top: 1px solid #ddd;
+    padding-top: 1.5rem;
+}
+
+.question-paper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: background 0.3s;
+}
+
+.question-paper:hover {
+    background: #e3f2fd;
+}
+
+.question-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.question-subject {
+    color: #888;
+    font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Form Inputs for Editing Profile */
+.profile-edit-form input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.profile-edit-form textarea {
+    resize: none;
+    height: 120px;
+}
+
+.button-group button.save-btn {
+    background-color: #4caf50;
+}
+
+.button-group button.save-btn:hover {
+    background-color: #388e3c;
+}
+
+/* Question Paper List */
+.question-paper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  
+  /* Modal Overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Modal Box */
+  .modal-content {
+    background:#3578FF; 
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 380px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  /* Modal Icon */
+  .modal-icon {
+    font-size: 70px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+  }
+  
+  /* Modal Title */
+  .modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Modal Text */
+  .modal-text {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  
+  .cancel-btn {
+    background: #fff;
+    color: #162DAB;
+    padding: 12px 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .confirm-btn {
+    background: #fff;
+    color: #162DAB;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+  
+  /* Responsiveness of all */
+  
+@media (max-width: 1281px) {
+    .banner-container {
+        height: 450px;
     }
 
-    .help-container h2 {
-        font-size: 20px;
+    .banner-container .banner-content {
+        width: 450px;
+        margin: 10em;
     }
 
-    .help-container h3 {
+    .banner-container .banner-content h1 {
+        font-size: 40px;
+    }
+
+    .banner-container .banner-content .start-link {
+        width: 100px;
+    }
+
+    .banner-container .img-block {
+        right: 7%;
+        margin-top: 11em;
+    }
+
+    .banner-container .img-block img {
+        width: 500px;
+    }
+
+    .about-us-banner img {
+        width: 500px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 200px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 40px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        width: 100px;
+    }
+
+    .review-container {
+        height: 300px;
+    }
+
+    .review-container h1 {
+        font-size: 40px;
+    }
+
+    .review-card h3 {
+        font-size: 16px;
+    }
+
+    .review-card p {
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 1025px) {
+    .banner-container {
+        height: 400px;
+    }
+
+    .banner-container .banner-content {
+        width: 400px;
+        margin: 5em;
+    }
+
+    .banner-container .banner-content h1 {
+        font-size: 35px;
+    }
+
+    .banner-container .banner-content .start-link {
+        padding: 10px;
+    }
+
+    .banner-container .banner-content .start-link a {
+        font-size: 16px;
+    }
+
+    .banner-container .img-block {
+        margin-top: 151px;
+        right: 8%;
+    }
+
+    .banner-container .img-block img {
+        width: 450px;
+    }
+
+    .about-us-banner .img-block img {
+        width: 450px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 180px;
+        margin: 4em;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 35px;
+    }
+
+    .about-us-banner .about-banner-container p {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 12px;
+    }
+
+    .about-us-banner .about-banner-container .know-more a {
+        font-size: 16px;
+    }
+
+    .review-container {
+        height: 250px;
+    }
+
+    .review-container h1 {
+        font-size: 35px;
+    }
+
+    .review-content {
+        display: flex;
+        gap: 10px;
+    }
+
+    .log-sign .left h2{
+        font-size: 30px;
+    }
+    
+    .log-sign .left .input-field {
+        height: 60px;
+    }
+
+    .log-sign .left .input-field input{
+        padding: 16px;
+    }
+
+    .log-sign .left .img-block{
+        right: -40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-container {
+        height: 300px;
+    }
+
+    .banner-container .banner-content {
+        margin: 3em;
+    }
+
+    .banner-container .banner-content h1 {
+        font-size: 22px;
+    }
+
+    .banner-container .banner-content .start-link {
+        padding: 8px;
+    }
+
+    .banner-container .banner-content .start-link a {
+        font-size: 14px;
+    }
+
+    .banner-container .img-block {
+        position: relative;
+        right: 3%;
+        margin-top: 118px;
+    }
+
+    .banner-container .img-block img {
+        width: 328px;
+    }
+
+    .about-us-banner .img-block img {
+        width: 328px;
+    }
+
+    .about-us-banner .about-banner-container {
+        height: 150px;
+        margin: 45px;
+        gap: 8px;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .about-us-banner .about-banner-container h3 {
         font-size: 18px;
     }
 
-    .help-container p {
+    .about-us-banner .about-banner-container p {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 8px;
+    }
+
+    .about-us-banner .about-banner-container .know-more a {
+        font-size: 14px;
+    }
+
+    .review-container {
+        height: 200px;
+    }
+
+    .review-container h1 {
+        font-size: 22px;
+    }
+
+    .review-card {
+        padding: 8px;
+    }
+
+    .review-card h3 {
+        font-size: 14px;
+    }
+
+    .review-card p {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .log-sign .left form{
+        width: 325px;
+    }
+
+    .log-sign .left .input-field{
+        height: 50px;
+    }
+
+    .log-sign .left .input-field input{
+        padding: 14px;
+    }
+}
+
+@media (max-width: 641px) {
+    #header {
+        margin: 0;
+    }
+
+    #header .logo img {
+        height: 60px;
+    }
+
+    #header nav {
+        gap: 12px;
+    }
+
+    #header nav a {
+        font-size: 12px;
+    }
+
+    .banner-container {
+        height: 260px;
+    }
+
+    .banner-container .banner-content {
+        margin: 2em;
+    }
+
+    .banner-container .img-block {
+        margin-top: 93px;
+        right: 5%;
+    }
+
+    .banner-container .img-block img {
+        width: 300px;
+    }
+
+    .about-us-banner .img-block .img {
+        width: 300px;
+    }
+
+    .about-us-banner .about-banner-container {
+        gap: 5px;
+        margin: 40px;
+    }
+
+    .about-us-banner .about-banner-container h1 {
+        font-size: 12px;
+    }
+
+    .about-us-banner .about-banner-container h3 {
+        font-size: 14px;
+    }
+
+    .about-us-banner .about-banner-container p {
+        font-size: 10px;
+    }
+
+    .about-us-banner .about-banner-container .know-more {
+        padding: 5px;
+        width: 80px;
+    }
+
+    .about-us-banner .about-banner-container a {
+        font-size: 10px;
+    }
+
+    .review-container h1 {
+        margin-bottom: 1em;
+    }
+
+    .review-container .review-content .review-card {
+        padding: 8px;
+        width: 180px;
+    }
+
+    .review-container .review-content .review-card h3 {
+        font-size: 12px;
+    }
+
+    .review-container .review-content .review-card p {
+        font-size: 10px;
+    }
+
+    .profile-content .profile-header h2 {
+        font-size: 20px;
+    }
+
+    .profile-content .profile-header p {
+        font-size: 14px;
+    }
+
+    .profile-content .edit-save-btn button {
+        padding: 10px;
+        width: 110px;
         font-size: 14px;
     }
 }
 
+@media (max-width: 480px) {
+    .banner-container {
+        border-radius: 40px;
+        height: 220px;
+    }
+    .banner-container .banner-content{
+        margin: 1em;
+    }
+    .banner-container .banner-content h1{
+        font-size: 16px;
+    }
+    .banner-container .banner-content .start-link {
+        width: 75px;
+        padding: 5px;
+    }
+    .banner-container .banner-content .start-link a{
+        font-size: 12px;
+    }
+    .banner-container .img-block{
+        right: 6%;
+        margin-top: 120px;
+    }
+    .banner-container .img-block img{
+        width: 180px;
+    }
+
+    .about-us-banner .img-block img{
+        width: 250px;
+    }
+
+    .about-us-banner .about-banner-container {
+        margin-top: 51px;
+        height: 80px;
+    }
+    .about-us-banner .about-banner-container h3{
+        font-size: 12px;
+    }
+    .about-us-banner .about-banner-container p{
+        font-size: 8px;
+    }
+    .about-us-banner .about-banner-container .know-more a{
+        font-size: 10px;
+    }
+
+    .review-container h1{
+        font-size: 16px;
+    }
+    .review-container .review-content .review-card h3{
+        font-size: 10px;
+    }
+    .review-container .review-content .review-card p{
+        font-size: 8px;
+    }
+
+    #header {
+        padding: 10px;
+      }
+
+      #header .logo img {
+        height: 40px;
+      }
+    
+      #header nav {
+        gap: 10px;
+      }
+    
+      #header .user-options {
+        gap: 8px;
+      }
+
+      #header .user-options svg{
+        height: 12px;
+      }
+    
+      #header .user-options a {
+       padding: 10px;
+        font-size: 10px;
+        display: flex;
+      }
+    
+      #header .user-options .logout-button {
+        padding: 10px;
+        font-size: 10px;
+        display: flex;
+      }
+    }
+    

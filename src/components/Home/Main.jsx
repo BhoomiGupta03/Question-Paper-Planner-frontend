@@ -52,23 +52,21 @@ export default function QuestionPaperPlanner() {
         <section id="main">
           <h1>Create Your Question Paper</h1>
 
-          {step === 1 && (
-            <Formik
-              initialValues={initialStepOneValues}
-              validationSchema={StepOneSchema}
-              onSubmit={handleNextStep}
-            >
-              {() => (
-                <Form className="year">
-                  <label>Select Academic Year:</label>
-                  <Field as="select" name="academicYear">
-                    <option value="">Select</option>
-                    <option value="FY BCom">FY BCom</option>
-                    <option value="SY BCom">SY BCom</option>
-                    <option value="TY BCom">TY BCom</option>
-                    <option value="IT">IT</option>
-                  </Field>
-                  <ErrorMessage name="academicYear" component="p" className="error" />
+                    {/* Step 1: Academic Year, Year, and Semester Selection */}
+                    {step === 1 && (
+                        <div className='year'>
+                            <label>Select Academic Year:</label>
+                            <select
+                                value={academicYear}
+                                onChange={(e) => setAcademicYear(e.target.value)}
+                            >
+                                <option value="">Select</option>
+                                <option value="FY BCom">FY BscIT</option>
+                                <option value="SY BCom">SY BscIT</option>
+                                <option value="TY BCom">TY BscIT</option>
+                                {/* <option value="IT">IT</option> */}
+                            </select>
+                            {errors.academicYear && <p className="error">{errors.academicYear}</p>}
 
                   <label>Enter Year (e.g., 2025-26):</label>
                   <Field type="text" name="year" placeholder="2025-26" />
@@ -83,13 +81,11 @@ export default function QuestionPaperPlanner() {
                   </Field>
                   <ErrorMessage name="semester" component="p" className="error" />
 
-                  <div className="gen-btn">
-                    <button type="submit">Next</button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          )}
+                            <div className="nxt-btn">
+                                <button onClick={handleNextStep} disabled={Object.keys(errors).length > 0}>Next</button>
+                            </div>
+                        </div>
+                    )}
 
           {step === 2 && (
             <Formik
@@ -105,23 +101,22 @@ export default function QuestionPaperPlanner() {
                     <ErrorMessage name="subject" component="p" className="error" />
                   </div>
 
-                  <div className="unit">
-                    <label>Select Number of Units (1-10):</label>
-                    <Field
-                      as="select"
-                      name="unitCount"
-                      onChange={(e) => {
-                        const unitCount = Number(e.target.value);
-                        setFieldValue('units', Array(unitCount).fill({ topics: '', questions: '', questionCount: 0 }));
-                      }}
-                    >
-                      {[...Array(10)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1}
-                        </option>
-                      ))}
-                    </Field>
-                  </div>
+                            <div className='unit'>
+                                <label>Select Number of Units (1-5):</label>
+                                <select
+                                    value={unitCount}
+                                    onChange={(e) => {
+                                        setUnitCount(Number(e.target.value));
+                                        setUnits(new Array(Number(e.target.value)).fill({}));
+                                    }}
+                                >
+                                    {[...Array(5)].map((_, i) => (
+                                        <option key={i} value={i + 1}>
+                                            {i + 1}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
 
                   {values.units.map((unit, index) => (
                     <div className="choose" key={index}>
