@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser,faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
 import logo1 from "../../img/logo1.webp";
 
 export default function Header() {
@@ -25,8 +27,13 @@ export default function Header() {
           <Link to="/help">Help</Link>
         </nav>
         <div className="user-options">
-          <Link to="/profile">Profile</Link>
-          <button onClick={handleLogout} className="logout-button">Logout</button>
+        <Link to="/profile" className="profile-link">
+            <FontAwesomeIcon icon={faUser}  /> Profile
+          </Link>
+          
+          <button onClick={handleLogout} className="logout-button">   
+                   <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+          </button>
         </div>
       </section>
     </div>

@@ -12,9 +12,7 @@
 }
 
 #header {
-    /* margin: 0em 4em; */
     padding: 15px;
-    /* padding: 15px 70px; */
     border-bottom: 1px solid #eee;
     align-items: center;
     display: flex;
@@ -50,6 +48,12 @@
     background-color: #162DAB;
 }
 
+#header .user-options svg {
+    filter: invert(1);
+    margin-right: 5px;
+  }
+  
+
 #header .user-options button {
     color: white;
     padding: 12px;
@@ -74,12 +78,12 @@
     justify-content: center;
     flex-direction: column;
     gap: 16px;
-    margin: 12em;
+    margin: 8em;
 }
 
 .banner-content h1 {
     font-weight: 600;
-    font-size: 50px;
+    font-size: 48px;
 }
 
 .banner-container .start-link {
@@ -122,7 +126,7 @@
 /* Main.css */
 #question-paper-planner {
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 850px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -194,11 +198,11 @@ select {
     display: inline-block;
     margin: 10px 5px;
     font-size: 16px;
-    width: 200px;
+    width: 100%;
+    padding: 12px 20px;
     text-align: center;
-    margin-top: 20px;
     color: #fff;
-    background-color: #007BFF;
+    background-color: #162DAB;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -221,18 +225,18 @@ button:hover {
     justify-content: center;
 }
 
-.gen-btn button {
+.nxt-btn button {
+    width: 100%;
     padding: 12px 20px;
     color: #fff;
     font-size: 16px;
-    background-color: #007BFF;
+    background-color: #162DAB;
 }
 
 /* Flex Layout for PDF Buttons */
 #gen .btn {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
 }
 
 /* Error Message Styling */
@@ -262,20 +266,19 @@ button:hover {
         padding: 8px;
     }
 
-    /* Stack buttons vertically */
-    .gen-btn button {
-        width: 100%;
-        margin: 5px 0;
-    }
-
     /* Stack PDF download buttons vertically */
-    #gen .btn {
-        flex-direction: column;
+    #gen button {
+    width: 100%;
+    padding: 12px 20px;
+    }
+    
+    .nxt-btn button{
+        width: 100%;
     }
 
-    button {
-        width: 100%;
-        margin: 5px 0;
+    #gen .btn {
+        display: flex;
+        padding: 0;
     }
 
     /* Make error messages responsive */
@@ -407,8 +410,8 @@ button:hover {
 }
 
 .left button {
-    width: 343px;
-    height: 52px;
+    /* width: 343px; */
+    /* height: 52px; */
     border-radius: 32px;
     border: none;
     padding: 16px;
@@ -1107,6 +1110,7 @@ textarea {
     .review-card p {
         font-size: 14px;
     }
+
 }
 
 @media (max-width: 1025px) {
@@ -1180,6 +1184,22 @@ textarea {
     .review-content {
         display: flex;
         gap: 10px;
+    }
+
+    .log-sign .left h2{
+        font-size: 30px;
+    }
+    
+    .log-sign .left .input-field {
+        height: 60px;
+    }
+
+    .log-sign .left .input-field input{
+        padding: 16px;
+    }
+
+    .log-sign .left .img-block{
+        right: -40%;
     }
 }
 
@@ -1264,6 +1284,18 @@ textarea {
     .review-card p {
         font-size: 12px;
         margin-bottom: 5px;
+    }
+
+    .log-sign .left form{
+        width: 325px;
+    }
+
+    .log-sign .left .input-field{
+        height: 50px;
+    }
+
+    .log-sign .left .input-field input{
+        padding: 14px;
     }
 }
 
@@ -1416,4 +1448,37 @@ textarea {
     .review-container .review-content .review-card p{
         font-size: 8px;
     }
-}
+
+    #header {
+        padding: 10px;
+      }
+
+      #header .logo img {
+        height: 40px;
+      }
+    
+      #header nav {
+        gap: 10px;
+      }
+    
+      #header .user-options {
+        gap: 8px;
+      }
+
+      #header .user-options svg{
+        height: 12px;
+      }
+    
+      #header .user-options a {
+       padding: 10px;
+        font-size: 10px;
+        display: flex;
+      }
+    
+      #header .user-options .logout-button {
+        padding: 10px;
+        font-size: 10px;
+        display: flex;
+      }
+    }
+    

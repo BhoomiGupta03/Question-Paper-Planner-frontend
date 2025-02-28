@@ -74,10 +74,10 @@ export default function QuestionPaperPlanner() {
                                 onChange={(e) => setAcademicYear(e.target.value)}
                             >
                                 <option value="">Select</option>
-                                <option value="FY BCom">FY BCom</option>
-                                <option value="SY BCom">SY BCom</option>
-                                <option value="TY BCom">TY BCom</option>
-                                <option value="IT">IT</option>
+                                <option value="FY BCom">FY BscIT</option>
+                                <option value="SY BCom">SY BscIT</option>
+                                <option value="TY BCom">TY BscIT</option>
+                                {/* <option value="IT">IT</option> */}
                             </select>
                             {errors.academicYear && <p className="error">{errors.academicYear}</p>}
 
@@ -107,7 +107,7 @@ export default function QuestionPaperPlanner() {
                             </select>
                             {errors.semester && <p className="error">{errors.semester}</p>}
 
-                            <div className="gen-btn">
+                            <div className="nxt-btn">
                                 <button onClick={handleNextStep} disabled={Object.keys(errors).length > 0}>Next</button>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ export default function QuestionPaperPlanner() {
                             </div>
 
                             <div className='unit'>
-                                <label>Select Number of Units (1-10):</label>
+                                <label>Select Number of Units (1-5):</label>
                                 <select
                                     value={unitCount}
                                     onChange={(e) => {
@@ -136,7 +136,7 @@ export default function QuestionPaperPlanner() {
                                         setUnits(new Array(Number(e.target.value)).fill({}));
                                     }}
                                 >
-                                    {[...Array(10)].map((_, i) => (
+                                    {[...Array(5)].map((_, i) => (
                                         <option key={i} value={i + 1}>
                                             {i + 1}
                                         </option>
