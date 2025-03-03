@@ -6,23 +6,24 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FiAlertCircle } from 'react-icons/fi';
 
 const ProfilePage = () => {
+  // Load teacher name and bio from localStorage
   const [teacherName, setTeacherName] = useState(localStorage.getItem('teacherName') || 'John Doe');
-  const [bio, setBio] = useState('Experienced teacher in Mathematics and Computer Science.');
+  const [bio, setBio] = useState(localStorage.getItem('bio') || 'Experienced teacher in Mathematics and Computer Science.');
   const [isEditing, setIsEditing] = useState(false);
   const [questionPapers, setQuestionPapers] = useState([]);
   const [removing, setRemoving] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
+  // Load question papers from localStorage
   useEffect(() => {
-    setQuestionPapers([
-      { id: 1, subject: 'Mathematics', title: 'Algebra Final Exam' },
-      { id: 2, subject: 'Computer Science', title: 'Data Structures Mid-Term' },
-    ]);
+    const storedPapers = JSON.parse(localStorage.getItem('questionPapers')) || [];
+    setQuestionPapers(storedPapers);
   }, []);
 
   const handleSaveProfile = () => {
     setIsEditing(false);
-    console.log('Profile updated:', { teacherName, bio });
+    localStorage.setItem('teacherName', teacherName);
+    localStorage.setItem('bio', bio);
   };
 
   const confirmDelete = (id) => {
@@ -33,15 +34,13 @@ const ProfilePage = () => {
     if (deleteId !== null) {
       setRemoving(deleteId);
       setTimeout(() => {
-        setQuestionPapers((prev) => prev.filter((paper) => paper.id !== deleteId));
+        const updatedPapers = questionPapers.filter((paper) => paper.id !== deleteId);
+        setQuestionPapers(updatedPapers);
+        localStorage.setItem('questionPapers', JSON.stringify(updatedPapers)); // Save updated list
         setRemoving(null);
-        setDeleteId(null); // Hide confirmation popup after deleting
+        setDeleteId(null);
       }, 500);
     }
-  };
-
-  const handleEditQuestionPaper = (id) => {
-    console.log(`Editing question paper with ID ${id}.`);
   };
 
   return (
@@ -98,7 +97,7 @@ const ProfilePage = () => {
                       <p className="question-subject">Subject: {paper.subject}</p>
                     </div>
                     <div className="button-group">
-                      <button onClick={() => handleEditQuestionPaper(paper.id)} className="edit-btn">
+                      <button className="edit-btn">
                         <FontAwesomeIcon icon={faEdit} className="icon" /> Edit
                       </button>
                       <button onClick={() => confirmDelete(paper.id)} className="delete-btn">
