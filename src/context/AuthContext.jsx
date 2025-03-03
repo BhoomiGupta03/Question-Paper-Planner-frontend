@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
   const login = (email, password, rememberMe) => {
     try {
       const storedUser = JSON.parse(localStorage.getItem("user"));
+
       if (storedUser && storedUser.email === email && storedUser.password === password) {
         if (rememberMe) {
           localStorage.setItem("user", JSON.stringify(storedUser));

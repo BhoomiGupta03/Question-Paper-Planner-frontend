@@ -1,61 +1,114 @@
 import React, { useState } from 'react';
 import Header from '../Pages/Header';
+import jsPDF from 'jspdf';
 
 export default function QuestionPaperPlanner() {
     const [subject, setSubject] = useState('');
-    const [unitCount, setUnitCount] = useState(1);
-    const [units, setUnits] = useState([]);
-    const [totalQuestions, setTotalQuestions] = useState(0);
+    const [units, setUnits] = useState(Array(5).fill({ questions: '', questionCount: 6 }));
     const [academicYear, setAcademicYear] = useState('');
     const [year, setYear] = useState('');
     const [semester, setSemester] = useState('');
-    const [step, setStep] = useState(1); // Step state to manage the flow
-    const [errors, setErrors] = useState({}); // To store error messages
+    const [step, setStep] = useState(1);
+    const [questionPaper, setQuestionPaper] = useState([]);
+    const [questionBank, setQuestionBank] = useState([]);
+    // const [errors, setErrors] = useState({});
 
-    const handleUnitChange = (index, key, value) => {
-        const updatedUnits = [...units];
-        updatedUnits[index] = { ...updatedUnits[index], [key]: value };
-        setUnits(updatedUnits);
-        calculateTotalQuestions(updatedUnits);
+    const validateInputs = () => {
+        if (!academicYear || !year || !semester || !subject) {
+            return false;
+        }
+        return true;
     };
 
-    const calculateTotalQuestions = (units) => {
-        const total = units.reduce((sum, unit) => sum + (parseInt(unit.questionCount) || 0), 0);
-        setTotalQuestions(total);
+    const handleUnitChange = (index, field, value) => {
+        let updatedUnits = [...units];
+        updatedUnits[index] = { ...updatedUnits[index], [field]: value };
+        setUnits(updatedUnits);
     };
 
     const handleGenerateQuestions = () => {
-        console.log('Generating random questions...');
+        if (!validateInputs()) return;
+
+        let formattedQuestions = [];
+        let bankQuestions = [];
+
+        for (let i = 0; i < 5; i++) {
+            let unitQuestions = units[i]?.questions?.split('\n').filter(q => q.trim()) || [];
+            let shuffledQuestions = unitQuestions.sort(() => 0.5 - Math.random());
+            let selectedQuestions = shuffledQuestions.slice(0, 6);
+            
+            formattedQuestions.push({
+                mainQuestion: `Q${i + 1}. Attempt any 3 out of 6 : (15 Marks)`,
+                subQuestions: selectedQuestions.sort(() => 0.5 - Math.random())
+            });
+            
+            let unitBankQuestions = shuffledQuestions.slice(0, units[i].questionCount);
+            bankQuestions.push(...unitBankQuestions);
+
+        }
+
+        const newPaper = {
+            id: Date.now(),
+            subject,
+            academicYear,
+            year,
+            semester,
+            questions: formattedQuestions,
+            bank: bankQuestions
+        };
+
+        const savedPapers = JSON.parse(localStorage.getItem('questionPapers')) || [];
+        savedPapers.push(newPaper);
+        localStorage.setItem('questionPapers', JSON.stringify(savedPapers));
+
+        setQuestionPaper(formattedQuestions);
+        setQuestionBank(bankQuestions);
     };
 
     const handleDownloadPDF = (type) => {
-        console.log(`Downloading PDF as ${type}...`);
-    };
-
-    // Validate Year format (e.g., 2025-26)
-    const validateYear = (year) => {
-        const regex = /^\d{4}-\d{2}$/; // Matches a pattern like 2025-26
-        return regex.test(year);
-    };
-
-    // Check if all fields for step 1 are filled and valid
-    const validateStep1 = () => {
-        const errors = {};
-        if (!academicYear) errors.academicYear = "Academic Year is required.";
-        if (!year) errors.year = "Year is required.";
-        if (year && !validateYear(year)) errors.yearFormat = "Year must be in the format YYYY-YY.";
-        if (!semester) errors.semester = "Semester is required.";
-        return errors;
-    };
-
-    const handleNextStep = () => {
-        const validationErrors = validateStep1();
-        setErrors(validationErrors);
-
-        // Only proceed to next step if no validation errors
-        if (Object.keys(validationErrors).length === 0) {
-            setStep(step + 1);
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text(`BSc IT ${type}`, 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Academic Year: ${academicYear}`, 20, 30);
+        doc.text(`Year: ${year}`, 20, 40);
+        doc.text(`Semester: ${semester}`, 20, 50);
+        doc.text(`Subject: ${subject}`, 20, 60);
+        
+        let y = 80;
+        if (type === 'Question Paper') {
+            doc.text("Total Marks: 75", 150, 60);
+            questionPaper.forEach((q, index) => {
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.text(`${q.mainQuestion}`, 20, y);
+                y += 10;
+                q.subQuestions.forEach((subQ, i) => {
+                    if (y > 280) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.text(`${i + 1}. ${subQ}`, 30, y);
+                    y += 8;
+                });
+                y += 10;
+            });
+        } else {
+            doc.text("Question Bank", 20, y);
+            y += 10;
+            questionBank.forEach((q, i) => {
+                if (y > 280) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.text(`${i + 1}. ${q}`, 30, y);
+                y += 8;
+            });
         }
+
+        doc.save(type === 'Question Bank' ? "QuestionBank.pdf" : "QuestionPaper.pdf");
     };
 
     return (
@@ -65,38 +118,19 @@ export default function QuestionPaperPlanner() {
                 <section id="main">
                     <h1>Create Your Question Paper</h1>
 
-                    {/* Step 1: Academic Year, Year, and Semester Selection */}
                     {step === 1 && (
                         <div className='year'>
                             <label>Select Academic Year:</label>
-                            <select
-                                value={academicYear}
-                                onChange={(e) => setAcademicYear(e.target.value)}
-                            >
+                            <select value={academicYear} onChange={(e) => setAcademicYear(e.target.value)}>
                                 <option value="">Select</option>
-                                <option value="FY BCom">FY BscIT</option>
-                                <option value="SY BCom">SY BscIT</option>
-                                <option value="TY BCom">TY BscIT</option>
-                                {/* <option value="IT">IT</option> */}
+                                <option value="FY BscIT">FY BscIT</option>
+                                <option value="SY BscIT">SY BscIT</option>
+                                <option value="TY BscIT">TY BscIT</option>
                             </select>
-                            {errors.academicYear && <p className="error">{errors.academicYear}</p>}
-
                             <label>Enter Year (e.g., 2025-26):</label>
-                            <input
-                                type="text"
-                                value={year}
-                                onChange={(e) => setYear(e.target.value)}
-                                placeholder="2025-26"
-                                required
-                            />
-                            {errors.year && <p className="error">{errors.year}</p>}
-                            {errors.yearFormat && <p className="error">{errors.yearFormat}</p>}
-
+                            <input type="text" value={year} onChange={(e) => setYear(e.target.value)} placeholder="2025-26" required />
                             <label>Select Semester:</label>
-                            <select
-                                value={semester}
-                                onChange={(e) => setSemester(e.target.value)}
-                            >
+                            <select value={semester} onChange={(e) => setSemester(e.target.value)}>
                                 <option value="">Select Semester</option>
                                 <option value="1">Semester 1</option>
                                 <option value="2">Semester 2</option>
@@ -105,93 +139,45 @@ export default function QuestionPaperPlanner() {
                                 <option value="5">Semester 5</option>
                                 <option value="6">Semester 6</option>
                             </select>
-                            {errors.semester && <p className="error">{errors.semester}</p>}
-
                             <div className="nxt-btn">
-                                <button onClick={handleNextStep} disabled={Object.keys(errors).length > 0}>Next</button>
+                                <button onClick={() => setStep(2)}>Next</button>
                             </div>
                         </div>
                     )}
 
-                    {/* Step 2: Subject and Unit Entry */}
                     {step === 2 && (
                         <div>
-                            <div className='sub'>
-                                <label>Subject:</label>
-                                <input
-                                    type="text"
-                                    value={subject}
-                                    onChange={(e) => setSubject(e.target.value)}
-                                    placeholder="Subject"
-                                    required
-                                />
-                            </div>
+                            <label>Subject:</label>
+                            <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject" required />
 
-                            <div className='unit'>
-                                <label>Select Number of Units (1-5):</label>
-                                <select
-                                    value={unitCount}
-                                    onChange={(e) => {
-                                        setUnitCount(Number(e.target.value));
-                                        setUnits(new Array(Number(e.target.value)).fill({}));
-                                    }}
-                                >
-                                    {[...Array(5)].map((_, i) => (
-                                        <option key={i} value={i + 1}>
-                                            {i + 1}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {[...Array(unitCount)].map((_, index) => (
-                                <div className='choose' key={index}>
+                            {units.map((unit, index) => (
+                                <div key={index}>
                                     <h3>Unit {index + 1}</h3>
-
-                                    <label>Enter Topics:</label>
-                                    <textarea
-                                        placeholder={`Topics for Unit`}
-                                        value={units[index]?.topics || ''}
-                                        onChange={(e) => handleUnitChange(index, 'topics', e.target.value)}
-                                    />
-
-                                    <h3>OR</h3>
-
-                                    <label>Enter Questions:</label>
-                                    <textarea
-                                        placeholder={`Questions for Unit`}
-                                        value={units[index]?.questions || ''}
-                                        onChange={(e) => handleUnitChange(index, 'questions', e.target.value)}
-                                    />
-
-                                    <label>Number of Questions to Generate from Unit {index + 1}:</label>
-                                    <select
-                                        value={units[index]?.questionCount || 0}
-                                        onChange={(e) => handleUnitChange(index, 'questionCount', e.target.value)}
-                                    >
+                                    <label>Enter Questions (one per line):</label>
+                                    <textarea placeholder={`Questions for Unit`} value={unit.questions} onChange={(e) => handleUnitChange(index, 'questions', e.target.value)} />
+                                    <label>Select Number of Questions:</label>
+                                    <select value={unit.questionCount} onChange={(e) => handleUnitChange(index, 'questionCount', parseInt(e.target.value))}>
                                         {[...Array(21)].map((_, i) => (
-                                            <option key={i} value={i}>
-                                                {i}
-                                            </option>
+                                            <option key={i} value={i}>{i}</option>
                                         ))}
                                     </select>
                                 </div>
                             ))}
 
-                            <div>
-                                <h3>Total Questions: {totalQuestions}</h3>
+                            <div className="nxt-btn">
+                                <button onClick={handleGenerateQuestions}>Generate Question Paper</button>
                             </div>
+                        </div>
+                    )}
 
-                            <section id="gen">
-                                <div className='gen-btn'>
-                                    <button onClick={handleGenerateQuestions}>Generate</button>
-                                </div>
+                    {questionPaper.length > 0 && (
+                         <div id="generated-paper">
+                            <h2>Generated Question Paper</h2>
 
-                                <div className='btn'>
-                                    <button onClick={() => handleDownloadPDF('Question Bank')}>Download as Question Bank</button>
-                                    <button onClick={() => handleDownloadPDF('Question Paper')}>Use as Question Paper</button>
-                                </div>
-                            </section>
+                        <div className='gen-btn'>
+                            <button onClick={() => handleDownloadPDF('Question Paper')}>Download Question Paper</button>
+                            <button onClick={() => handleDownloadPDF('Question Bank')}>Download Question Bank</button>
+                        </div>
                         </div>
                     )}
                 </section>

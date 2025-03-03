@@ -171,29 +171,10 @@ select {
     resize: vertical;
 }
 
-/* Subject Input Styling */
-.sub input[type="text"] {
-    background-color: white;
-}
 
-/* Unit Section */
-.choose h3 {
-    text-align: center;
-    font-size: 18px;
-    color: #333;
-}
-
-/* Total Questions Display */
-.total-questions {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 18px;
-    color: #333;
-    font-weight: bold;
-}
 
 /* Button Styling */
-#gen button {
+.gen-btn button {
     display: inline-block;
     margin: 10px 5px;
     font-size: 16px;
@@ -213,12 +194,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Flex Layout for Buttons */
-.gen {
-    display: flex;
-    justify-content: center;
-}
-
 .gen-btn {
     display: flex;
     justify-content: center;
@@ -232,11 +207,6 @@ button:hover {
     background-color: #162DAB;
 }
 
-/* Flex Layout for PDF Buttons */
-#gen .btn {
-    display: flex;
-    justify-content: space-between;
-}
 
 /* Error Message Styling */
 .error {
@@ -245,47 +215,6 @@ button:hover {
     margin-top: 5px;
 }
 
-/* Responsive  main Design */
-@media (max-width: 768px) {
-
-    /* Adjust form layout on smaller screens */
-    #question-paper-planner {
-        padding: 15px;
-        margin: 10px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    /* Adjust input fields */
-    #main input[type="text"],
-    #main textarea,
-    #main select {
-        padding: 8px;
-    }
-
-    /* Stack PDF download buttons vertically */
-    #gen button {
-    width: 100%;
-    padding: 12px 20px;
-    }
-    
-    .nxt-btn button{
-        width: 100%;
-    }
-
-    #gen .btn {
-        display: flex;
-        padding: 0;
-    }
-
-    /* Make error messages responsive */
-    .error {
-        font-size: 12px;
-        margin-top: 3px;
-    }
-}
 
 /* Login Css */
 .log-sign {
@@ -847,8 +776,9 @@ button:hover {
 .edit-save-btn button {
     display: inline-block;
     font-size: 16px;
-    padding: 15px;
-    margin-top: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    /* width: 200px; */
     text-align: center;
     color: #fff;
     background-color: #007BFF;
