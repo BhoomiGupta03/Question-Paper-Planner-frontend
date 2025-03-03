@@ -122,6 +122,7 @@
     margin-top: 8em;
 }
 
+
 /* Main.css */
 #question-paper-planner {
     margin: 20px auto;
@@ -569,7 +570,6 @@ button:hover {
     /* Darker shade on hover */
 }
 
-
 /* about content */
 .about-us-container {
     line-height: 1.6;
@@ -691,6 +691,16 @@ button:hover {
     line-height: 1.4;
 }
 
+/* Additional styles for review responsiveness */
+@media (max-width: 768px) {
+    .review-container {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card {
+        max-width: 90%;
+    }
+}
 
 /* help css */
 .help-container {
