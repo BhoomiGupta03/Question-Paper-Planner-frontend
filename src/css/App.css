@@ -1329,10 +1329,11 @@ textarea {
     .banner-container {
         border-radius: 40px;
         height: 220px;
-    }
-    .banner-container .banner-content{
         margin: 1em;
     }
+    /* .banner-container .banner-content{
+        margin: 1em;
+    } */
     .banner-container .banner-content h1{
         font-size: 16px;
     }
@@ -1351,12 +1352,16 @@ textarea {
         width: 180px;
     }
 
+    .about-us-banner{
+        margin: 1em;
+    }
+
     .about-us-banner .img-block img{
-        width: 250px;
+        width: 200px;
     }
 
     .about-us-banner .about-banner-container {
-        margin-top: 51px;
+        margin: 30px;
         height: 80px;
     }
     .about-us-banner .about-banner-container h3{
@@ -1369,6 +1374,10 @@ textarea {
         font-size: 10px;
     }
 
+    .review-container{
+        margin: 1em;
+    }
+    
     .review-container h1{
         font-size: 16px;
     }
