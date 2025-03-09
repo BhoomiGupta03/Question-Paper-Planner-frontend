@@ -702,6 +702,117 @@ button:hover {
     }
 }
 
+/* review banner */
+.review-page-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+}
+
+/* Section heading */
+.review-page-content h1 {
+    font-weight: 600;
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* Review form styling */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 2em auto;
+    width: 350px;
+    align-items: center;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.review-form textarea{
+    width: 106%;
+}
+
+.review-form button {
+    padding: 10px 15px;
+    background-color: #162DAB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.review-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Container for all review cards */
+.review-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1em;
+    justify-items: center;
+}
+
+
+/* Individual review card */
+.review-page-content .review-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Hover effect for review cards */
+.review-page-content .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Name styling */
+.review-page-content .review-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Feedback text styling */
+.review-page-content .review-card p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.review-page-content .review-card button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: background 0.3s;
+}
+
 /* help css */
 .help-container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -1326,13 +1437,46 @@ textarea {
 }
 
 @media (max-width: 480px) {
+    #header {
+        padding: 8px;
+      }
+
+      #header .logo img {
+        height: 40px;
+      }
+    
+      #header nav {
+        gap: 6px;
+      }
+    
+      #header .user-options {
+        gap: 6px;
+      }
+
+      #header .user-options svg{
+        height: 12px;
+      }
+    
+      #header .user-options a {
+       padding: 8px;
+        font-size: 10px;
+        display: flex;
+      }
+    
+      #header .user-options .logout-button {
+        padding: 8px;
+        font-size: 10px;
+        display: flex;
+      }
+
     .banner-container {
         border-radius: 40px;
         height: 220px;
-    }
-    .banner-container .banner-content{
         margin: 1em;
     }
+    /* .banner-container .banner-content{
+        margin: 1em;
+    } */
     .banner-container .banner-content h1{
         font-size: 16px;
     }
@@ -1351,12 +1495,16 @@ textarea {
         width: 180px;
     }
 
+    .about-us-banner{
+        margin: 1em;
+    }
+
     .about-us-banner .img-block img{
-        width: 250px;
+        width: 200px;
     }
 
     .about-us-banner .about-banner-container {
-        margin-top: 51px;
+        margin: 30px 0;
         height: 80px;
     }
     .about-us-banner .about-banner-container h3{
@@ -1369,46 +1517,33 @@ textarea {
         font-size: 10px;
     }
 
+    .review-container{
+        margin: 1em;
+    }
+    
     .review-container h1{
         font-size: 16px;
     }
     .review-container .review-content .review-card h3{
         font-size: 10px;
+        margin-bottom: 2px;
     }
     .review-container .review-content .review-card p{
         font-size: 8px;
     }
 
-    #header {
-        padding: 10px;
-      }
+    .profile-content{
+        width: 300px;
+        padding: 0;
+        margin: 3em auto;
+    }
 
-      #header .logo img {
-        height: 40px;
-      }
+   .log-sign {
+            grid-template-columns: none; /* Reset grid columns */
+        }
     
-      #header nav {
-        gap: 10px;
-      }
-    
-      #header .user-options {
-        gap: 8px;
-      }
-
-      #header .user-options svg{
-        height: 12px;
-      }
-    
-      #header .user-options a {
-       padding: 10px;
-        font-size: 10px;
-        display: flex;
-      }
-    
-      #header .user-options .logout-button {
-        padding: 10px;
-        font-size: 10px;
-        display: flex;
-      }
+    .log-sign .img-block{
+        display: none;
+    }
     }
     

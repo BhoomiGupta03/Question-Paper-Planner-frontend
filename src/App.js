@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from './components/Home/Home';
 import AboutUsContent from "./components/Aboutus/Aboutuscontent"; // Adjust the path if necessary
 import Help from './components/Pages/Help';
+import Reviewcontent from './components/Review/Reviewcontent';
 import Login from './components/log/Login';
 import Signup from './components/log/Signup';
 import Profile from './components/Profile/Profile';
@@ -23,6 +24,9 @@ function App() {
 
           {/* Help route */}
           <Route path="/help" element={<Help />} />
+
+          {/* review route */}
+          <Route path="/review" element={<Reviewcontent />} />
 
           {/* Login route */}
           <Route path="/login" element={<Login />} />

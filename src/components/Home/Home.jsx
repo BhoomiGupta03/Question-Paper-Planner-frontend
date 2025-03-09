@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../Pages/Header';
 import HomeBanner from './HomeBanner'
 import Aboutusbanner from '../Aboutus/Aboutusbanner'
-import Review from '../Pages/Review'
+import Reviewbanner from '../Review/Reviewbanner'
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Header/>
 <HomeBanner/>
       <Aboutusbanner/>
-      <Review/>
+      <Reviewbanner/>
       
     </div>
   )

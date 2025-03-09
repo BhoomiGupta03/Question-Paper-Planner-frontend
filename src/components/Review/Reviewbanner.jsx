@@ -7,13 +7,13 @@ const reviews = [
   { name: "Ms. Pooja Gupta", feedback: "A very efficient and user-friendly tool." },
 ];
 
-function Review() {
+function Reviewbanner() {
   return (
     <div className="review-container">
       <h1>We Hear From Our Teachers</h1>
       <div className="review-content">
         {reviews.map((review, index) => (
-          <div className="review-card" key={index}>
+          <div className="review-card " key={index}>
             <h3>{review.name}</h3>
             <p>{review.feedback}</p>
           </div>
@@ -23,4 +23,4 @@ function Review() {
   );
 }
 
-export default Review;
+export default Reviewbanner;
