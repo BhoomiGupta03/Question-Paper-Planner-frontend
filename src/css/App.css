@@ -1474,9 +1474,7 @@ textarea {
         height: 220px;
         margin: 1em;
     }
-    /* .banner-container .banner-content{
-        margin: 1em;
-    } */
+    
     .banner-container .banner-content h1{
         font-size: 16px;
     }
@@ -1508,6 +1506,7 @@ About-us
         margin: 30px 0;
         height: 80px;
     }
+
     .about-us-banner .about-banner-container h3{
         font-size: 12px;
     }
