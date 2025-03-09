@@ -11,7 +11,7 @@ function banner() {
     <div className='banner-container'>
 
       <div className='banner-content'>
-        <h1>Want to make question paper ??</h1>
+        <h1>Want to make question paper??</h1>
         <div className="start-link">
           <Link to="/main" >
           Start <FontAwesomeIcon icon={faArrowRight} />
