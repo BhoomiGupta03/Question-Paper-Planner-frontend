@@ -27,11 +27,9 @@ function Help() {
         <h3>2. Uploading Questions</h3>
         <ul>
           <li>
-            <strong>Add Questions Easily:</strong> Enter questions directly or upload them by selecting your academic year, semester, and subject.
+            <strong>Add Questions Easily:</strong> Enter questions directly and upoad them by selecting your academic year, semester, and subject.
           </li>
-          <li>
-            <strong>Organize by Topics:</strong> Group questions by topics to maintain a well-structured question bank.
-          </li>
+         
         </ul>
 
         <h3>3. Generating Question Papers</h3>

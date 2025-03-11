@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     color: black;
+
 }
 
 #header {
@@ -51,8 +52,8 @@
 #header .user-options svg {
     filter: invert(1);
     margin-right: 5px;
-  }
-  
+}
+
 
 #header .user-options button {
     color: white;
@@ -737,7 +738,7 @@ button:hover {
     font-size: 16px;
 }
 
-.review-form textarea{
+.review-form textarea {
     width: 106%;
 }
 
@@ -865,21 +866,13 @@ button:hover {
 
 
 /* Profile*/
-
 .profile-content {
-    width: 500px;
-    margin: 5em auto;
-    border: 2px;
+    max-width: 800px;
+    margin: 3em auto;
     padding: 2rem;
-    transition: transform 0.2s;
-}
-
-/* Profile Header */
-.profile-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1.5rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .profile-name {
@@ -890,38 +883,117 @@ button:hover {
 
 .profile-bio {
     color: #666;
-    margin-top: 5px;
     font-size: 16px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* Edit Profile Form */
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.profile-edit-form input,
+.profile-edit-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.profile-edit-form textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* Profile Buttons */
+.edit-save-btn {
+    margin-top: 10px;
+}
+
+.edit-save-btn svg{
+    filter: invert(1);
 }
 
 .edit-save-btn button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 16px;
-    padding: 12px;
-    margin-top: 10px;
-    /* width: 200px; */
-    text-align: center;
-    color: #fff;
-    background-color: #007BFF;
-    border-radius: 4px;
+    padding: 10px 15px;
+    background-color: #162DAB;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
+}
+
+.edit-save-btn button:hover {
+    background-color: #0f1d76;
+}
+
+/* Question Paper Section */
+.question-paper-section {
+    margin-top: 2rem;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Question Paper List */
+.question-paper-list {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.question-paper {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: background 0.3s, opacity 0.5s ease-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question-paper:hover {
+    background: #e3f2fd;
 }
 
 /* Buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
 .button-group button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #0288d1;
-    color: white;
+    padding: 10px 15px;
     border: none;
-    width: 100%;
-    padding: 15px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease;
+    font-size: 14px;
+    color: white;
+}
+
+.button-group button svg {
+    filter: invert(1);
+}
+
+/* Button Colors */
+.button-group button {
+    background-color: #162DAB;
 }
 
 .button-group button:hover {
@@ -936,90 +1008,54 @@ button:hover {
     background-color: #b71c1c;
 }
 
-.section-title {
-    margin: 12px;
-}
-
-/* Question Paper List */
-.question-paper-list {
-    border-top: 1px solid #ddd;
-    padding-top: 1.5rem;
-}
-
-.question-paper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    transition: background 0.3s;
-}
-
-.question-paper:hover {
-    background: #e3f2fd;
-}
-
-.question-title {
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.question-subject {
-    color: #888;
-    font-size: 14px;
-}
-
-.button-group {
-    display: flex;
-    gap: 1rem;
-}
-
-/* Form Inputs for Editing Profile */
-.profile-edit-form input[type="text"],
-textarea {
+/* Modal Styling */
+.question-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-}
-
-.profile-edit-form textarea {
-    resize: none;
-    height: 120px;
-}
-
-.button-group button.save-btn {
-    background-color: #4caf50;
-}
-
-.button-group button.save-btn:hover {
-    background-color: #388e3c;
-}
-
-/* Question Paper List */
-.question-paper {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background: #ffffff;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .fade-out {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  
-  /* Modal Overlay */
-  .modal-overlay {
+}
+
+.question-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+   
+}
+
+.question-modal-content  ol {
+    margin: 10px;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #c82333;
+}
+
+/* Modal Overlay */
+.modal-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
@@ -1028,11 +1064,11 @@ textarea {
     align-items: center;
     z-index: 1000;
     backdrop-filter: blur(5px);
-  }
-  
-  /* Modal Box */
-  .modal-content {
-    background:#3578FF; 
+}
+
+/* Modal Box */
+.modal-content {
+    background: #3578FF;
     padding: 22px;
     border-radius: 12px;
     text-align: center;
@@ -1040,37 +1076,37 @@ textarea {
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
-  }
-  
-  /* Modal Icon */
-  .modal-icon {
+}
+
+/* Modal Icon */
+.modal-icon {
     font-size: 70px;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 10px;
-  }
-  
-  /* Modal Title */
-  .modal-title {
+}
+
+/* Modal Title */
+.modal-title {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 8px;
-  }
-  
-  /* Modal Text */
-  .modal-text {
+}
+
+/* Modal Text */
+.modal-text {
     font-size: 16px;
     opacity: 0.9;
     margin-bottom: 15px;
-  }
-  
-  /* Buttons */
-  .modal-buttons {
+}
+
+/* Buttons */
+.modal-buttons {
     display: flex;
     justify-content: space-around;
     gap: 10px;
-  }
-  
-  .cancel-btn {
+}
+
+.cancel-btn {
     background: #fff;
     color: #162DAB;
     padding: 12px 20px;
@@ -1079,8 +1115,9 @@ textarea {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s;
-  }
-  .confirm-btn {
+}
+
+.confirm-btn {
     background: #fff;
     color: #162DAB;
     padding: 10px 14px;
@@ -1089,10 +1126,10 @@ textarea {
     cursor: pointer;
     font-weight: bold;
     transition: opacity 0.3s;
-  }
-  
-  /* Responsiveness of all */
-  
+}
+
+/* Responsiveness of all */
+
 @media (max-width: 1281px) {
     .banner-container {
         height: 450px;
@@ -1227,19 +1264,19 @@ textarea {
         gap: 10px;
     }
 
-    .log-sign .left h2{
+    .log-sign .left h2 {
         font-size: 30px;
     }
-    
+
     .log-sign .left .input-field {
         height: 60px;
     }
 
-    .log-sign .left .input-field input{
+    .log-sign .left .input-field input {
         padding: 16px;
     }
 
-    .log-sign .left .img-block{
+    .log-sign .left .img-block {
         right: -40%;
     }
 }
@@ -1327,15 +1364,15 @@ textarea {
         margin-bottom: 5px;
     }
 
-    .log-sign .left form{
+    .log-sign .left form {
         width: 325px;
     }
 
-    .log-sign .left .input-field{
+    .log-sign .left .input-field {
         height: 50px;
     }
 
-    .log-sign .left .input-field input{
+    .log-sign .left .input-field input {
         padding: 14px;
     }
 }
@@ -1439,65 +1476,69 @@ textarea {
 @media (max-width: 480px) {
     #header {
         padding: 8px;
-      }
+    }
 
-      #header .logo img {
+    #header .logo img {
         height: 40px;
-      }
-    
-      #header nav {
-        gap: 6px;
-      }
-    
-      #header .user-options {
-        gap: 6px;
-      }
+    }
 
-      #header .user-options svg{
+    #header nav {
+        gap: 6px;
+    }
+
+    #header .user-options {
+        gap: 6px;
+    }
+
+    #header .user-options svg {
         height: 12px;
-      }
-    
-      #header .user-options a {
-       padding: 8px;
-        font-size: 10px;
-        display: flex;
-      }
-    
-      #header .user-options .logout-button {
+    }
+
+    #header .user-options a {
         padding: 8px;
         font-size: 10px;
         display: flex;
-      }
+    }
+
+    #header .user-options .logout-button {
+        padding: 8px;
+        font-size: 10px;
+        display: flex;
+    }
 
     .banner-container {
         border-radius: 40px;
         height: 220px;
         margin: 1em;
     }
-    
-    .banner-container .banner-content h1{
+
+    .banner-container .banner-content h1 {
         font-size: 16px;
     }
+
     .banner-container .banner-content .start-link {
         width: 75px;
         padding: 5px;
     }
-    .banner-container .banner-content .start-link a{
+
+    .banner-container .banner-content .start-link a {
         font-size: 12px;
     }
-    .banner-container .img-block{
+
+    .banner-container .img-block {
         right: 6%;
         margin-top: 120px;
     }
-    .banner-container .img-block img{
+
+    .banner-container .img-block img {
         width: 180px;
     }
 
-    .about-us-banner{
+    .about-us-banner {
         margin: 1em;
     }
 
-    .about-us-banner .img-block img{
+    .about-us-banner .img-block img {
         width: 200px;
     }
 
@@ -1506,43 +1547,47 @@ textarea {
         height: 80px;
     }
 
-    .about-us-banner .about-banner-container h3{
+    .about-us-banner .about-banner-container h3 {
         font-size: 12px;
     }
-    .about-us-banner .about-banner-container p{
+
+    .about-us-banner .about-banner-container p {
         font-size: 8px;
     }
-    .about-us-banner .about-banner-container .know-more a{
+
+    .about-us-banner .about-banner-container .know-more a {
         font-size: 10px;
     }
 
-    .review-container{
+    .review-container {
         margin: 1em;
     }
-    
-    .review-container h1{
+
+    .review-container h1 {
         font-size: 16px;
     }
-    .review-container .review-content .review-card h3{
+
+    .review-container .review-content .review-card h3 {
         font-size: 10px;
         margin-bottom: 2px;
     }
-    .review-container .review-content .review-card p{
+
+    .review-container .review-content .review-card p {
         font-size: 8px;
     }
 
-    .profile-content{
+    .profile-content {
         width: 300px;
         padding: 0;
         margin: 3em auto;
     }
 
-   .log-sign {
-            grid-template-columns: none; /* Reset grid columns */
-        }
-    
-    .log-sign .img-block{
+    .log-sign {
+        grid-template-columns: none;
+        /* Reset grid columns */
+    }
+
+    .log-sign .img-block {
         display: none;
     }
-    }
-    
+}
