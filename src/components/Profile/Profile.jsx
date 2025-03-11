@@ -130,7 +130,7 @@ const ProfilePage = () => {
                   <div className="button-group">
                     <button onClick={() => setActiveModal({ type: 'paper', paper })}>Open Question Paper</button>
                     <button onClick={() => setActiveModal({ type: 'bank', paper })}>Open Question Bank</button>
-                    <button onClick={() => confirmDelete(paper.id)}><FontAwesomeIcon icon={faTrash} /> Delete</button>
+                    <button className="dlt-btn" onClick={() => confirmDelete(paper.id)}><FontAwesomeIcon icon={faTrash} /> Delete</button>
                   </div>
                 </div>
               ))

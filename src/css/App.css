@@ -986,7 +986,21 @@ button:hover {
     font-size: 14px;
     color: white;
 }
+/* Button Colors */
+.button-group button {
+    background-color: #162DAB;
+}
 
+.button-group button:hover {
+    background-color: #01579b;
+}
+
+.button-group .dlt-btn  {
+    background-color: #dc3545;
+}
+.button-group .dlt-btn:hover {
+    background-color: #c82333;
+}
 .button-group button svg {
     filter: invert(1);
 }
@@ -998,14 +1012,6 @@ button:hover {
 
 .button-group button:hover {
     background-color: #01579b;
-}
-
-.button-group button.delete-btn {
-    background-color: #d32f2f;
-}
-
-.button-group button.delete-btn:hover {
-    background-color: #b71c1c;
 }
 
 /* Modal Styling */
@@ -1468,7 +1474,6 @@ button:hover {
 
     .profile-content .edit-save-btn button {
         padding: 10px;
-        width: 110px;
         font-size: 14px;
     }
 }
@@ -1577,9 +1582,19 @@ button:hover {
     }
 
     .profile-content {
-        width: 300px;
+        width: 400px;
         padding: 0;
-        margin: 3em auto;
+    }
+
+    .profile-content h2,p{
+        margin: 10px;
+    }
+    .profile-content .edit-save-btn{
+        margin: 10px;
+    }
+
+    .button-group button{
+        padding: 8px;
     }
 
     .log-sign {

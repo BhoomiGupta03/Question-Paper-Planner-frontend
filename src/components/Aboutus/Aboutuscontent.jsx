@@ -25,14 +25,14 @@ const AboutUsContent = () => {
         At Question Paper Planner, we understand the challenges teachers face when it comes to creating effective and well-structured question papers. Our goal is to simplify this process, allowing teachers to focus on what truly matters – educating and inspiring students.
       </p>
       <p>
-        Our platform provides an intuitive approach to generating question papers. Teachers can input their academic year, semester, and subject, add topics or directly enter questions, and our system organizes them to create balanced, randomized question papers.
+        Our platform provides an intuitive approach to generating question papers. Teachers can input their academic year, semester, and subject,enter questions, and our system organizes them to create balanced, randomized question papers.
       </p>
       <h3>Why Choose Question Paper Planner?</h3>
       <ul className="features-list">
         {[
           { key: "simplicity", label: "Simplicity", description: "A seamless and intuitive interface designed to make question paper creation quick and easy." },
           { key: "efficiency", label: "Efficiency", description: "Save time by automating the randomization and organization of questions while avoiding repetitions." },
-          { key: "flexibility", label: "Flexibility", description: "Customize question papers by choosing the number of questions per unit and inputting topics or questions directly." },
+          { key: "flexibility", label: "Flexibility", description: "Customize question papers by choosing the number of questions per unit and questions directly." },
           { key: "support", label: "Support for Teachers", description: "We are committed to helping teachers focus on teaching by streamlining administrative tasks." },
         ].map((feature) => (
           <li

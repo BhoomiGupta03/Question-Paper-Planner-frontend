@@ -47,9 +47,7 @@ function Help() {
           <li>
             <strong>Simplicity:</strong> Enjoy a seamless and intuitive interface designed for quick and easy question paper creation.
           </li>
-          <li>
-            <strong>Efficiency:</strong> Save time by automating question organization and randomization without worrying about repetitions.
-          </li>
+          
           <li>
             <strong>Flexibility:</strong> Customize your question papers by choosing how many questions you want from each unit.
           </li>
@@ -58,7 +56,7 @@ function Help() {
           </li>
         </ul>
 
-        <h3>5. Managing Your Question Bank</h3>
+        {/* <h3>5. Managing Your Question Bank</h3>
         <ul>
           <li>
             <strong>Editing Questions:</strong> Easily update questions in your bank to keep content accurate and relevant.
@@ -66,7 +64,7 @@ function Help() {
           <li>
             <strong>Deleting Questions:</strong> Remove outdated questions with just a few clicks to keep your bank clean and organized.
           </li>
-        </ul>
+        </ul> */}
 
         <h3>6. Frequently Asked Questions (FAQ)</h3>
         <ul>
