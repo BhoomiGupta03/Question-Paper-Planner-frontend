@@ -915,7 +915,7 @@ button:hover {
     margin-top: 10px;
 }
 
-.edit-save-btn svg{
+.edit-save-btn svg {
     filter: invert(1);
 }
 
@@ -986,6 +986,7 @@ button:hover {
     font-size: 14px;
     color: white;
 }
+
 /* Button Colors */
 .button-group button {
     background-color: #162DAB;
@@ -995,12 +996,14 @@ button:hover {
     background-color: #01579b;
 }
 
-.button-group .dlt-btn  {
+.button-group .dlt-btn {
     background-color: #dc3545;
 }
+
 .button-group .dlt-btn:hover {
     background-color: #c82333;
 }
+
 .button-group button svg {
     filter: invert(1);
 }
@@ -1008,10 +1011,6 @@ button:hover {
 /* Button Colors */
 .button-group button {
     background-color: #162DAB;
-}
-
-.button-group button:hover {
-    background-color: #01579b;
 }
 
 /* Modal Styling */
@@ -1027,6 +1026,7 @@ button:hover {
     align-items: center;
 }
 
+
 .question-modal-content {
     background: white;
     padding: 20px;
@@ -1034,29 +1034,86 @@ button:hover {
     max-height: 80vh;
     overflow-y: auto;
     position: relative;
-   
+    padding: 20px;
+    width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+
 }
 
-.question-modal-content  ol {
-    margin: 10px;
+.question-modal-content ol {
+    margin: 8px;
 }
 
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #dc3545;
+.question-modal-content ul {
+    width: 100%;
+}
+
+.question-modal-content li {
+    display: flex;
+    gap: 5px;
+}
+
+.question-modal-content input {
+    width: 100%;
+}
+
+/* clos-edit-remove Button */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.modal-header button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
+.edit-btn {
+    background-color: #162DAB;
+}
+
+.edit-btn svg {
+    filter: invert(1);
+}
+
+.close-btn {
+    background-color: #dc3545;
+}
+
+.close-btn svg {
+    filter: invert(1);
+}
+
 .close-btn:hover {
+    background-color: #c82333;
+}
+
+.remove-btn {
+    color: white;
+    padding: 5px;
+    display: flex;
+    margin-bottom: 10px;
+    gap: 5px;
+    align-items: center;
+    background-color: #dc3545;
+}
+
+.remove-btn svg {
+    filter: invert(1);
+}
+
+.remove-btn:hover {
     background-color: #c82333;
 }
 
@@ -1586,14 +1643,30 @@ button:hover {
         padding: 0;
     }
 
-    .profile-content h2,p{
-        margin: 10px;
-    }
-    .profile-content .edit-save-btn{
+    .profile-content h2,
+    p {
         margin: 10px;
     }
 
-    .button-group button{
+    .profile-content .edit-save-btn {
+        margin: 10px;
+    }
+
+    .question-modal-content ol {
+        margin: 0;
+    }
+
+    .question-modal-content li input {
+        font-size: 10px;
+    }
+
+    .remove-btn {
+        padding: 2px;
+        margin-bottom: 5px;
+        font-size: 10px;
+    }
+
+    .button-group button {
         padding: 8px;
     }
 
