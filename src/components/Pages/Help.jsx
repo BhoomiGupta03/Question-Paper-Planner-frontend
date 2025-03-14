@@ -56,17 +56,7 @@ function Help() {
           </li>
         </ul>
 
-        {/* <h3>5. Managing Your Question Bank</h3>
-        <ul>
-          <li>
-            <strong>Editing Questions:</strong> Easily update questions in your bank to keep content accurate and relevant.
-          </li>
-          <li>
-            <strong>Deleting Questions:</strong> Remove outdated questions with just a few clicks to keep your bank clean and organized.
-          </li>
-        </ul> */}
-
-        <h3>6. Frequently Asked Questions (FAQ)</h3>
+        <h3>5. Frequently Asked Questions (FAQ)</h3>
         <ul>
           <li>
             <strong>How do I reset my password?</strong><br />
@@ -78,7 +68,7 @@ function Help() {
           </li>
         </ul>
 
-        <h3>7. Contact Support</h3>
+        <h3>6. Contact Support</h3>
         <ul>
           <li>
             <strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a>

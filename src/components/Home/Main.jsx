@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../Pages/Header';
 import jsPDF from 'jspdf';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 export default function QuestionPaperPlanner() {
     const [subject, setSubject] = useState('');
@@ -11,14 +13,6 @@ export default function QuestionPaperPlanner() {
     const [step, setStep] = useState(1);
     const [questionPaper, setQuestionPaper] = useState([]);
     const [questionBank, setQuestionBank] = useState([]);
-    // const [errors, setErrors] = useState({});
-
-    const validateInputs = () => {
-        if (!academicYear || !year || !semester || !subject) {
-            return false;
-        }
-        return true;
-    };
 
     const handleUnitChange = (index, field, value) => {
         let updatedUnits = [...units];
@@ -27,8 +21,6 @@ export default function QuestionPaperPlanner() {
     };
 
     const handleGenerateQuestions = () => {
-        if (!validateInputs()) return;
-
         let formattedQuestions = [];
         let bankQuestions = [];
 
@@ -44,7 +36,6 @@ export default function QuestionPaperPlanner() {
             
             let unitBankQuestions = shuffledQuestions.slice(0, units[i].questionCount);
             bankQuestions.push(...unitBankQuestions);
-
         }
 
         const newPaper = {
@@ -119,65 +110,169 @@ export default function QuestionPaperPlanner() {
                     <h1>Create Your Question Paper</h1>
 
                     {step === 1 && (
-                        <div className='year'>
-                            <label>Select Academic Year:</label>
-                            <select value={academicYear} onChange={(e) => setAcademicYear(e.target.value)}>
-                                <option value="">Select</option>
-                                <option value="FY BscIT">FY BscIT</option>
-                                <option value="SY BscIT">SY BscIT</option>
-                                <option value="TY BscIT">TY BscIT</option>
-                            </select>
-                            <label>Enter Year (e.g., 2025-26):</label>
-                            <input type="text" value={year} onChange={(e) => setYear(e.target.value)} placeholder="2025-26" required />
-                            <label>Select Semester:</label>
-                            <select value={semester} onChange={(e) => setSemester(e.target.value)}>
-                                <option value="">Select Semester</option>
-                                <option value="1">Semester 1</option>
-                                <option value="2">Semester 2</option>
-                                <option value="3">Semester 3</option>
-                                <option value="4">Semester 4</option>
-                                <option value="5">Semester 5</option>
-                                <option value="6">Semester 6</option>
-                            </select>
-                            <div className="nxt-btn">
-                                <button onClick={() => setStep(2)}>Next</button>
-                            </div>
-                        </div>
+                        <Formik
+                            initialValues={{
+                                academicYear: academicYear,
+                                year: year,
+                                semester: semester
+                            }}
+                            validationSchema={Yup.object({
+                                academicYear: Yup.string()
+                                    .required('Academic Year is required'),
+                                year: Yup.string()
+                                    .required('Year is required')
+                                    .matches(/^\d{4}-\d{2}$/, 'Year should be in format YYYY-YY (e.g., 2025-26)'),
+                                semester: Yup.string()
+                                    .required('Semester is required')
+                            })}
+                            onSubmit={(values) => {
+                                setAcademicYear(values.academicYear);
+                                setYear(values.year);
+                                setSemester(values.semester);
+                                setStep(2);
+                            }}
+                            validateOnBlur={true}
+                            validateOnChange={true}
+                        >
+                            {({ isValid, errors, touched, handleSubmit }) => (
+                                <Form className='year'>
+                                    <label htmlFor="academicYear">Select Academic Year:</label>
+                                    <Field
+                                        as="select"
+                                        name="academicYear"
+                                        id="academicYear"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="FY BscIT">FY BscIT</option>
+                                        <option value="SY BscIT">SY BscIT</option>
+                                        <option value="TY BscIT">TY BscIT</option>
+                                    </Field>
+                                    <div className="error-message">
+                                        <ErrorMessage name="academicYear" component="div" style={{ color: 'red' }} />
+                                    </div>
+
+                                    <label htmlFor="year">Enter Year (e.g., 2025-26):</label>
+                                    <Field
+                                        type="text"
+                                        name="year"
+                                        id="year"
+                                        placeholder="2025-26"
+                                    />
+                                    <div className="error-message">
+                                        <ErrorMessage name="year" component="div" style={{ color: 'red' }} />
+                                    </div>
+
+                                    <label htmlFor="semester">Select Semester:</label>
+                                    <Field
+                                        as="select"
+                                        name="semester"
+                                        id="semester"
+                                    >
+                                        <option value="">Select Semester</option>
+                                        <option value="1">Semester 1</option>
+                                        <option value="2">Semester 2</option>
+                                        <option value="3">Semester 3</option>
+                                        <option value="4">Semester 4</option>
+                                        <option value="5">Semester 5</option>
+                                        <option value="6">Semester 6</option>
+                                    </Field>
+                                    <div className="error-message">
+                                        <ErrorMessage name="semester" component="div" style={{ color: 'red' }} />
+                                    </div>
+
+                                    <div className="nxt-btn">
+                                        <button 
+                                            type="button" 
+                                            onClick={() => {
+                                                handleSubmit();
+                                            }}
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
                     )}
 
                     {step === 2 && (
-                        <div>
-                            <label>Subject:</label>
-                            <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject" required />
+                        <Formik
+                            initialValues={{
+                                subject: subject
+                            }}
+                            validationSchema={Yup.object({
+                                subject: Yup.string()
+                                    .required('Subject is required')
+                            })}
+                            onSubmit={(values) => {
+                                setSubject(values.subject);
+                                handleGenerateQuestions();
+                            }}
+                            validateOnBlur={true}
+                            validateOnChange={true}
+                        >
+                            {({ isValid, errors, touched, handleSubmit, setFieldValue }) => (
+                                <Form>
+                                    <label htmlFor="subject">Subject:</label>
+                                    <Field
+                                        type="text"
+                                        name="subject"
+                                        id="subject"
+                                        placeholder="Subject"
+                                        onChange={(e) => {
+                                            const newValue = e.target.value;
+                                            setFieldValue('subject', newValue);
+                                            setSubject(newValue);
+                                        }}
+                                    />
+                                    <div className="error-message">
+                                        <ErrorMessage name="subject" component="div" style={{ color: 'red' }} />
+                                    </div>
 
-                            {units.map((unit, index) => (
-                                <div key={index}>
-                                    <h3>Unit {index + 1}</h3>
-                                    <label>Enter Questions (one per line):</label>
-                                    <textarea placeholder={`Questions for Unit`} value={unit.questions} onChange={(e) => handleUnitChange(index, 'questions', e.target.value)} />
-                                    <label>Select Number of Questions:</label>
-                                    <select value={unit.questionCount} onChange={(e) => handleUnitChange(index, 'questionCount', parseInt(e.target.value))}>
-                                        {[...Array(21)].map((_, i) => (
-                                            <option key={i} value={i}>{i}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            ))}
+                                    {units.map((unit, index) => (
+                                        <div key={index}>
+                                            <h3>Unit {index + 1}</h3>
+                                            <label>Enter Questions (one per line):</label>
+                                            <textarea
+                                                placeholder={`Questions for Unit`}
+                                                value={unit.questions}
+                                                onChange={(e) => handleUnitChange(index, 'questions', e.target.value)}
+                                            />
+                                            <label>Select Number of Questions:</label>
+                                            <select
+                                                value={unit.questionCount}
+                                                onChange={(e) => handleUnitChange(index, 'questionCount', parseInt(e.target.value))}
+                                            >
+                                                {[...Array(21)].map((_, i) => (
+                                                    <option key={i} value={i}>{i}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    ))}
 
-                            <div className="nxt-btn">
-                                <button onClick={handleGenerateQuestions}>Generate Question Paper</button>
-                            </div>
-                        </div>
+                                    <div className="nxt-btn">
+                                        <button 
+                                            type="button" 
+                                            onClick={() => {
+                                                handleSubmit();
+                                            }}
+                                        >
+                                            Generate Question Paper
+                                        </button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
                     )}
 
                     {questionPaper.length > 0 && (
-                         <div id="generated-paper">
+                        <div id="generated-paper">
                             <h2>Generated Question Paper</h2>
 
-                        <div className='gen-btn'>
-                            <button onClick={() => handleDownloadPDF('Question Paper')}>Download Question Paper</button>
-                            <button onClick={() => handleDownloadPDF('Question Bank')}>Download Question Bank</button>
-                        </div>
+                            <div className='gen-btn'>
+                                <button onClick={() => handleDownloadPDF('Question Paper')}>Download Question Paper</button>
+                                <button onClick={() => handleDownloadPDF('Question Bank')}>Download Question Bank</button>
+                            </div>
                         </div>
                     )}
                 </section>
@@ -185,3 +280,4 @@ export default function QuestionPaperPlanner() {
         </>
     );
 }
+

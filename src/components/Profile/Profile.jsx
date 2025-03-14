@@ -286,7 +286,7 @@ const ProfilePage = () => {
                         onChange={(e) => handleEditQuestion(activeModal.paper, 'bank', index, null, e.target.value)}
                       />
                       <button onClick={() => handleRemoveQuestion(activeModal.paper, 'bank', index)} className="remove-btn">
-                      <FontAwesomeIcon icon={faTimes} />Remove</button>
+                      <FontAwesomeIcon icon={faTimes} /> Remove</button>
                     </li>
                   ))}
                 </ul>
