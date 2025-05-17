@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 // Create API instance with base configuration
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://question-paper-planner-backend-production.up.railway.app/api',
   timeout: 10000,
   withCredentials: true
 });

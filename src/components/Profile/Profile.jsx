@@ -7,7 +7,7 @@ import { FiAlertCircle } from 'react-icons/fi';
 import { downloadPDF, deleteQuestionPaper, updateQuestionPaper } from '../utils/common';
 import axios from 'axios'; // Add axios for API calls
 
-const API_URL = 'http://localhost:5000/api'; // Define API_URL
+const API_URL = 'https://question-paper-planner-backend-production.up.railway.app/api'; // Define API_URL
 
 const ProfilePage = () => {
   const [teacherName, setTeacherName] = useState(localStorage.getItem('teacherName') || 'John Doe');

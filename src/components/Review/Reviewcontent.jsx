@@ -5,7 +5,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiAlertCircle } from 'react-icons/fi';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api/reviews';
+const API_URL = 'https://question-paper-planner-backend-production.up.railway.app/api/reviews';
 
 function ReviewPage() {
   const [reviews, setReviews] = useState([]);
