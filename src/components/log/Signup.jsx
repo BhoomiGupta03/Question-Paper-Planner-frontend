@@ -4,14 +4,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthContext from "../../context/AuthContext";
 import logsignimg from "../../img/log-signup-img.webp";
-
+import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
 
   const validationSchema = Yup.object({
-    name: Yup.string()
+    teacherName: Yup.string()
       .matches(
         /^[a-zA-Z\s'-]+$/,
         "Name can only contain letters, spaces, hyphens, and apostrophes"
@@ -28,18 +28,31 @@ function Signup() {
   });
 
   const initialValues = {
-    name: "",
+    teacherName: "",
     email: "",
     password: "",
     confirmPassword: "",
     isChecked: false,
   };
-  const handleSubmit = (values) => {
-    signup(values.name, values.email, values.password);
-    localStorage.setItem('teacherName', values.name); // Store teacher's name in localStorage
-    navigate("/login");
+  const handleSubmit = async (values,{resetForm}) => {
+    signup(values.teacherName, values.email, values.password);
+    const { teacherName, email, password } = values;
+
+    // Use the local variable in the request
+    const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      teacherName,
+      email,
+      password,
+    });
+    console.log(response)
+    if (response.status === 201) {
+      resetForm();
+      navigate("/login");
+    }
+    localStorage.setItem('teacherName', values.teacherName); // Store teacher's name in localStorage
+
   };
-  
+
 
   return (
     <div className="log-sign">
@@ -49,8 +62,8 @@ function Signup() {
             <Form>
               <h2>Create an Account</h2>
               <div className="input-field">
-                <Field type="text" name="name" placeholder="Name" />
-                <ErrorMessage name="name" component="div" className="error" /></div>
+                <Field type="text" name="teacherName" placeholder="Name" />
+                <ErrorMessage name="teacherName" component="div" className="error" /></div>
 
               <div className="input-field">
                 <Field type="email" name="email" placeholder="Email" />
@@ -77,12 +90,12 @@ function Signup() {
                 <button type="submit" disabled={isSubmitting}>
                   Create an Account
                 </button>
-                
-                <p>OR</p>
+
+                {/* <p>OR</p>
 
                 <button type="button" className="google-login">
                   Sign in with Google
-                </button>
+                </button> */}
               </div>
 
               <div className="account-exist">
@@ -93,9 +106,9 @@ function Signup() {
           )}
         </Formik>
 
-         <div className="img-block">
-                  <img src={logsignimg} alt="log-signup" />
-                </div>
+        <div className="img-block">
+          <img src={logsignimg} alt="log-signup" />
+        </div>
 
       </div>
       <div className="right"></div>

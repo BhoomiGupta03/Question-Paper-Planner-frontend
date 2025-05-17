@@ -16,8 +16,6 @@ const AboutUsContent = () => {
     </div>
 
       <div className="about-us-container">
-
-      {/* <h1>About Us</h1> */}
       <p>
         <strong>Welcome to Question Paper Planner – Empowering Teachers, One Question Paper at a Time!</strong>
       </p>

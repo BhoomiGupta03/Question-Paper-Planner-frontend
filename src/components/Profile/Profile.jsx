@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Pages/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faSave, faTrash, faDownload, faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faSave, faTrash, faDownload, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiAlertCircle } from 'react-icons/fi';
-import jsPDF from 'jspdf';
+import { downloadPDF, deleteQuestionPaper, updateQuestionPaper } from '../utils/common';
+import axios from 'axios'; // Add axios for API calls
+
+const API_URL = 'http://localhost:5000/api'; // Define API_URL
 
 const ProfilePage = () => {
   const [teacherName, setTeacherName] = useState(localStorage.getItem('teacherName') || 'John Doe');
@@ -17,16 +20,46 @@ const ProfilePage = () => {
   const [isEditingModal, setIsEditingModal] = useState(false);
   const [editedContent, setEditedContent] = useState([]);
   const [confirmDeleteIndex, setConfirmDeleteIndex] = useState(null);
-
+  const [error, setError] = useState(null);
   const accountCreationDate = localStorage.getItem('accountCreationDate') || new Date().toLocaleDateString();
 
   useEffect(() => {
-    if (!localStorage.getItem('accountCreationDate')) {
-      localStorage.setItem('accountCreationDate', accountCreationDate);
-    }
-    const storedPapers = JSON.parse(localStorage.getItem('questionPapers')) || [];
-    setQuestionPapers(storedPapers);
-  }, [accountCreationDate]);
+    // Fetch profile data
+    axios.get(`${API_URL}/profile`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(response => {
+        
+        setTeacherName(response.data.teacherName);
+        setBio(response.data.bio || 'Experienced teacher in Mathematics and Computer Science.');
+
+        // Save to localStorage as fallback
+        localStorage.setItem('teacherName', response.data.teacherName);
+        localStorage.setItem('bio', response.data.bio || 'Experienced teacher in Mathematics and Computer Science.');
+        localStorage.setItem('accountCreationDate', new Date(response.data.createdAt).toLocaleDateString());
+      })
+      .catch(error => {
+        setError("Error fetching profile.");
+        console.error("Error fetching profile:", error);
+      });
+
+    // Fetch question papers
+    axios.get(`${API_URL}/profile/question-papers`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    
+      .then(response => {
+        setQuestionPapers(response.data);
+      })
+      .catch(error => {
+        setError("Error fetching question papers.");
+        console.error("Error fetching question papers:", error);
+      });
+  }, []);
 
   useEffect(() => {
     if (activeModal) {
@@ -38,47 +71,82 @@ const ProfilePage = () => {
     }
   }, [activeModal]);
 
-  const handleSaveProfile = () => {
-    setIsEditing(false);
-    localStorage.setItem('teacherName', teacherName);
-    localStorage.setItem('bio', bio);
+  const handleSaveProfile = async () => {
+    try {
+      await axios.put(`${API_URL}/profile`, {
+        teacherName,
+        bio
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      
+      // Update localStorage with the new values
+      localStorage.setItem('teacherName', teacherName);
+      localStorage.setItem('bio', bio);
+
+      setIsEditing(false);
+    } catch (err) {
+      setError('Failed to update profile.');
+      console.error('Error updating profile:', err);
+    }
   };
 
   const confirmDelete = (id) => {
     setDeleteId(id);
   };
 
-  const handleDeleteQuestionPaper = () => {
+  const handleDeleteQuestionPaper = async () => {
     if (deleteId !== null) {
-  
       setRemoving(deleteId);
-      setTimeout(() => {
-        const updatedPapers = questionPapers.filter((paper) => paper.id !== deleteId);
+      
+      const result = await deleteQuestionPaper(deleteId);
+      
+      if (result.success) {
+        const updatedPapers = questionPapers.filter((paper) => paper._id !== deleteId);
         setQuestionPapers(updatedPapers);
-        localStorage.setItem('questionPapers', JSON.stringify(updatedPapers));
-        setRemoving(null);
-        setDeleteId(null);
-      }, 500);
+      } else {
+        setError(result.error || 'Failed to delete question paper.');
+      }
+      
+      setRemoving(null);
+      setDeleteId(null);
     }
   };
-
-  const handleSaveModal = () => {
+  const handleSaveModal = async () => {
     if (activeModal) {
-      const updatedPapers = questionPapers.map((paper) => {
-        if (paper.id === activeModal.paper.id) {
-          return activeModal.type === 'paper' ? 
-            { ...paper, questions: editedContent.map(q => {
-                const lines = q.split('\n');
-                return { mainQuestion: lines[0], subQuestions: lines.slice(1) };
-              })
-            } : 
-            { ...paper, bank: editedContent };
+      try {
+        const paperId = activeModal.paper._id;
+        const updatedPaper = { ...activeModal.paper };
+  
+        if (activeModal.type === 'paper') {
+          updatedPaper.questions = editedContent.map(q => {
+            const lines = q.split('\n');
+            return { mainQuestion: lines[0], subQuestions: lines.slice(1).filter(line => line.trim() !== '') };
+          });
+        } else {
+          updatedPaper.bank = editedContent.filter(q => q.trim() !== '');
         }
-        return paper;
-      });
-      setQuestionPapers(updatedPapers);
-      localStorage.setItem('questionPapers', JSON.stringify(updatedPapers));
-      setIsEditingModal(false);
+  
+        const result = await updateQuestionPaper(paperId, updatedPaper);
+  
+        if (result.success) {
+          const updatedPapers = questionPapers.map((paper) => {
+            if (paper._id === paperId) {
+              return { ...paper, ...updatedPaper };
+            }
+            return paper;
+          });
+    
+          setQuestionPapers(updatedPapers);
+          setIsEditingModal(false);
+        } else {
+          setError(result.error);
+        }
+      } catch (err) {
+        setError('Network error. Please check your connection.');
+      }
     }
   };
 
@@ -88,79 +156,67 @@ const ProfilePage = () => {
 
   const confirmRemoveQuestion = () => {
     const { paper, type, index, subIndex } = confirmDeleteIndex;
-    const updatedPapers = questionPapers.map((p) => {
-      if (p.id === paper.id) {
-        if (type === 'paper') {
-          const updatedQuestions = [...p.questions];
-          if (subIndex !== null) {
-            updatedQuestions[index].subQuestions.splice(subIndex, 1);
-          } else {
-            updatedQuestions.splice(index, 1);
-          }
-          return { ...p, questions: updatedQuestions };
-        } else {
-          const updatedBank = [...p.bank];
-          updatedBank.splice(index, 1);
-          return { ...p, bank: updatedBank };
-        }
-      }
-      return p;
-    });
-    setQuestionPapers(updatedPapers);
-    localStorage.setItem('questionPapers', JSON.stringify(updatedPapers));
-    setConfirmDeleteIndex(null);
-  };
-  
-
-  const handleDownloadPDF = (paper, type) => {
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text(`BSc IT ${type}`, 20, 20);
-    doc.setFontSize(12);
-    doc.text(`Academic Year: ${paper.academicYear}`, 20, 30);
-    doc.text(`Year: ${paper.year}`, 20, 40);
-    doc.text(`Semester: ${paper.semester}`, 20, 50);
-    doc.text(`Subject: ${paper.subject}`, 20, 60);
-
-    let y = 80;
-    if (type === 'Question Paper') {
-      doc.text("Total Marks: 75", 150, 60);
-      paper.questions.forEach((q, index) => {
-        if (y > 250) {
-          doc.addPage();
-          y = 20;
-        }
-        doc.text(`${q.mainQuestion}`, 20, y);
-        y += 10;
-        q.subQuestions.forEach((subQ, i) => {
-          if (y > 280) {
-            doc.addPage();
-            y = 20;
-          }
-          doc.text(`${i + 1}. ${subQ}`, 30, y);
-          y += 8;
-        });
-        y += 10;
-      });
-    } else {
-      doc.text("Question Bank", 20, y);
-      y += 10;
-      paper.bank.forEach((q, i) => {
-        if (y > 280) {
-          doc.addPage();
-          y = 20;
-        }
-        doc.text(`${i + 1}. ${q}`, 30, y);
-        y += 8;
-      });
+    
+    // Create a deep copy of the paper we're modifying
+    const paperToUpdate = questionPapers.find(p => p._id === paper._id);
+    
+    if (!paperToUpdate) {
+      setError("Could not find the paper to update");
+      setConfirmDeleteIndex(null);
+      return;
     }
-
-    doc.save(type === 'Question Bank' ? "QuestionBank.pdf" : "QuestionPaper.pdf");
+    
+    let updatedPaper = {...paperToUpdate};
+    
+    // Update the correct part based on type
+    if (type === 'paper') {
+      const updatedQuestions = [...updatedPaper.questions];
+      if (subIndex !== null) {
+        updatedQuestions[index].subQuestions = updatedQuestions[index].subQuestions.filter((_, i) => i !== subIndex);
+      } else {
+        updatedQuestions.splice(index, 1);
+      }
+      updatedPaper.questions = updatedQuestions;
+    } else {
+      updatedPaper.bank = updatedPaper.bank.filter((_, i) => i !== index);
+    }
+    
+    // Update local state
+    const updatedPapers = questionPapers.map(p => 
+      p._id === paper._id ? updatedPaper : p
+    );
+    
+    // Send to server using the utility function
+    updateQuestionPaper(paper._id, updatedPaper)
+      .then(result => {
+        if (result.success) {
+          setQuestionPapers(updatedPapers);
+          
+          // Sync modal with latest data
+          setActiveModal((prev) => ({
+            ...prev,
+            paper: updatedPapers.find((p) => p._id === paper._id),
+          }));
+        } else {
+          setError(result.error);
+        }
+        setConfirmDeleteIndex(null);
+      });
   };
+
+  const handleDownloadPaperPDF = (paper) => {
+    downloadPDF('Question Paper', paper);
+  };
+
+  const handleDownloadBankPDF = (paper) => {
+    downloadPDF('Question Bank', paper);
+  };
+
+ 
 
   const handleEditQuestion = (paper, type, index, subIndex = null, newValue) => {
     const updatedPapers = questionPapers.map((p) => {
-      if (p.id === paper.id) {
+      if (p._id === paper._id) { //  Use _id instead of id
         if (type === 'paper') {
           const updatedQuestions = [...p.questions];
           if (subIndex !== null) {
@@ -177,15 +233,18 @@ const ProfilePage = () => {
       }
       return p;
     });
+  
     setQuestionPapers(updatedPapers);
-    localStorage.setItem('questionPapers', JSON.stringify(updatedPapers));
-  };
-
  
-
-
-  return (
-    <>
+   //  Sync modal with latest data
+   setActiveModal((prev) => ({
+    ...prev,
+    paper: updatedPapers.find((p) => p._id === paper._id),
+  }));
+};
+  
+return (
+  <>
     <div className="profile-container">
       <div className="profile-header">
         <Header />
@@ -218,13 +277,13 @@ const ProfilePage = () => {
           <div className="question-paper-list">
             {questionPapers.length > 0 ? (
               questionPapers.map((paper) => (
-                <div key={paper.id} className={`question-paper ${removing === paper.id ? 'fade-out' : ''}`}>
+                <div key={paper._id} className={`question-paper ${removing === paper._id ? 'fade-out' : ''}`}>
                   <h3>{paper.subject}</h3>
                   <div className="button-group">
                     <button onClick={() => setActiveModal({ type: 'paper', paper })}>Open Question Paper</button>
                     <button onClick={() => setActiveModal({ type: 'bank', paper })}>Open Question Bank</button>
-                
-                    <button className="dlt-btn" onClick={() => confirmDelete(paper.id)}><FontAwesomeIcon icon={faTrash} /> Delete</button>
+
+                    <button className="dlt-btn" onClick={() => confirmDelete(paper._id)}><FontAwesomeIcon icon={faTrash} /> Delete</button>
                   </div>
                 </div>
               ))
@@ -234,17 +293,17 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      
-       {/* MODAL FOR QUESTION PAPER OR QUESTION BANK */}
-       <AnimatePresence>
+
+      {/* MODAL FOR QUESTION PAPER OR QUESTION BANK */}
+      <AnimatePresence>
         {activeModal && (
           <motion.div className="question-modal-overlay" onClick={() => setActiveModal(null)}>
             <motion.div className="question-modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-            <button onClick={() => setIsEditingModal(true)} className="edit-btn">
-                <FontAwesomeIcon icon={faEdit} /> Edit
-              </button>
-              
+              <div className="modal-header">
+                <button onClick={() => setIsEditingModal(true)} className="edit-btn">
+                  <FontAwesomeIcon icon={faEdit} /> Edit
+                </button>
+
                 <button onClick={() => setActiveModal(null)} className="close-btn">
                   <FontAwesomeIcon icon={faTimes} /> Close
                 </button>
@@ -259,7 +318,7 @@ const ProfilePage = () => {
                         value={q.mainQuestion}
                         onChange={(e) => handleEditQuestion(activeModal.paper, 'paper', index, null, e.target.value)}
                       />
-                     
+
                       <ol>
                         {q.subQuestions.map((subQ, subIndex) => (
                           <li key={subIndex}>
@@ -268,10 +327,10 @@ const ProfilePage = () => {
                               value={subQ}
                               onChange={(e) => handleEditQuestion(activeModal.paper, 'paper', index, subIndex, e.target.value)}
                             />
-                            <button onClick={() => handleRemoveQuestion(activeModal.paper, 'paper', index, subIndex)} className="remove-btn"> 
+                            <button onClick={() => handleRemoveQuestion(activeModal.paper, 'paper', index, subIndex)} className="remove-btn">
                               <FontAwesomeIcon icon={faTimes} /> Remove</button>
                           </li>
-                     ))}
+                        ))}
                       </ol>
                     </ul>
                   ))}
@@ -286,73 +345,104 @@ const ProfilePage = () => {
                         onChange={(e) => handleEditQuestion(activeModal.paper, 'bank', index, null, e.target.value)}
                       />
                       <button onClick={() => handleRemoveQuestion(activeModal.paper, 'bank', index)} className="remove-btn">
-                      <FontAwesomeIcon icon={faTimes} /> Remove</button>
+                        <FontAwesomeIcon icon={faTimes} /> Remove</button>
                     </li>
                   ))}
                 </ul>
               )}
-              
+
               <div className='button-group'>
-                 {isEditingModal ? (
+                {isEditingModal ? (
                   <button onClick={handleSaveModal}>
                     <FontAwesomeIcon icon={faSave} /> Save
                   </button>
                 ) : (
-                <button onClick={() => handleDownloadPDF(activeModal.paper, activeModal.type === 'paper' ? 'Question Paper' : 'Question Bank')}>
-                  <FontAwesomeIcon icon={faDownload} /> Download
-                </button>
-              )}
+                  <button onClick={() => activeModal.type === 'paper' ? 
+                    handleDownloadPaperPDF(activeModal.paper) : 
+                    handleDownloadBankPDF(activeModal.paper)}>
+                    <FontAwesomeIcon icon={faDownload} /> Download
+                  </button>
+                )}
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {confirmDeleteIndex !== null && (
-          <motion.div className="modal-overlay" onClick={() => setConfirmDeleteIndex(null)}>
-            <motion.div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <FiAlertCircle className="modal-icon" />
-              <h3 className="modal-title">Are you sure?</h3>
-              <p className="modal-text">Do you really want to delete this question?</p>
-              <div className="modal-buttons">
-                <button onClick={() => setConfirmDeleteIndex(null)} className="cancel-btn">No</button>
-                <button onClick={confirmRemoveQuestion} className="confirm-btn">Yes, Delete</button>
-              </div>
+        {/* Confirm Delete Question Modal */}
+        <AnimatePresence>
+          {confirmDeleteIndex !== null && (
+            <motion.div className="modal-overlay" onClick={() => setConfirmDeleteIndex(null)}>
+              <motion.div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <FiAlertCircle className="modal-icon" />
+                <h3 className="modal-title">Are you sure?</h3>
+                <p className="modal-text">Do you really want to delete this question?</p>
+                <div className="modal-buttons">
+                  <button onClick={() => setConfirmDeleteIndex(null)} className="cancel-btn">No</button>
+                  <button onClick={confirmRemoveQuestion} className="confirm-btn">Yes, Delete</button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      <AnimatePresence>
-        {deleteId !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setDeleteId(null)}
-            className="modal-overlay"
-          >
+        {/* Confirm Delete Paper Modal */}
+        <AnimatePresence>
+          {deleteId !== null && (
             <motion.div
-              initial={{ scale: 0, rotate: '12.5deg' }}
-              animate={{ scale: 1, rotate: '0deg' }}
-              exit={{ scale: 0, rotate: '0deg' }}
-              onClick={(e) => e.stopPropagation()}
-              className="modal-content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDeleteId(null)}
+              className="modal-overlay"
             >
-              <FiAlertCircle className="modal-icon" />
-              <h3 className="modal-title">Are you sure?</h3>
-              <p className="modal-text">Do you really want to delete this question paper?</p>
-              <div className="modal-buttons">
-                <button onClick={() => setDeleteId(null)} className="cancel-btn">No</button>
-                <button onClick={handleDeleteQuestionPaper} className="confirm-btn">Yes, Delete</button>
-              </div>
+              <motion.div
+                initial={{ scale: 0, rotate: '12.5deg' }}
+                animate={{ scale: 1, rotate: '0deg' }}
+                exit={{ scale: 0, rotate: '0deg' }}
+                onClick={(e) => e.stopPropagation()}
+                className="modal-content"
+              >
+                <FiAlertCircle className="modal-icon" />
+                <h3 className="modal-title">Are you sure?</h3>
+                <p className="modal-text">Do you really want to delete this question paper?</p>
+                <div className="modal-buttons">
+                  <button onClick={() => setDeleteId(null)} className="cancel-btn">No</button>
+                  <button onClick={handleDeleteQuestionPaper} className="confirm-btn">Yes, Delete</button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-    </div>
+        {/* Error Modal */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setError(null)}
+              className="modal-overlay"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="modal-content error-modal"
+              >
+                <FiAlertCircle className="modal-icon error-icon" />
+                <h3 className="modal-title">Error</h3>
+                <p className="modal-text">{error}</p>
+                <div className="modal-buttons">
+                  <button onClick={() => setError(null)} className="confirm-btn">OK</button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };

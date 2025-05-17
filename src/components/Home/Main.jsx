@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Pages/Header';
-import jsPDF from 'jspdf';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { downloadPDF, saveQuestionPaperLocally, saveQuestionPaperToBackend } from '../utils/common';
 
 export default function QuestionPaperPlanner() {
     const [subject, setSubject] = useState('');
@@ -13,14 +13,49 @@ export default function QuestionPaperPlanner() {
     const [step, setStep] = useState(1);
     const [questionPaper, setQuestionPaper] = useState([]);
     const [questionBank, setQuestionBank] = useState([]);
+    const [error, setError] = useState(null);
+    const [unitsValid, setUnitsValid] = useState(Array(5).fill(false));
+    const [unitTouched, setUnitTouched] = useState(Array(5).fill(false));
+    const [formValid, setFormValid] = useState(false);
+
+    useEffect(() => {
+        const newUnitsValid = units.map(unit => {
+            const questions = unit.questions?.split('\n').filter(q => q.trim()) || [];
+            return questions.length >= 6;
+        });
+
+        setUnitsValid(newUnitsValid);
+        setFormValid(newUnitsValid.every(valid => valid) && subject.trim() !== '');
+    }, [units, subject]);
 
     const handleUnitChange = (index, field, value) => {
         let updatedUnits = [...units];
         updatedUnits[index] = { ...updatedUnits[index], [field]: value };
+
+        if (field === 'questionCount' && value < 6) {
+            updatedUnits[index].questionCount = 6;
+        }
+
         setUnits(updatedUnits);
+
+        if (field === 'questions') {
+            let updatedTouched = [...unitTouched];
+            updatedTouched[index] = true;
+            setUnitTouched(updatedTouched);
+        }
     };
 
-    const handleGenerateQuestions = () => {
+    const handleGenerateQuestions = async () => {
+        const allUnitsValid = units.every(unit => {
+            const questions = unit.questions?.split('\n').filter(q => q.trim()) || [];
+            return questions.length >= 6;
+        });
+
+        if (!allUnitsValid || subject.trim() === '') {
+            setError("Please ensure all units have at least 6 questions and subject is provided.");
+            return;
+        }
+
         let formattedQuestions = [];
         let bankQuestions = [];
 
@@ -28,18 +63,17 @@ export default function QuestionPaperPlanner() {
             let unitQuestions = units[i]?.questions?.split('\n').filter(q => q.trim()) || [];
             let shuffledQuestions = unitQuestions.sort(() => 0.5 - Math.random());
             let selectedQuestions = shuffledQuestions.slice(0, 6);
-            
+
             formattedQuestions.push({
                 mainQuestion: `Q${i + 1}. Attempt any 3 out of 6 : (15 Marks)`,
                 subQuestions: selectedQuestions.sort(() => 0.5 - Math.random())
             });
-            
+
             let unitBankQuestions = shuffledQuestions.slice(0, units[i].questionCount);
             bankQuestions.push(...unitBankQuestions);
         }
 
         const newPaper = {
-            id: Date.now(),
             subject,
             academicYear,
             year,
@@ -48,58 +82,42 @@ export default function QuestionPaperPlanner() {
             bank: bankQuestions
         };
 
-        const savedPapers = JSON.parse(localStorage.getItem('questionPapers')) || [];
-        savedPapers.push(newPaper);
-        localStorage.setItem('questionPapers', JSON.stringify(savedPapers));
+        console.log(newPaper);
 
+        saveQuestionPaperLocally(newPaper);
         setQuestionPaper(formattedQuestions);
         setQuestionBank(bankQuestions);
+
+        const result = await saveQuestionPaperToBackend(newPaper);
+        if (!result.success) {
+            setError(result.error);
+        } else {
+            setError(null);
+        }
     };
 
-    const handleDownloadPDF = (type) => {
-        const doc = new jsPDF();
-        doc.setFontSize(16);
-        doc.text(`BSc IT ${type}`, 20, 20);
-        doc.setFontSize(12);
-        doc.text(`Academic Year: ${academicYear}`, 20, 30);
-        doc.text(`Year: ${year}`, 20, 40);
-        doc.text(`Semester: ${semester}`, 20, 50);
-        doc.text(`Subject: ${subject}`, 20, 60);
-        
-        let y = 80;
-        if (type === 'Question Paper') {
-            doc.text("Total Marks: 75", 150, 60);
-            questionPaper.forEach((q, index) => {
-                if (y > 250) {
-                    doc.addPage();
-                    y = 20;
-                }
-                doc.text(`${q.mainQuestion}`, 20, y);
-                y += 10;
-                q.subQuestions.forEach((subQ, i) => {
-                    if (y > 280) {
-                        doc.addPage();
-                        y = 20;
-                    }
-                    doc.text(`${i + 1}. ${subQ}`, 30, y);
-                    y += 8;
-                });
-                y += 10;
-            });
-        } else {
-            doc.text("Question Bank", 20, y);
-            y += 10;
-            questionBank.forEach((q, i) => {
-                if (y > 280) {
-                    doc.addPage();
-                    y = 20;
-                }
-                doc.text(`${i + 1}. ${q}`, 30, y);
-                y += 8;
-            });
-        }
+    const handleDownloadPaperPDF = () => {
+        const paperData = {
+            academicYear,
+            year,
+            semester,
+            subject,
+            questions: questionPaper,
+            bank: questionBank
+        };
+        downloadPDF('Question Paper', paperData);
+    };
 
-        doc.save(type === 'Question Bank' ? "QuestionBank.pdf" : "QuestionPaper.pdf");
+    const handleDownloadBankPDF = () => {
+        const paperData = {
+            academicYear,
+            year,
+            semester,
+            subject,
+            questions: questionPaper,
+            bank: questionBank
+        };
+        downloadPDF('Question Bank', paperData);
     };
 
     return (
@@ -117,13 +135,11 @@ export default function QuestionPaperPlanner() {
                                 semester: semester
                             }}
                             validationSchema={Yup.object({
-                                academicYear: Yup.string()
-                                    .required('Academic Year is required'),
+                                academicYear: Yup.string().required('Academic Year is required'),
                                 year: Yup.string()
                                     .required('Year is required')
                                     .matches(/^\d{4}-\d{2}$/, 'Year should be in format YYYY-YY (e.g., 2025-26)'),
-                                semester: Yup.string()
-                                    .required('Semester is required')
+                                semester: Yup.string().required('Semester is required')
                             })}
                             onSubmit={(values) => {
                                 setAcademicYear(values.academicYear);
@@ -134,14 +150,10 @@ export default function QuestionPaperPlanner() {
                             validateOnBlur={true}
                             validateOnChange={true}
                         >
-                            {({ isValid, errors, touched, handleSubmit }) => (
+                            {({ isValid, handleSubmit }) => (
                                 <Form className='year'>
                                     <label htmlFor="academicYear">Select Academic Year:</label>
-                                    <Field
-                                        as="select"
-                                        name="academicYear"
-                                        id="academicYear"
-                                    >
+                                    <Field as="select" name="academicYear" id="academicYear">
                                         <option value="">Select</option>
                                         <option value="FY BscIT">FY BscIT</option>
                                         <option value="SY BscIT">SY BscIT</option>
@@ -152,22 +164,13 @@ export default function QuestionPaperPlanner() {
                                     </div>
 
                                     <label htmlFor="year">Enter Year (e.g., 2025-26):</label>
-                                    <Field
-                                        type="text"
-                                        name="year"
-                                        id="year"
-                                        placeholder="2025-26"
-                                    />
+                                    <Field type="text" name="year" id="year" placeholder="2025-26" />
                                     <div className="error-message">
                                         <ErrorMessage name="year" component="div" style={{ color: 'red' }} />
                                     </div>
 
                                     <label htmlFor="semester">Select Semester:</label>
-                                    <Field
-                                        as="select"
-                                        name="semester"
-                                        id="semester"
-                                    >
+                                    <Field as="select" name="semester" id="semester">
                                         <option value="">Select Semester</option>
                                         <option value="1">Semester 1</option>
                                         <option value="2">Semester 2</option>
@@ -181,12 +184,7 @@ export default function QuestionPaperPlanner() {
                                     </div>
 
                                     <div className="nxt-btn">
-                                        <button 
-                                            type="button" 
-                                            onClick={() => {
-                                                handleSubmit();
-                                            }}
-                                        >
+                                        <button type="button" onClick={handleSubmit} disabled={!isValid}>
                                             Next
                                         </button>
                                     </div>
@@ -197,12 +195,9 @@ export default function QuestionPaperPlanner() {
 
                     {step === 2 && (
                         <Formik
-                            initialValues={{
-                                subject: subject
-                            }}
+                            initialValues={{ subject: subject }}
                             validationSchema={Yup.object({
-                                subject: Yup.string()
-                                    .required('Subject is required')
+                                subject: Yup.string().required('Subject is required')
                             })}
                             onSubmit={(values) => {
                                 setSubject(values.subject);
@@ -211,7 +206,7 @@ export default function QuestionPaperPlanner() {
                             validateOnBlur={true}
                             validateOnChange={true}
                         >
-                            {({ isValid, errors, touched, handleSubmit, setFieldValue }) => (
+                            {({ isValid, handleSubmit, setFieldValue }) => (
                                 <Form>
                                     <label htmlFor="subject">Subject:</label>
                                     <Field
@@ -228,34 +223,47 @@ export default function QuestionPaperPlanner() {
                                     <div className="error-message">
                                         <ErrorMessage name="subject" component="div" style={{ color: 'red' }} />
                                     </div>
-
                                     {units.map((unit, index) => (
                                         <div key={index}>
                                             <h3>Unit {index + 1}</h3>
                                             <label>Enter Questions (one per line):</label>
                                             <textarea
-                                                placeholder={`Questions for Unit`}
+                                                placeholder={`Questions for Unit ${index + 1} (minimum 6 required)`}
                                                 value={unit.questions}
                                                 onChange={(e) => handleUnitChange(index, 'questions', e.target.value)}
                                             />
-                                            <label>Select Number of Questions:</label>
+
+                                            {/* Error if no input at all */}
+                                            {unitTouched[index] && !unit.questions.trim() && (
+                                                <div className="error-message" style={{ color: 'red' }}>
+                                                    Please enter questions for this unit
+                                                </div>
+                                            )}
+
+                                            {/* Error if fewer than 6 but not empty */}
+                                            {unitTouched[index] && !unitsValid[index] && unit.questions.trim() && (
+                                                <div className="error-message" style={{ color: 'red' }}>
+                                                    At least 6 questions are required for this unit
+                                                </div>
+                                            )}
+
+                                            <label>Select Number of Questions for Question Bank:</label>
                                             <select
                                                 value={unit.questionCount}
                                                 onChange={(e) => handleUnitChange(index, 'questionCount', parseInt(e.target.value))}
                                             >
-                                                {[...Array(21)].map((_, i) => (
-                                                    <option key={i} value={i}>{i}</option>
+                                                {[...Array(15)].map((_, i) => (
+                                                    <option key={i + 6} value={i + 6}>{i + 6}</option>
                                                 ))}
                                             </select>
                                         </div>
                                     ))}
 
                                     <div className="nxt-btn">
-                                        <button 
-                                            type="button" 
-                                            onClick={() => {
-                                                handleSubmit();
-                                            }}
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSubmit()}
+                                            disabled={!formValid || !isValid}
                                         >
                                             Generate Question Paper
                                         </button>
@@ -270,9 +278,15 @@ export default function QuestionPaperPlanner() {
                             <h2>Generated Question Paper</h2>
 
                             <div className='gen-btn'>
-                                <button onClick={() => handleDownloadPDF('Question Paper')}>Download Question Paper</button>
-                                <button onClick={() => handleDownloadPDF('Question Bank')}>Download Question Bank</button>
+                                <button onClick={handleDownloadPaperPDF}>Download Question Paper</button>
+                                <button onClick={handleDownloadBankPDF}>Download Question Bank</button>
                             </div>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="error-message">
+                            <p>{error}</p>
                         </div>
                     )}
                 </section>

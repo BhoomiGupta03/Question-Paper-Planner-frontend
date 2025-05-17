@@ -9,7 +9,7 @@ export default function Header() {
 
   const handleLogout = () => {
     // Remove authentication token (adjust according to your auth system)
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("accessToken");
 
     // Redirect to login page
     navigate("/login");

@@ -9,15 +9,24 @@ import Login from './components/log/Login';
 import Signup from './components/log/Signup';
 import Profile from './components/Profile/Profile';
 import ForgotPassword from './components/log/ForgotPassword';
-import Main from './components/Home/Main'; // Import the Main component
+import Main from './components/Home/Main'; 
+import ProtectedRoute from './components/ProtectedRoutes';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          {/* Home route */}
-          <Route path="/" element={<Home />} />
+        
+         {/*  Protected Home route */}
+         <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
 
           {/* About Us route */}
           <Route path="/aboutus" element={<AboutUsContent />} />

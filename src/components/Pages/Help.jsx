@@ -64,14 +64,14 @@ function Help() {
           </li>
           <li>
             <strong>How do I contact support?</strong><br />
-            For technical issues or support, please email us at <a href="mailto:support@example.com">support@example.com</a>.
+            For technical issues or support, please email us at <a href="mailto:qppqurieshelp250304@gmail.com">qppqurieshelp250304@gmail.com</a>.
           </li>
         </ul>
 
         <h3>6. Contact Support</h3>
         <ul>
           <li>
-            <strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a>
+            <strong>Email:</strong> <a href="mailto:qppqurieshelp250304@gmail.com">qppqurieshelp250304@gmail.com</a>
           </li>
           <li>
             <strong>Response Time:</strong> Our team aims to respond to all inquiries within 24-48 hours.

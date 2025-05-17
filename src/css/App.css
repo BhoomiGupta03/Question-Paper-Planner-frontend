@@ -173,8 +173,6 @@ select {
     resize: vertical;
 }
 
-
-
 /* Button Styling */
 .gen-btn button {
     display: inline-block;
@@ -320,6 +318,11 @@ button:hover {
     color: #FFFFFF;
 }
 
+ .error-message{
+     color: red;
+    margin: 10px 0; 
+}
+
 .log-sign .img-block {
     position: absolute;
     right: -34%;
@@ -336,12 +339,11 @@ button:hover {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    /* gap: 5px; */
+    width: 100%;
 }
 
 .left button {
-    /* width: 343px; */
-    /* height: 52px; */
     border-radius: 32px;
     border: none;
     padding: 16px;
@@ -759,10 +761,10 @@ button:hover {
 
 /* Container for all review cards */
 .review-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 1em;
+    display: flex;
+    justify-content: center;
     gap: 1em;
-    justify-items: center;
 }
 
 
@@ -771,9 +773,9 @@ button:hover {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 2em;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    width: 12em;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -805,7 +807,7 @@ button:hover {
     background-color: red;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 5px;
     cursor: pointer;
     position: absolute;

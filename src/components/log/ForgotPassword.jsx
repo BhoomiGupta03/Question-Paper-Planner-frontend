@@ -1,65 +1,70 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+const API_URL = 'http://localhost:5000/api';
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [verificationCode, setVerificationCode] = useState("");
   const [enteredCode, setEnteredCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
   const [step, setStep] = useState(1); // Step tracker: 1 = email, 2 = code, 3 = reset
   const navigate = useNavigate();
 
-  const generateVerificationCode = () => {
-    // Generate a random 4-digit code
-    return Math.floor(1000 + Math.random() * 9000).toString();
-  };
-
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
     if (!email) {
       setMessage("Please enter a valid email address.");
-    } else {
-      const code = generateVerificationCode();
-      setVerificationCode(code);
-      console.log(`Verification code sent to ${email}: ${code}`); // Simulate email sending
+      return;
+    }
+  
+    try {
+      await axios.post(`${API_URL}/forgot-password/send-code`, { email });
       setMessage("A verification code has been sent to your email.");
-      setStep(2); // Move to the verification step
+      setStep(2);
+    } catch (err) {
+      console.error("Error sending code:", err);
+      setMessage(err.response?.data?.message || "Something went wrong. Try again.");
     }
   };
-
-  const handleCodeSubmit = (e) => {
+  
+  const handleCodeSubmit = async (e) => {
     e.preventDefault();
-    if (enteredCode !== verificationCode) {
-      setMessage("Invalid verification code. Please try again.");
-    } else {
+    
+    try {
+      await axios.post(`${API_URL}/forgot-password/verify-code`, { 
+        email, 
+        code: enteredCode 
+      });
+      
       setMessage("Code verified. Please enter your new password.");
       setStep(3); // Move to the password reset step
+    } catch (err) {
+      console.error("Verification Error:", err);
+      setMessage(err.response?.data?.message || "Invalid verification code. Please try again.");
     }
   };
-  const handlePasswordReset = (e) => {
+  
+  const handlePasswordReset = async (e) => {
     e.preventDefault();
-    if (!newPassword) {
-      setMessage("Please enter a new password.");
-    } else if (newPassword.length < 8) {
+    if (!newPassword || newPassword.length < 8) {
       setMessage("Password must be at least 8 characters long.");
-    } else {
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      const userIndex = users.findIndex((user) => user.email === email);
-
-      if (userIndex !== -1) {
-        // Update the password in localStorage
-        users[userIndex].password = newPassword;
-        localStorage.setItem("users", JSON.stringify(users));
-      }
-
-      setMessage("Your password has been successfully reset.");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      return;
+    }
+  
+    try {
+      await axios.post(`${API_URL}/forgot-password/reset-password`, {
+        email,
+        newPassword
+      });
+      setMessage("Your password has been reset successfully!");
+      setTimeout(() => navigate("/login"), 2000);
+    } catch (err) {
+      console.error("Reset Error:", err);
+      setMessage(err.response?.data?.message || "Error resetting password. Try again.");
     }
   };
-
+  
   return (
     <div className="forgot-password-container">
       <h1>Forgot Password</h1>
@@ -74,6 +79,7 @@ function ForgotPassword() {
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           {message && <p className="message">{message}</p>}
@@ -91,6 +97,7 @@ function ForgotPassword() {
               placeholder="Enter the verification code"
               value={enteredCode}
               onChange={(e) => setEnteredCode(e.target.value)}
+              required
             />
           </div>
           {message && <p className="message">{message}</p>}
@@ -108,6 +115,8 @@ function ForgotPassword() {
               placeholder="Enter your new password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
+              minLength={8}
+              required
             />
           </div>
           {message && <p className="message">{message}</p>}

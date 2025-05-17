@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
         return true;
       } else {
-        alert("Invalid email or password.");
+        // alert("Invalid email or password.");
         return false;
       }
     } catch (error) {
