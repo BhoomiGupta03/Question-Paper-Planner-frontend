@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-const API_URL = 'https://question-paper-planner-backend-production.up.railway.app/api';
+const API_URL = 'https://question-paper-planner-backend.vercel.app/api';
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");

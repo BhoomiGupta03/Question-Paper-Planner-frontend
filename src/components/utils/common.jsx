@@ -64,7 +64,7 @@ export const saveQuestionPaperToBackend = async (paper) => {
       return { success: false, error: 'No authentication token found' };
     }
     
-    const response = await fetch('https://question-paper-planner-backend-production.up.railway.app/api/questionpapers', {
+    const response = await fetch('https://question-paper-planner-backend.vercel.app/api/questionpapers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export const updateQuestionPaper = async (paperId, updatedPaper) => {
       };
     }
     
-    const response = await fetch(`https://question-paper-planner-backend-production.up.railway.app/api/questionpapers/${paperId}`, {
+    const response = await fetch(`https://question-paper-planner-backend.vercel.app/api/questionpapers/${paperId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ export const deleteQuestionPaper = async (paperId) => {
       };
     }
     
-    const response = await fetch(`https://question-paper-planner-backend-production.up.railway.app/api/questionpapers/${paperId}`, {
+    const response = await fetch(`https://question-paper-planner-backend.vercel.app/api/questionpapers/${paperId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`

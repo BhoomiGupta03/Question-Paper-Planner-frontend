@@ -39,7 +39,7 @@ function Signup() {
     const { teacherName, email, password } = values;
 
     // Use the local variable in the request
-    const response = await axios.post("https://question-paper-planner-backend-production.up.railway.app/api/auth/signup", {
+    const response = await axios.post("https://question-paper-planner-backend.vercel.app/api/auth/signup", {
       teacherName,
       email,
       password,
