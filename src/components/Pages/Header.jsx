@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSignOutAlt, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import logo1 from "../../img/logo1.webp";
 
 export default function Header() {
