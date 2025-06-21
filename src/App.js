@@ -18,62 +18,26 @@ function App() {
       <div className="App">
         <Routes>
 
-          {/* Protected Home route */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
+          {/* These pages are PUBLIC now */}
+          <Route path="/" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUsContent />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/review" element={<Reviewcontent />} />
 
-          {/* Protected About Us route */}
-          <Route
-            path="/aboutus"
-            element={
-              <ProtectedRoute>
-                <AboutUsContent />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Help route */}
-          <Route
-            path="/help"
-            element={
-              <ProtectedRoute>
-                <Help />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Review route */}
-          <Route
-            path="/review"
-            element={
-              <ProtectedRoute>
-                <Reviewcontent />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Profile route */}
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Main route */}
+          {/* Only Main and Profile are Protected */}
           <Route
             path="/main"
             element={
               <ProtectedRoute>
                 <Main />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

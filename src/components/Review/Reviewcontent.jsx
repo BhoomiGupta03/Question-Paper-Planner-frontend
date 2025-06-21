@@ -42,7 +42,14 @@ function ReviewPage() {
     setNewReview({ ...newReview, [name]: value });
   };
 
-  const handleAddReview = () => {
+   const handleAddReview = () => {
+     const token = localStorage.getItem("accessToken");
+
+  if (!token) {
+    alert("You must be logged in to submit a review.");
+    return;
+  }
+  
     if (newReview.name && newReview.feedback) {
       axios.post(API_URL, newReview)
         .then(response => {
