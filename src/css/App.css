@@ -104,12 +104,13 @@
     Filter: invert(1)
 }
 
-.banner-container .start-link a {
+.banner-container .start-link .start-btn {
+    background-color: #162DAB;
     font-size: 18px;
     font-weight: 500;
     color: #FFFFFF;
     text-decoration: none;
-    /* Removes underline */
+
 }
 
 .banner-container .start-link:hover {
@@ -318,9 +319,9 @@ button:hover {
     color: #FFFFFF;
 }
 
- .error-message{
-     color: red;
-    margin: 10px 0; 
+.error-message {
+    color: red;
+    margin: 10px 0;
 }
 
 .log-sign .img-block {
