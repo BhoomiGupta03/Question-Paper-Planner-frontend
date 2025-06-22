@@ -87,7 +87,7 @@
     font-size: 48px;
 }
 
-.banner-container .start-link {
+.banner-container .start-link  {
     border: 1em;
     background-color: #162DAB;
     display: flex;
@@ -100,18 +100,25 @@
     border-radius: 8px;
 }
 
-.banner-container .start-link svg {
-    Filter: invert(1)
-}
-
-.banner-container .start-link .start-btn {
-    background-color: #162DAB;
-    font-size: 18px;
+.banner-container .start-link .start-btn{
+        background-color: #162DAB;
+          font-size: 18px;
     font-weight: 500;
     color: #FFFFFF;
     text-decoration: none;
 
 }
+
+.banner-container .start-link svg {
+    Filter: invert(1)
+}
+
+/* .banner-container .start-link a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: none;
+} */
 
 .banner-container .start-link:hover {
     background-color: #0e1f76;
@@ -319,9 +326,9 @@ button:hover {
     color: #FFFFFF;
 }
 
-.error-message {
-    color: red;
-    margin: 10px 0;
+ .error-message{
+     color: red;
+    margin: 10px 0; 
 }
 
 .log-sign .img-block {
@@ -693,6 +700,16 @@ button:hover {
     font-size: 1rem;
     margin-bottom: 1rem;
     line-height: 1.4;
+        word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+
 }
 
 /* Additional styles for review responsiveness */
@@ -796,13 +813,6 @@ button:hover {
     margin-bottom: 0.5rem;
 }
 
-/* Feedback text styling */
-.review-page-content .review-card p {
-    color: #555;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
 
 .review-page-content .review-card button {
     background-color: red;
