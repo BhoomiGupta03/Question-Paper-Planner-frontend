@@ -712,17 +712,6 @@ button:hover {
 
 }
 
-/* Additional styles for review responsiveness */
-@media (max-width: 768px) {
-    .review-container {
-        grid-template-columns: 1fr;
-    }
-
-    .review-card {
-        max-width: 90%;
-    }
-}
-
 /* review banner */
 .review-page-content {
     text-align: center;
@@ -1358,6 +1347,30 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+
+    #header .logo img{
+        height: 3em;
+    }
+
+    #header .nav a{
+        font-size: 14px;
+    }
+
+    #header .user-options{
+        gap: 10px;
+    }
+
+    #header .user-options a{
+        padding: 8px;
+        margin: 8px;
+    }
+
+#header .user-options button{
+        padding: 8px;
+    margin: 8px;
+
+}    
+
     .banner-container {
         height: 300px;
     }
@@ -1470,6 +1483,20 @@ button:hover {
         font-size: 12px;
     }
 
+    #header .user-options{
+        gap: 8px;
+    }
+
+    #header .user-options a{
+        padding: 6px;
+        margin: 6px;
+    }
+
+#header .user-options button{
+        padding: 6px;
+    margin: 6px;
+
+}    
     .banner-container {
         height: 260px;
     }
@@ -1562,7 +1589,7 @@ button:hover {
     }
 
     #header .user-options {
-        gap: 6px;
+        gap: 4px;
     }
 
     #header .user-options svg {
@@ -1570,13 +1597,13 @@ button:hover {
     }
 
     #header .user-options a {
-        padding: 8px;
+        padding: 6px;
         font-size: 10px;
         display: flex;
     }
 
     #header .user-options .logout-button {
-        padding: 8px;
+        padding: 6px;
         font-size: 10px;
         display: flex;
     }
@@ -1596,8 +1623,8 @@ button:hover {
         padding: 5px;
     }
 
-    .banner-container .banner-content .start-link a {
-        font-size: 12px;
+    .banner-container .banner-content .start-link button {
+        font-size: 14px;
     }
 
     .banner-container .img-block {
@@ -1636,6 +1663,7 @@ button:hover {
 
     .review-container {
         margin: 1em;
+        height: 150px;
     }
 
     .review-container h1 {
@@ -1656,10 +1684,14 @@ button:hover {
         padding: 0;
     }
 
-    .profile-content h2,
-    p {
+    .profile-content h2 {
         margin: 10px;
     }
+
+    .profile-content  p {
+        margin: 10px;
+    }
+
 
     .profile-content .edit-save-btn {
         margin: 10px;
