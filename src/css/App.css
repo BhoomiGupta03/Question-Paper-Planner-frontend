@@ -1577,12 +1577,11 @@ button:hover {
 
 @media (max-width: 480px) {
     #header {
-              justify-content: unset;
-        padding: 15px;
-        gap: 10px;
+     justify-content: unset;
+     padding: 15px;
+     gap: 10px;
     }
     
-
     #header .logo img {
    height: 30px;    }
 
