@@ -1584,8 +1584,7 @@ button:hover {
     
 
     #header .logo img {
-        height: 40px;
-    }
+   height: 30px;    }
 
     #header nav {
         gap: 6px;
